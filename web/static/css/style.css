@@ -1,0 +1,41 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+/*
+    #272727 black
+    #747474 gray
+    #FF652F orange
+    #FFE400 yellow
+    #14A76C green
+*/
+
+.bg {
+    background-image: url("../img/background.jpg");
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navbar-custom {
+    background-color: rgba(116, 116, 116, 0.1);
+    color: #FFE400;
+    height: 60px;
+    margin:0;
+    width: 100%;
+}
+
+footer {
+    background-color: rgba(255, 101, 47, 0.8);
+    color: #FFF;
+    position: absolute;
+    height: 100px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
