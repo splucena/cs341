@@ -13,7 +13,7 @@ $(() => {
 
     $('#btn-toggle-animation').click((e) => {
         let inputColor = $('#input-change-color').val();
-        $('div.div-container > div:nth-child(2)')
+        $('div.div-container > div:nth-child(4)')
         .css({
             'background-color': inputColor,
             'transition': 'background-color 5s linear'});
