@@ -35,9 +35,14 @@
             </div>
         </nav>
         <main>
-            <div class="row">
-
+        <div class="container-fluid text-center">
+        <div class="row content">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8 text-left">
+                <h1 class="text-center text-primary">Sumilang R. Plucena</h1>
             </div>
+            <div class="col-sm-2"></div>
+        </div>
         </main>
         <footer class="text-center p-2">
             <div>
