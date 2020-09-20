@@ -46,9 +46,8 @@ h6 {
     /*background-color: rgba(116, 116, 116, 0.7);*/
     /*background-color: rgba(255, 101, 47, 0.8);*/
     /*background-color: #FF652F;*/
-    color: #FFE400;
     margin: 0;
-    height: 70px;
+    height: 80px;
 }
 
 .navbar-custom a {
@@ -58,6 +57,11 @@ h6 {
 
 .navbar-brand {
     color: #14A76C !important;
+}
+
+.brand-icon {
+    width: 50px;
+    height: 50px;
 }
 
 .author-title {
@@ -102,4 +106,5 @@ footer {
     /*background-color: rgba(255, 101, 47, 0.6);*/
     font-size: 12px;
     color: #FFF;
+    bottom: 0;
 }
