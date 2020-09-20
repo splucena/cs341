@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?=isset($title) ? $title : 'Home'?></title>
     <link rel="stylesheet" href="./static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./static/css/style.css?version=1">
+    <link rel="stylesheet" href="./static/css/style.css?version=5">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 </head>
@@ -33,7 +33,7 @@
                         </li>
                     </ul>
                     <span class="navbar-text">
-                        Web Backend Development II
+                        <a href="">Web Backend Development II</a>
                     </span>
                 </div>
             </nav>
@@ -42,13 +42,17 @@
             <main>
                 <div class="container-fluid text-center h-100">
                     <div class="row content h-100">
+                        <div class="col-sm-1"></div>
                         <div class="col-sm-5 text-left about">
                             <div class="card special-card">
                                 <div class="card-header border-bottom">
                                     <div class="row">
                                         <div class="col-sm-2"><img class="text-center" style="border-radius: 50%;" src="./static/img/person.png" width="80px" height="80px"
                                         alt="My Image"></div>
-                                        <div class="col col-sm-10 p-3"><h2 class="card-title">Sumilang R. Plucena</h2></div>
+                                        <div class="col col-sm-10 p-3">
+                                            <h2 class="card-title author-title">Sumilang R. Plucena</h2>
+                                            <span class="author-title">Technology Enthusiast</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="card-body border-bottom">                                    
@@ -62,7 +66,11 @@
                                     <a href="#" class="btn btn-success">PROJECTS</a>
                                 </div>
                                 <div class="card-footer text-muted">
-                                    2 days ago
+                                    <div class="icon-container">
+                                        <span><a href="https://www.facebook.com/sumilang.plucena" target="_blank"><img class="icon" src="./static/img/icon/facebook.png" alt=""></a></span>
+                                        <span><a href="https://www.linkedin.com/in/sumilang-plucena-462a4a60/" target="_blank"><img class="icon" src="./static/img/icon/linkedin.png" alt=""></a></span>
+                                        <span><a href="https://github.com/splucena" target="_blank"><img class="icon" src="./static/img/icon/github.png" alt=""></a></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -70,10 +78,10 @@
             </main>
         </div>
         <div class="row">
-            <footer class="w-100 text-center p-2">
+            <footer class="w-100 text-right p-2">
                 <div>
                     <span>&copy; Sumilang R. Plucena, All rights reserved</span><br />
-                    <span>All images used are believed to be in "Fair Use". Please notify author if any are not and they
+                    <span>All images used are believed to be in "Fair Use".</span><br /><span>Please notify author if any are not and they
                         will be
                         removed.</span><br />
                     <span>Last updated: <?=isset($currentDate) ? $currentDate : "2.2.2020" ?></span>
