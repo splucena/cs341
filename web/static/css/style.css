@@ -2,6 +2,17 @@ body,
 html {
     height: 100%;
     margin: 0;
+    border: none;
+}
+
+/** {
+    border: solid 1px transparent;
+}*/
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
 }
 
 /*
@@ -12,30 +23,53 @@ html {
     #14A76C green
 */
 
-.bg {
+body {
     background-image: url("../img/background.jpg");
-    /* Full height */
-    height: 100%;
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather', serif;
 }
 
 .navbar-custom {
-    background-color: rgba(116, 116, 116, 0.1);
+    /*background-color: rgba(116, 116, 116, 0.7);*/
+    /*background-color: rgba(255, 101, 47, 0.8);*/
+    background-color: #FFF;
     color: #FFE400;
-    height: 60px;
     margin:0;
-    width: 100%;
+    height: 80px;
+}
+
+main {
+}
+
+.special-card {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #FFF;
+    border: solid 1px #747474;
+}
+
+.border-bottom {
+    border-bottom: solid 1px #747474 !important;
+}
+
+.about {
+    /*background-color: rgba(0, 0, 0, 0.5);
+    border: solid 1px #FFF;
+    color: #FFF;    
+    padding: 20px;*/
+    margin: auto 0;
 }
 
 footer {
-    background-color: rgba(255, 101, 47, 0.8);
+    /*background-color: rgba(255, 101, 47, 0.6);*/
     color: #FFF;
     position: absolute;
-    height: 100px;
     bottom: 0;
     left: 0;
-    width: 100%;
 }
