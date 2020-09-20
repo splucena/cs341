@@ -47,7 +47,7 @@
                             <div class="card special-card">
                                 <div class="card-header border-bottom">
                                     <div class="row">
-                                        <div class="col-sm-2"><img class="text-center" style="border-radius: 50%;" src="./static/img/person.png" width="80px" height="80px"
+                                        <div class="col-sm-2"><img class="text-center" style="border-radius: 50%;" src="./static/img/splucena.jpg" width="80px" height="80px"
                                         alt="My Image"></div>
                                         <div class="col col-sm-10 p-3">
                                             <h2 class="card-title author-title">Sumilang R. Plucena</h2>
