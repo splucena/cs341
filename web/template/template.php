@@ -18,8 +18,8 @@
             <nav class="navbar-top" id="navbarTop">
                 <a class="navbar-brand" href="#"><img class="brand-icon" src="./static/img/icon/coding.png"
                         alt="Coding" /></a>
-                <a href="#home" class="active">Home</a>
-                <a href="#projects">Projects</a>
+                <a href="index.php" class="active">Home</a>
+                <a href="projects.php">Projects</a>
                 <a href="#about">About</a>
                 <a href="javascript:void(0)" class="icon" onclick="toggleMenu()">
                     <i class="fa fa-bars"></i>
@@ -47,7 +47,7 @@
 
                 </div>
                 <div class="profile-projects border-bottom padding-bottom">
-                    <button class="btn btn-success">PROJECTS</button>
+                    <a href="projects.php" class="btn btn-success">PROJECTS</a>
                 </div>
                 <div class="profile-footer">
                     <div class="profile-icon">
