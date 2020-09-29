@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        .container {
+            margin: 0 auto;
+            width: 400px;
+            border: solid 1px #000;
+        }
+
+        div {
+            padding: 5px;
+        }
+
+        input[type=text],
+        textarea,
+        input[type=submit] {
+            padding: 4px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="result.php" method="POST" target="_blank">
+        <div class="container">
+            <div>
+                <label for="name">Name</label><br>
+                <input type="text" id="name" name="name">
+            </div>
+            <div>
+                <label for="email">Email</label><br>
+                <input type="text" id="email" name="email">
+            </div>
+            <div>
+                <fieldset>
+                    <legend>Major</legend>
+                    <input type="radio" name="major" id="cs" value="Computer Science">
+                    <label for="cs">Computer Science</label><br>
+                    <input type="radio" name="major" id="wdd" value="Web Design & Development">
+                    <label for="wdd">Web Design and Development</label><br>
+                    <input type="radio" name="major" id="cit" value="Computer Information Technology">
+                    <label for="cit">Computer Information Technology</label><br>
+                    <input type="radio" name="major" id="ce" value="Computer Engineering">
+                    <label for="ce">Computer Engineering</label>
+                </fieldset>
+            </div>
+            <div>
+                <fieldset>
+                    <legend>Continents</legend>
+                    <input type="checkbox" name="places[]" id="na" value="North America">
+                    <label for="na">North Ameria</label><br>
+                    <input type="checkbox" name="places[]" id="sa" value="South America">
+                    <label for="sa">South Ameria</label><br>
+                    <input type="checkbox" name="places[]" id="eu" value="Europe">
+                    <label for="na">Europe</label><br>
+                    <input type="checkbox" name="places[]" id="as" value="Asia">
+                    <label for="na">Asia</label><br>
+                    <input type="checkbox" name="places[]" id="au" value="Australia">
+                    <label for="na">Australia</label><br>
+                    <input type="checkbox" name="places[]" id="af" value="Africa">
+                    <label for="na">Africa</label><br>
+                    <input type="checkbox" name="places[]" id="an" value="Antartica">
+                    <label for="na">Antartica</label><br>
+                </fieldset>
+            </div>
+            <div>
+                <label for="comments">Name</label><br>
+                <textarea id="comments" name="comments" rows="5"></textarea>
+            </div>
+            <div><input type="submit" value="Submit"></div>
+        </div>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+After completing the assignment, please answer the questions in this text file and submit it to I-Learn.
+
+1. Copy and paste the URL for your web application:
+
+http://safe-fjord-79831.herokuapp.com/index.php
+
+2. Copy and paste the URL for your source code repository (e.g., GitHub):
+https://github.com/splucena/cs341
+
+3. Briefly list and describe the elements of the application that are functioning. Include any special instructions about how to login and/or use your application.
+The Home and Project links are working. The time located at the bottom of the page is generated using PHP time. The web page is also responsive and should work with smaller devices. There are no special instructions for these project.
+
+4. Briefly describe any pieces of the assignment that are not yet working correctly.
+The link About is not working yet and the Project links only contains "Coming soon!" message.
+
+5. Briefly describe the "coolest" thing you learned while completing this assignment.
+I was able to practice PARC and I think the layout and design that I used is not common especially the footer.
+
+6. What is the difference between an HTTP Get and Post? When should each be used?
+GET method carries request parameter appended in the URL string while POST carries request parameter in the body which makes it more secure way of transfering data from client into the server. In database terminology GET issues the SELECT command while POST maybe issued to run INSERT, UPDATE, and DELETE.
+
+7. Please select the category you feel best describes your assignment: 4
+1 - Some attempt was made
+2 - Developing, but significantly deficient
+3 - Slightly deficient, but still mostly adequate
+4 - Meets requirements
+5 - Shows creativity and excels above and beyond requirements
+
+
+8. Provide a brief justification (1-2 sentences) for selecting that category.
+I met all requirements and made it responsive.
