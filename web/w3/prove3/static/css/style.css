@@ -1,6 +1,19 @@
 body {
     background: none !important;
-    background-color: antiquewhite !important;
+    /*background-color: antiquewhite !important;*/
+}
+
+.container {
+    grid-template-rows: 50px 100% auto;
+}
+
+main {
+    display: grid;
+    grid-template-columns: auto;
+}
+
+footer {
+    text-align: center !important;
 }
 
 .main-container {
@@ -30,6 +43,7 @@ body {
     column-gap: 15px;
     min-width: 400px;
     max-width: 400px;
+    max-height: 400px;
     margin: auto;
     padding: 10px;
     text-align: left;
@@ -66,7 +80,7 @@ body {
     outline: 0;
     padding: 12px;
     color: white;
-    background-color: #000;
+    background-color: #14A76C;
     text-align: center;
     cursor: pointer;
     width: 100%;

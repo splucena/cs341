@@ -3,16 +3,22 @@
     $products =json_decode($JSON, TRUE);
     
     foreach ($products as $p) {
-        $html = "<div class='card'>";
-        $html .= "<div><img src='static/img/$p[filename]' all='$p[title]'></div>";
+        $html = "<form action='shoppingCart.php' method='POST'>";
+        $html .= "<div class='card'>";
+        $html .= "<div><img src='static/img/$p[filename]' all='$p[title]'><input type='hidden' name='filename' value='$p[filename]'></div>";
         $html .= "<div class='product-description'>";
-        $html .= "<p class='upper no-top-bottom-margin-padding'>$p[type]</>";
-        $html .= "<h2 class='upper no-top-margin-padding'>$p[title]</h2>";
-        $html .= "<p class='price'>\$$p[price]</p>";
+        $html .= "<p class='upper no-top-bottom-margin-padding'><small>$p[type]</small></p>";
+        $html .= "<h2 class='upper no-top-margin-padding'>$p[title]</h2><input type='hidden' name='title' value='$p[title]'>";
+        $html .= "<p class='price'>\$$p[price]</p><input type='hidden' name='price' value='$p[price]'>";
         $html .= "<p class='justify'>$p[description]</p>";
-        $html .= "<button>Add to Cart</button>";
+        $html .= "<div class='card-footer'>";
+        $html .= "<input type='number' name='quantity' value='quantity'>";
+        $html .= "<input type='submit' value='Add to Cart' class='btn btn-success' id='add-to-cart'>";
+        $html .= "<input type='hidden' name='action' value='add-to-cart'>";
         $html .= "</div>";
         $html .= "</div>";
+        $html .= "</div>";
+        $html .= "</form>";
 
         echo $html;
     }

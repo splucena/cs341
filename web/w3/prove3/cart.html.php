@@ -34,12 +34,13 @@
         </header>
         <main>
             <div>
-                <form action="cart.html.php" method="GET">
-                    <input type="submit" value="View Cart" class="btn btn-success">
+                
+                <form action="index.php" method="GET">
+                    <input type="submit" value="Home" class="btn btn-success">
                 </form>
             </div>
             <div class="main-container">
-                <?php include $_SERVER['DOCUMENT_ROOT'] . '/CS341/web/w3/prove3/products.php'; ?>
+                <?php include $_SERVER['DOCUMENT_ROOT'] . '/CS341/web/w3/prove3/cart.php'; ?>
             </div>
         </main>
         <footer class="small-font">
