@@ -1,0 +1,94 @@
+body {
+    background: none !important;
+    background-color: antiquewhite !important;
+}
+
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr;    
+    column-gap: 10px;
+    row-gap: 10px;
+    margin: 0 auto;    
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-items: start;
+}
+
+.card img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.card-container {
+    display: table;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: 100px auto;
+    column-gap: 15px;
+    min-width: 400px;
+    max-width: 400px;
+    margin: auto;
+    padding: 10px;
+    text-align: left;
+    /*font-family: arial;*/
+}
+
+.upper {
+    text-transform: uppercase;
+}
+
+.justify {
+    text-align: justify;
+}
+
+.no-top-bottom-margin-padding {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.no-top-margin-padding {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.price {
+    color: grey;
+    font-size: 22px;
+}
+
+.card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+.card button:hover {
+    opacity: 0.7;
+}
+
+@media only screen and (min-width: 600px) {
+
+    /* For tablets: */
+    .main-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+    /* For desktop: */
+    .main-container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
