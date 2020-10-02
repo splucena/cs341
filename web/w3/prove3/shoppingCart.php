@@ -57,8 +57,12 @@
             $quantity = checkInt(filter_input(INPUT_POST, 'quantity'));
             $orderId = checkInt(filter_input(INPUT_POST, 'orderId'));
 
+            //var_dump($quantity);
+            //var_dump($_SESSION);
+            //var_dump($orderId);
+            //exit;
             // Update quantity based on order key
-            $_SESSION['shoppingCart'][($orderId)][4] = (int)$quantity;
+            $_SESSION['shoppingCart'][(int)$orderId][4] = (int)$quantity;
             header('location: cart.html.php');
             break;
 
@@ -69,7 +73,7 @@
             unset($_SESSION['shoppingCart'][(int)$orderId]);
             header('location: cart.html.php');
             break;
-            
+
         default:
             include 'index.php';
             break;
