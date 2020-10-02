@@ -58,6 +58,21 @@ footer {
     text-align: justify;
 }
 
+.right {
+    text-align: right;
+}
+
+table {
+    border-collapse: collapse;
+    border: solid 1px #000;
+    width: 100%;
+}
+
+table td,
+table th {
+    border: solid 1px #000;
+}
+
 .no-top-bottom-margin-padding {
     margin-top: 0;
     margin-bottom: 0;

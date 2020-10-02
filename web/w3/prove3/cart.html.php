@@ -13,7 +13,7 @@
     <!--<link rel="stylesheet" href="./static/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="../../static/css/all.css">
     <link rel="stylesheet" href="../../static/css/style.css?version=1">
-    <link rel="stylesheet" href="static/css/style.css?version=1">
+    <link rel="stylesheet" href="static/css/style.css?version=2">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 </head>
@@ -34,12 +34,15 @@
         </header>
         <main>
             <div>
-                
                 <form action="index.php" method="GET">
                     <input type="submit" value="Home" class="btn btn-success">
                 </form>
+                <form action="checkout.php" method="GET">
+                    <input type="submit" value="Checkout" class="btn btn-success">
+                </form>
             </div>
             <div class="main-container">
+
                 <?php include $_SERVER['DOCUMENT_ROOT'] . '/CS341/web/w3/prove3/cart.php'; ?>
             </div>
         </main>
