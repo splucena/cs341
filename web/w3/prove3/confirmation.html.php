@@ -34,7 +34,8 @@
         </header>
         <main>
             <div class="checkout-container">
-                <?php include $_SERVER['DOCUMENT_ROOT'] . '/CS341/web/w3/prove3/checkout.php'; ?>
+                <h3 class="center">Thank you for your order!</h3>
+                <?php include $_SERVER['DOCUMENT_ROOT'] . '/CS341/web/w3/prove3/confirmation.php'; ?>
             </div>
         </main>
         <footer class="small-font">

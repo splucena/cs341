@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?=isset($title) ? $title : 'Home'?></title>
+    <title><?=isset($title) ? $title : 'CSE341: Shopping Cart'?></title>
     <!--<link rel="stylesheet" href="./static/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="../../static/css/all.css">
     <link rel="stylesheet" href="../../static/css/style.css?version=1">
@@ -24,8 +24,8 @@
             <nav class="navbar-top" id="navbarTop">
                 <a class="navbar-brand" href="#"><img class="brand-icon" src="../../static/img/icon/coding.png"
                         alt="Coding" /></a>
-                <a href="index.php" class="active">Home</a>
-                <a href="projects.php">Projects</a>
+                <a href="index.php">Home</a>
+                <a href="projects.php" class="active">Projects</a>
                 <a href="#about">About</a>
                 <a href="javascript:void(0)" class="icon" onclick="toggleMenu()">
                     <i class="fa fa-bars"></i>
@@ -33,16 +33,20 @@
             </nav>
         </header>
         <main>
-            <div>
-                <form action="index.php" method="GET">
-                    <input type="submit" value="Home" class="btn btn-success">
-                </form>
-                <form action="checkout.html.php" method="GET">
-                    <input type="submit" value="Checkout" class="btn btn-success">
-                </form>
-            </div>
             <div class="shopping-cart-container">
-                <?php include $_SERVER['DOCUMENT_ROOT'] . '/CS341/web/w3/prove3/cart.php'; ?>
+                <?php include $_SERVER['DOCUMENT_ROOT'] . '/CS341/web/w3/prove3/cart.php'; ?>                
+                <div class="shopping-cart-buttons">
+                    <div>
+                        <form action="index.php" method="GET">
+                            <input type="submit" value="Continue Shopping" class="btn btn-success">
+                        </form>
+                    </div>
+                    <div>
+                        <form action="checkout.html.php" method="GET">
+                            <input type="submit" value="Checkout" class="btn btn-success">
+                        </form>
+                    </div>
+                </div>
             </div>
         </main>
         <footer class="small-font">

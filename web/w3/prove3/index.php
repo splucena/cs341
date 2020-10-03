@@ -9,11 +9,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?=isset($title) ? $title : 'Home'?></title>
+    <title><?=isset($title) ? $title : 'CSE341: Shopping Cart'?></title>
     <!--<link rel="stylesheet" href="./static/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="../../static/css/all.css">
     <link rel="stylesheet" href="../../static/css/style.css?version=1">
-    <link rel="stylesheet" href="static/css/style.css?version=1">
+    <link rel="stylesheet" href="static/css/style.css?version=5">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 </head>
@@ -24,8 +24,8 @@
             <nav class="navbar-top" id="navbarTop">
                 <a class="navbar-brand" href="#"><img class="brand-icon" src="../../static/img/icon/coding.png"
                         alt="Coding" /></a>
-                <a href="index.php" class="active">Home</a>
-                <a href="projects.php">Projects</a>
+                <a href="index.php">Home</a>
+                <a href="projects.php" class="active">Projects</a>
                 <a href="#about">About</a>
                 <a href="javascript:void(0)" class="icon" onclick="toggleMenu()">
                     <i class="fa fa-bars"></i>

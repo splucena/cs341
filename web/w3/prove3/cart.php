@@ -9,14 +9,14 @@
     $counter = 1;
     $total = 0;
     $html = "<h3>Checkout Items</h3>";
-    $html .= "<table><thead><tr>";
+    $html .= "<table><thead><tr class='border-bottom'>";
     $html .= "<th>#</th><th>Product</th><th>Price</th><th>Quantity</th><th>Subtotal</th><th colspan='2'></th>";
     $html .= "</tr></thead>";
     $html .= "<tbody>";
     foreach($cart as $k => $o) {
         $subtotal = (float)$o[3] * (int)$o[4];
         $html .= "<form action='shoppingCart.php' method='POST'>";
-        $html .= "<tr>";
+        $html .= "<tr class='border-bottom'>";
         $html .= "<td>$counter</td>";
         $html .= "<td width='25%'>$o[2]</td>";
         $html .= "<td class='right'>$o[3]</td>";
@@ -29,9 +29,9 @@
         $counter++;
         $total += $subtotal;        
     }
-    $html .= "<tr><td colspan='3'></td><td>Total</td><td class='right'>$total</td><td colspan='4'></td></tr>";
+    $html .= "<tr><td colspan='3'></td><td>Total</td><td class='right'>\$$total</td><td colspan='4'></td></tr>";
     $html .= "</tbody>";
-    $html .= "</table>";
+    $html .= "</table><br>";
     echo $html;
     
 ?>
