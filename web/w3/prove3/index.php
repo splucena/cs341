@@ -34,8 +34,12 @@
         </header>
         <main>
             <div class="main-container">
-                <!--<?php include $_SERVER['DOCUMENT_ROOT'] . '/CS341/web/w3/prove3/products.php'; ?>-->
-                <?php include $_SERVER['DOCUMENT_ROOT'] . '/w3/prove3/products.php'; ?>
+                <?php
+                    $url =  '/CS341/web/w3/prove3/products.php';
+                    #$url =  '/w3/prove3/products.php';
+                    include $_SERVER['DOCUMENT_ROOT'] . $url; 
+                ?>
+                <!--<?php include $_SERVER['DOCUMENT_ROOT'] . '/w3/prove3/products.php'; ?>-->
             </div>
         </main>
         <footer class="small-font">

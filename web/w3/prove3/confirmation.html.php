@@ -35,8 +35,12 @@
         <main>
             <div class="checkout-container">
                 <h2 class="center">Thank you for your order!</h2>
-                <!--<?php include $_SERVER['DOCUMENT_ROOT'] . '/CS341/web/w3/prove3/confirmation.php'; ?>-->
-                <?php include $_SERVER['DOCUMENT_ROOT'] . '/w3/prove3/confirmation.php'; ?>
+                <?php
+                    $url = '/CS341/web/w3/prove3/confirmation.php'; 
+                    //$url = '/w3/prove3/confirmation.php';
+                    include $_SERVER['DOCUMENT_ROOT'] . $url; 
+                ?>
+                <!--<?php include $_SERVER['DOCUMENT_ROOT'] . '/w3/prove3/confirmation.php'; ?>-->
             </div>
         </main>
         <footer class="small-font">

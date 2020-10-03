@@ -1,3 +1,11 @@
+/*
+    #272727 black
+    #747474 gray
+    #FF652F orange
+    #FFE400 yellow
+    #14A76C green
+*/
+
 body {
     background: none !important;
     /*background-color: antiquewhite !important;*/
@@ -113,8 +121,17 @@ button {
     font-size: 17px;
 }
 
+input[type=submit]:active,
+button:active,
+input[type=submit]:focus,
+button:focus {
+    outline: none;
+}
+
+button:hover,
 input[type=submit]:hover {
     background-color: #45a049;
+    color: #FFE400;
 }
 
 .main-container {

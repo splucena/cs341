@@ -34,8 +34,13 @@
         </header>
         <main>
             <div class="checkout-container">
-                <!--<?php include $_SERVER['DOCUMENT_ROOT'] . '/CS341/web/w3/prove3/checkout.php'; ?>-->
-                <?php include $_SERVER['DOCUMENT_ROOT'] . '/w3/prove3/checkout.php'; ?>
+                <?php 
+                    //include $_SERVER['DOCUMENT_ROOT'] . '/CS341/web/w3/prove3/checkout.php'; 
+                    $url = '/CS341/web/w3/prove3/checkout.php';
+                    //$url = '/w3/prove3/checkout.php';
+                    include $_SERVER['DOCUMENT_ROOT'] . $url;
+                ?>
+                <!--<?php include $_SERVER['DOCUMENT_ROOT'] . '/w3/prove3/checkout.php'; ?>-->
             </div>
         </main>
         <footer class="small-font">

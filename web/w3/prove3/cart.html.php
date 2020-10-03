@@ -34,8 +34,12 @@
         </header>
         <main>
             <div class="shopping-cart-container">
-                <!--<?php include $_SERVER['DOCUMENT_ROOT'] . '/CS341/web/w3/prove3/cart.php'; ?>-->
-                <?php include $_SERVER['DOCUMENT_ROOT'] . '/w3/prove3/cart.php'; ?>
+                <?php 
+                    $url = '/CS341/web/w3/prove3/cart.php'; 
+                    //$url = '/w3/prove3/cart.php'; 
+                    include $_SERVER['DOCUMENT_ROOT'] . $url; 
+                ?>
+                <!--<?php include $_SERVER['DOCUMENT_ROOT'] . '/w3/prove3/cart.php'; ?>-->
                 <div class="shopping-cart-buttons">
                     <div>
                         <form action="index.php" method="GET">
