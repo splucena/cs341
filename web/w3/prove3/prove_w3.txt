@@ -1,23 +1,26 @@
 After completing the assignment, please answer the questions in this text file and submit it to I-Learn.
 
 1. Copy and paste the URL for your web application:
-
+https://safe-fjord-79831.herokuapp.com
+https://safe-fjord-79831.herokuapp.com/w3/prove3/index.php
 
 2. Copy and paste the URL for your source code repository (e.g., GitHub):
-
+https://github.com/splucena/cs341
 
 3. Briefly list and describe the elements of the application that are functioning. Include any special instructions about how to login and/or use your application.
-
+There are no special instruction for this assignment. Minimum requirements are functioning and updating of quantity from the shopping cart view is also working.
 
 4. Briefly describe any pieces of the assignment that are not yet working correctly.
-
+N/A
 
 5. Briefly describe the "coolest" thing you learned while completing this assignment.
 
+
 6. List one strength and one limitation of using cookies.
+Cookies can be persisted on the clients browser which no longer requires additional resources from the server. 
+Cookies can not store complex information it is limited to simple string information. 
 
-
-7. Please select the category you feel best describes your assignment:
+7. Please select the category you feel best describes your assignment: 4
 1 - Some attempt was made
 2 - Developing, but significantly deficient
 3 - Slightly deficient, but still mostly adequate
