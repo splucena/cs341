@@ -33,7 +33,7 @@
             </nav>-->
             <?php
                 //$url = '/CS341/web/navbar.php';
-                $url = 'navbar.php';
+                $url = '/navbar.php';
                 include $_SERVER['DOCUMENT_ROOT'] . $url;
             ?>
         </header>
