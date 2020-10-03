@@ -13,7 +13,7 @@
     <!--<link rel="stylesheet" href="./static/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="../../static/css/all.css">
     <link rel="stylesheet" href="../../static/css/style.css?version=1">
-    <link rel="stylesheet" href="static/css/style.css?version=1">
+    <link rel="stylesheet" href="static/css/style.css?version=3">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 </head>
@@ -33,8 +33,8 @@
             </nav>
         </header>
         <main>
-            <div class="main-container">
-                <?php include $_SERVER['DOCUMENT_ROOT'] . '/CS341/web/w3/prove3/products.php'; ?>
+            <div class="checkout-container">
+                <?php include $_SERVER['DOCUMENT_ROOT'] . '/CS341/web/w3/prove3/checkout.php'; ?>
             </div>
         </main>
         <footer class="small-font">

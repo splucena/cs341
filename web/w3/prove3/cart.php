@@ -8,7 +8,8 @@
     
     $counter = 1;
     $total = 0;
-    $html = "<table><thead><tr>";
+    $html = "<h3>Checkout Items</h3>";
+    $html .= "<table><thead><tr>";
     $html .= "<th>#</th><th>Product</th><th>Price</th><th>Quantity</th><th>Subtotal</th><th colspan='2'></th>";
     $html .= "</tr></thead>";
     $html .= "<tbody>";
@@ -21,8 +22,8 @@
         $html .= "<td class='right'>$o[3]</td>";
         $html .= "<td width='5%'><input type='number' name='quantity' value='$o[4]'></td>";
         $html .= "<td class='right'>\$$subtotal</td>";
-        $html .= "<td><input type='hidden' value='$k' name='orderId'><input type='submit' name='update' value='Update' class='btn btn-success' id='update-quantity'></td>";
-        $html .= "<td><input type='submit' name='delete' value='Delete' class='btn btn-success' id='add-to-cart'></td>";
+        $html .= "<td><input type='hidden' value='$k' name='orderId'><button type='submit' name='update' id='update-quantity'><i class='fas fa-edit'></i></button></td>";
+        $html .= "<td><button type='submit' name='delete' id='add-to-cart'><i class='fa fa-trash'></i></button></td>";
         $html .= "</tr>";
         $html .= "</form>";
         $counter++;

@@ -36,6 +36,10 @@
         $action = 'remove-from-cart';
     } elseif (isset($_POST['update'])) {
         $action = 'update-quantity';
+    } elseif (isset($_POST['addToCart'])) {
+        $action = 'add-to-cart';
+    } elseif (isset($_POST['viewCart'])) {
+        $action = 'view-cart';
     }
 
     switch($action) {
@@ -71,6 +75,10 @@
             
             // Delete order based on order key
             unset($_SESSION['shoppingCart'][(int)$orderId]);
+            header('location: cart.html.php');
+            break;
+
+        case 'view-cart':
             header('location: cart.html.php');
             break;
 
