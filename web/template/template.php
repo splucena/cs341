@@ -15,7 +15,7 @@
 <body>
     <div class="container">
         <header>
-            <nav class="navbar-top" id="navbarTop">
+            <!--<nav class="navbar-top" id="navbarTop">
                 <a class="navbar-brand" href="#"><img class="brand-icon" src="./static/img/icon/coding.png"
                         alt="Coding" /></a>
                 <a href="index.php" class="active">Home</a>
@@ -24,7 +24,13 @@
                 <a href="javascript:void(0)" class="icon" onclick="toggleMenu()">
                     <i class="fa fa-bars"></i>
                 </a>
-            </nav>
+            </nav>-->
+            <?php 
+                    //include $_SERVER['DOCUMENT_ROOT'] . '/CS341/web/w3/prove3/checkout.php'; 
+                    $url = '/CS341/web/navbar.php';
+                    //$url = '/w3/prove3/checkout.php';
+                    include $_SERVER['DOCUMENT_ROOT'] . $url;
+                ?>
         </header>
         <main>
             <div class="profile-container">

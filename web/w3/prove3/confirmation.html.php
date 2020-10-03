@@ -21,7 +21,7 @@
 <body>
     <div class="container">
         <header>
-            <nav class="navbar-top" id="navbarTop">
+            <!--<nav class="navbar-top" id="navbarTop">
                 <a class="navbar-brand" href="#"><img class="brand-icon" src="../../static/img/icon/coding.png"
                         alt="Coding" /></a>
                 <a href="index.php">Home</a>
@@ -30,7 +30,12 @@
                 <a href="javascript:void(0)" class="icon" onclick="toggleMenu()">
                     <i class="fa fa-bars"></i>
                 </a>
-            </nav>
+            </nav>-->
+            <?php 
+                $url = '/CS341/web/navbar.php';
+                //$url = 'navbar.php';
+                include $_SERVER['DOCUMENT_ROOT'] . $url;
+            ?>
         </header>
         <main>
             <div class="checkout-container">

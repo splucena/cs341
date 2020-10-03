@@ -1,8 +1,8 @@
 function toggleMenu() {
-    var x = document.getElementById("navbarTop");
-    if (x.className === "navbar-top") {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
         x.className += " responsive";
     } else {
-        x.className = "navbar-top";
+        x.className = "topnav";
     }
 }
