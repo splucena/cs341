@@ -32,8 +32,8 @@
                 </a>
             </nav>-->
             <?php 
-                $url = '/CS341/web/navbar.php';
-                //$url = 'navbar.php';
+                //$url = '/CS341/web/navbar.php';
+                $url = 'navbar.php';
                 include $_SERVER['DOCUMENT_ROOT'] . $url;
             ?>
         </header>
@@ -41,8 +41,8 @@
             <div class="checkout-container">
                 <h2 class="center">Thank you for your order!</h2>
                 <?php
-                    $url = '/CS341/web/w3/prove3/confirmation.php'; 
-                    //$url = '/w3/prove3/confirmation.php';
+                    //$url = '/CS341/web/w3/prove3/confirmation.php'; 
+                    $url = '/w3/prove3/confirmation.php';
                     include $_SERVER['DOCUMENT_ROOT'] . $url; 
                 ?>
                 <!--<?php include $_SERVER['DOCUMENT_ROOT'] . '/w3/prove3/confirmation.php'; ?>-->

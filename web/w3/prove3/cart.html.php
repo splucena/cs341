@@ -32,16 +32,16 @@
                 </a>
             </nav>-->
             <?php
-                $url = '/CS341/web/navbar.php';
-                //$url = 'navbar.php';
+                //$url = '/CS341/web/navbar.php';
+                $url = 'navbar.php';
                 include $_SERVER['DOCUMENT_ROOT'] . $url;
             ?>
         </header>
         <main>
             <div class="shopping-cart-container">
                 <?php 
-                    $url = '/CS341/web/w3/prove3/cart.php'; 
-                    //$url = '/w3/prove3/cart.php'; 
+                    //$url = '/CS341/web/w3/prove3/cart.php'; 
+                    $url = '/w3/prove3/cart.php'; 
                     include $_SERVER['DOCUMENT_ROOT'] . $url; 
                 ?>
                 <!--<?php include $_SERVER['DOCUMENT_ROOT'] . '/w3/prove3/cart.php'; ?>-->

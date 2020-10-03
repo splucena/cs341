@@ -1,15 +1,15 @@
 <?php
 
-    $homePath = "/CS341/web/index.php";
-    //$homePath = "index.php";
+    //$homePath = "/CS341/web/index.php";
+    $homePath = "index.php";
     $homeURL = $homePath;
 
-    $helloWorldPath = "/CS341/web/hello.html";
-    //$helloWorld = "hello.html";
+    //$helloWorldPath = "/CS341/web/hello.html";
+    $helloWorld = "hello.html";
     $helloWorldURL = $helloWorldPath;
 
-    $shoppingCartPath = "/CS341/web/w3/prove3/index.php";
-    //$shoppingCartPath = "/w3/prove3/index.php";
+    //$shoppingCartPath = "/CS341/web/w3/prove3/index.php";
+    $shoppingCartPath = "/w3/prove3/index.php";
     $shoppingCartURL = $shoppingCartPath;
 
     //<a href='#'>Assignment 2</a>

@@ -35,17 +35,16 @@
                 </a>
             </nav>-->
             <?php 
-                //include $_SERVER['DOCUMENT_ROOT'] . '/CS341/web/w3/prove3/checkout.php'; 
-                $url = '/CS341/web/navbar.php';
-                //$url = 'navbar.php';
+                //$url = '/CS341/web/navbar.php';
+                $url = 'navbar.php';
                 include $_SERVER['DOCUMENT_ROOT'] . $url;
             ?>
         </header>
         <main>
             <div class="main-container">
                 <?php
-                    $url =  '/CS341/web/w3/prove3/products.php';
-                    #$url =  '/w3/prove3/products.php';
+                    //$url =  '/CS341/web/w3/prove3/products.php';
+                    $url =  '/w3/prove3/products.php';
                     include $_SERVER['DOCUMENT_ROOT'] . $url; 
                 ?>
                 <!--<?php include $_SERVER['DOCUMENT_ROOT'] . '/w3/prove3/products.php'; ?>-->
