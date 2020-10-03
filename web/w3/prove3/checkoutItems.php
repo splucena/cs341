@@ -41,7 +41,9 @@
         $action = 'checkout';
     } elseif (isset($_POST['continueShopping'])) {
         $action = 'continue-shopping';
-    } 
+    } else {
+        $action = 'shop-again';
+    }
 
     switch($action) {
         case 'checkout': 
@@ -64,6 +66,11 @@
         case 'continue-shopping':
 
             header('location: cart.html.php');
+            break;
+
+        case 'shop-again':
+
+            header('location: index.php');
             break;
 
         default:

@@ -243,6 +243,11 @@ table th {
     opacity: 0.7;
 }
 
+/* Order confirmation */
+.order-confirmation-customer-details div {
+    padding-bottom: 5px;
+}
+
 @media only screen and (min-width: 600px) {
 
     /* For tablets: */
