@@ -26,11 +26,10 @@
                 </a>
             </nav>-->
             <?php 
-                    //include $_SERVER['DOCUMENT_ROOT'] . '/CS341/web/w3/prove3/checkout.php'; 
-                    $url = '/CS341/web/navbar.php';
-                    //$url = '/w3/prove3/checkout.php';
-                    include $_SERVER['DOCUMENT_ROOT'] . $url;
-                ?>
+                //$url = '/CS341/web/navbar.php';
+                $url = '/navbar.php';
+                include $_SERVER['DOCUMENT_ROOT'] . $url;
+            ?>
         </header>
         <main>
             <div class="profile-container">
