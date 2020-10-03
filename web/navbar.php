@@ -1,11 +1,11 @@
 <?php
 
     //$homePath = "/CS341/web/index.php";
-    $homePath = "/index.php";
+    $homePath = "index.php";
     $homeURL = $homePath;
 
     //$helloWorldPath = "/CS341/web/hello.html";
-    $helloWorld = "/hello.html";
+    $helloWorldPath = "hello.html";
     $helloWorldURL = $helloWorldPath;
 
     //$shoppingCartPath = "/CS341/web/w3/prove3/index.php";
