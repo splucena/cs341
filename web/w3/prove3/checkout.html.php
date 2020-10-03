@@ -34,7 +34,8 @@
         </header>
         <main>
             <div class="checkout-container">
-                <?php include $_SERVER['DOCUMENT_ROOT'] . '/CS341/web/w3/prove3/checkout.php'; ?>
+                <!--<?php include $_SERVER['DOCUMENT_ROOT'] . '/CS341/web/w3/prove3/checkout.php'; ?>-->
+                <?php include $_SERVER['DOCUMENT_ROOT'] . '/w3/prove3/checkout.php'; ?>
             </div>
         </main>
         <footer class="small-font">
