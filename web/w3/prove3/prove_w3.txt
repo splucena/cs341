@@ -20,7 +20,7 @@ N/A
 Cookies can be persisted on the clients browser which no longer requires additional resources from the server. 
 Cookies can not store complex information it is limited to simple string information. 
 
-7. Please select the category you feel best describes your assignment: 4
+7. Please select the category you feel best describes your assignment: 5
 1 - Some attempt was made
 2 - Developing, but significantly deficient
 3 - Slightly deficient, but still mostly adequate
@@ -29,3 +29,5 @@ Cookies can not store complex information it is limited to simple string informa
 
 
 8. Provide a brief justification (1-2 sentences) for selecting that category.
+I have stored content of the shopping cart in the client's browser. They should be able to update the quantity
+of a product from the shopping cart view. The design is responsive and uniform across the application.
