@@ -33,7 +33,7 @@ class Orders {
         $sql = "SELECT
                     o.order_id as order_id,
                     o.order_number as order_number,
-                    o.order_status as order_status,
+                    UPPER(o.order_status) as order_status,
                     o.total_amount as total_amount,
                     o.shipping_date as shipping_date,
                     c.first_name as c_first_name,
