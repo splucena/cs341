@@ -14,8 +14,18 @@
         $categories = $category->searchCategory($db, $searchTerm);
     }
 
+    $html = "<div><form action='../controller/category.action.php' method='GET'>
+                <div>
+                    <table>
+                        <tr>
+                            <td><input type='text' name='input-search' /></td>
+                            <td><input type='submit' name='action' value='Search' /></td>
+                        </tr>
+                    </table>
+                </div></form>";
+
     $counter = 1;
-    $html = "<table>
+    $html .= "<table>
                 <thead>
                     <tr>
                         <th>#</th>
@@ -32,7 +42,7 @@
                  </tr>";
         $counter += 1;
     }
-    $html .= "</tbody></table>";
+    $html .= "</tbody></table></div>";
     echo $html;
 
     $formCategory = "<div>

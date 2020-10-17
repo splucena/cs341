@@ -4,7 +4,7 @@
 
     $db = dbConnect();
     $supplier = new ProductSupplier();
-    $suppliers = $supplier->getProductSuppliers($db);
+    //$suppliers = $supplier->getProductSuppliers($db);
     
     if ($display == 'display') {
         $suppliers = $supplier->getProductSuppliers($db);
@@ -50,7 +50,7 @@
     $html .= "</tbody></table></div>";
     echo $html;
 
-    $formUser = "<div>
+    $formSupplier = "<div>
         <h1>". ( isset($suppliersById) ? $suppliersById['supplier_name'] : 'Supplier') ." Detail</h1>
         <form method='POST' action='../controller/supplier.action.php'>
             <ul>
@@ -83,4 +83,4 @@
             </ul>
         </form>
     </div>";
-    echo $formUser;
+    echo $formSupplier;

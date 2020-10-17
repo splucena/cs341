@@ -30,7 +30,42 @@ class ProductProduct {
         $stmt->closeCursor();
 
         return $product_products;
-    } 
+    }
+    
+    public function searchProduct($db, $searchTerm) {
+        $stmt = $db->prepare("SELECT
+                    pp.product_id as product_id, 
+                    pp.product_name as product_name,
+                    pc.category_name as category_name,
+                    ps.supplier_name as supplier_name  
+                FROM product_product pp
+                LEFT JOIN product_category pc ON pp.category_id=pc.category_id
+                LEFT JOIN product_supplier ps ON pp.supplier_id=ps.supplier_id 
+                WHERE pp.product_name ILIKE :name");
+        $searchTerm = "%$searchTerm%";
+        $stmt->bindParam(':name', $searchTerm);
+        $stmt->execute();
+        $inventories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $inventories;
+    }
+    
+    public function getProductById($db, $productId) {
+        $stmt = $db->prepare("SELECT 
+                pp.product_id as product_id,
+                pp.product_name as product_name,
+                pc.category_name as category_name,
+                ps.supplier_name as supplier_name  
+            FROM product_product pp
+            LEFT JOIN product_category pc ON pp.category_id=pc.category_id
+            LEFT JOIN product_supplier ps ON pp.supplier_id=ps.supplier_id 
+            WHERE pp.product_id = :product_id");
+        $stmt->bindParam(':product_id', $productId);
+        $stmt->execute();
+        $products = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $products;
+    }
     
 }
 
