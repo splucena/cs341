@@ -39,7 +39,6 @@
     foreach ($customers as $c) {
         $html .= "<tr>
                     <td>$counter</td>
-                    <td>$c[first_name]</td>
                     <td><a href='../controller/customer.action.php?action=PopulateForm&id=$c[customer_id]'>$c[last_name], $c[first_name]</a></td>
                     <td>$c[phone]</td>
                     <td>$c[shipping_addr]</td>
