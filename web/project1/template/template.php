@@ -18,7 +18,7 @@
             <nav><?php include $_SERVER['DOCUMENT_ROOT'] . '/cs341/web/project1/common/navigation.php'; ?></nav>
         </header>
         <main>
-            <div class="main-container">
+            <div class="main-container">    
                 <h1><?=isset($content_title) ? $content_title : 'Content Title'; ?></h1>
                 <div>
                     <?=isset($main_content) ? $main_content : 'Main Content'; ?>

@@ -4,10 +4,29 @@
 
     $db = dbConnect();
     $user = new Users();
-    $users = $user->getUsers($db);
     
+
+    if ($display == 'display') {
+        $users = $user->getUsers($db);
+    } else {
+        $users = $user->searchUser($db, $searchTerm);
+    }
+
+    // Search user
+    $searchUser = "<form action='../controller/user.action.php' method='GET'>
+                <div>
+                    <table>
+                        <tr>
+                            <td><input type='text' name='input-search' /></td>
+                            <td><input type='submit' name='action' value='Search' /></td>
+                        </tr>
+                    </table>
+                </div></form>";
+    echo $searchUser;
+
+    // Display users
     $counter = 1;
-    $html = "<table>
+    $userTable = "<table>
                 <thead>
                     <tr>
                         <th>#</th>
@@ -20,15 +39,15 @@
                 </thead>
                 <tbody>";
     foreach ($users as $u) {
-        $html .= "<tr>
+        $userTable .= "<tr>
                     <td>$counter</td>
                     <td>$u[first_name]</td>
                     <td>$u[last_name]</td>
-                    <td>$u[username]</td>
+                    <td><a href=''>$u[username]</a></td>
                     <td>$u[position]</td>
                     <td>$u[phone]</td>
-                 </tr>";
+                    </tr>";
         $counter += 1;
     }
-    $html .= "</tbody></table>";
-    echo $html;
+    $userTable .= "</tbody></table>";
+    echo $userTable;

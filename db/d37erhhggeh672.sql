@@ -94,7 +94,6 @@ CREATE TABLE orders(
     total_amount FLOAT,
     create_date TIMESTAMP DEFAULT NOW(),
     shipping_date TIMESTAMP,
-    invoice_id INT REFERENCES invoice(invoice_id),
     customer_id INT REFERENCES customer(customer_id),
     user_id INT REFERENCES users(user_id)
 );

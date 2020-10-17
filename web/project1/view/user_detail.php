@@ -2,6 +2,15 @@
     $title = "SRP Online Store: User";
     $content_title = "User";
 
+    //echo $display;
+
+    if (isset($display)) {
+        $display = "search";
+    } else {
+        $display = "display";
+    }
+
+
     ob_start();
     include __DIR__. '/../main_content/user.html.php';
     $main_content = ob_get_clean();

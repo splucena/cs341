@@ -33,6 +33,17 @@ class Users {
 
         return $users;
     } 
+
+    public function searchUser($db, $searchTerm) {
+        $stmt = $db->prepare("SELECT * FROM users WHERE username 
+            LIKE :name");
+        $searchTerm = "%$searchTerm%";
+        $stmt->bindParam(':name', $searchTerm);
+        $stmt->execute();
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $users;
+    }
     
 }
 
