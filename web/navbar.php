@@ -14,6 +14,8 @@
 
     //<a href='#'>Assignment 2</a>
     //<a href='#'>Link 3</a>
+    $onlineStorePath = "/project1/view/order_detail.php";
+    $onlineStoreURL = $onlineStorePath;
     
     $html = "<div class='topnav' id='myTopnav'>
                 <a href='$homeURL' class='active'>Home</a>
@@ -24,6 +26,7 @@
                 <div class='dropdown-content'>
                     <a href='$helloWorldURL'>Hello world!</a>
                     <a href='$shoppingCartURL'>Shopping Cart</a>
+                    <a href='$onlineStoreURL'>SRP Online Store</a>
                 </div>
                 </div> 
                 <a href='#about'>About</a>
