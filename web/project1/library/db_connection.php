@@ -45,7 +45,7 @@ function dbConnect() {
     }
 }
 
-dbConnect();
+//dbConnect();
 
 // heroku database connection
 /*try {
