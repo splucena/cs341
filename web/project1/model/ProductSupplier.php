@@ -28,6 +28,25 @@ class ProductSupplier {
         return $product_suppliers;
     } 
     
+    public function searchSupplier($db, $searchTerm) {
+        $stmt = $db->prepare("SELECT * FROM product_supplier WHERE supplier_name 
+            ILIKE :name");
+        $searchTerm = "%$searchTerm%";
+        $stmt->bindParam(':name', $searchTerm);
+        $stmt->execute();
+        $suppliers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $suppliers;
+    }
+    
+    public function getSupplierById($db, $supplierId) {
+        $stmt = $db->prepare("SELECT * FROM product_supplier WHERE supplier_id = :supplier_id");
+        $stmt->bindParam(':supplier_id', $supplierId);
+        $stmt->execute();
+        $suppliers = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $suppliers;
+    }
 }
 
 /*

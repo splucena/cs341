@@ -12,7 +12,7 @@ body {
 }
 
 .container {
-    grid-template-rows: 50px 100% auto;
+    grid-template-rows: 10px 100% auto;
 }
 
 main {
