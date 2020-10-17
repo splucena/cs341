@@ -32,10 +32,8 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th>Name</th>
                         <th>Username</th>
-                        <th>Position</th>
                         <th>Phone</th>
                     </tr>
                 </thead>
@@ -43,10 +41,8 @@
     foreach ($users as $u) {
         $searchUser .= "<tr>
                     <td>$counter</td>
-                    <td>$u[first_name]</td>
-                    <td>$u[last_name]</td>
+                    <td>$u[first_name], $u[last_name]</td>
                     <td><a href='../controller/user.action.php?action=PopulateForm&id=$u[user_id]'>$u[username]</a></td>
-                    <td>$u[position]</td>
                     <td>$u[phone]</td>
                     </tr>";
         $counter += 1;

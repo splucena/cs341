@@ -30,11 +30,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Billing Address</th>
-                        <th>Country</th>
-                        <th>Description</th>
+                        <th>Name</th>
                         <th>Phone</th>
                         <th>Shipping Address</th>
                     </tr>
@@ -44,10 +40,7 @@
         $html .= "<tr>
                     <td>$counter</td>
                     <td>$c[first_name]</td>
-                    <td><a href='../controller/customer.action.php?action=PopulateForm&id=$c[customer_id]'>$c[last_name]</a></td>
-                    <td>$c[billing_addr]</td>
-                    <td>$c[country]</td>
-                    <td>$c[customer_desc]</td>
+                    <td><a href='../controller/customer.action.php?action=PopulateForm&id=$c[customer_id]'>$c[last_name], $c[first_name]</a></td>
                     <td>$c[phone]</td>
                     <td>$c[shipping_addr]</td>
                  </tr>";
