@@ -93,7 +93,10 @@ CREATE TABLE orders(
     order_status order_status,
     total_amount FLOAT,
     create_date TIMESTAMP DEFAULT NOW(),
-    shipping_date TIMESTAMP
+    shipping_date TIMESTAMP,
+    invoice_id INT REFERENCES invoice(invoice_id),
+    customer_id INT REFERENCES customer(customer_id),
+    user_id INT REFERENCES users(user_id)
 );
 
 /*
@@ -115,8 +118,7 @@ TABLE: invoice
 
 CREATE TABLE invoice(
     invoice_id SERIAL PRIMARY KEY,
-    invoice_number VARCHAR(10) NOT NULL,
-    customer_id INT REFERENCES customer(customer_id),
+    order_number VARCHAR(10) NOT NULL,
     invoice_date TIMESTAMP DEFAULT NOW(),
     invoice_total FLOAT
 );

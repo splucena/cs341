@@ -17,7 +17,14 @@
     
     $html = "<div class='topnav' id='myTopnav'>
                 <a href='' class='active'>Home</a>
-                <a href='#about'>Order Management</a>
+                <div class='dropdown'>
+                    <button class='dropbtn'>Order Management 
+                        <i class='fa fa-caret-down'></i>
+                    </button>
+                    <div class='dropdown-content'>
+                        <a href='../view/order_detail.php'>Order</a>
+                    </div>
+                </div>
                 <div class='dropdown'>
                     <button class='dropbtn'>Product Management 
                         <i class='fa fa-caret-down'></i>
@@ -29,8 +36,8 @@
                         <a href='../view/product_inventory_detail.php'>Inventory</a>
                     </div>
                 </div> 
-                <a href='#about'>Customer Management</a>
-                <a href='#about'>User Management</a>
+                <a href='../view/customer_detail.php'>Customer Management</a>
+                <a href='../view/user_detail.php'>User Management</a>
                 <a href='javascript:void(0);' style='font-size:15px;' class='icon' onclick='toggleMenu()'>&#9776;</a>
             </div>";
 
