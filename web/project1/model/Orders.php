@@ -48,7 +48,7 @@ class Orders {
         return $orders;
     } 
 
-    public function searchUser($db, $searchTerm) {
+    public function searchOrder($db, $searchTerm) {
         $stmt = $db->prepare("SELECT * FROM order WHERE order_number 
             ILIKE :name");
         $searchTerm = "%$searchTerm%";
@@ -59,7 +59,7 @@ class Orders {
         return $orders;
     }
     
-    public function getUserById($db, $orderId) {
+    public function getOrderById($db, $orderId) {
         $stmt = $db->prepare("SELECT
                 o.order_id as order_id, 
                 o.order_number as order_number,

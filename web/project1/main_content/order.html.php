@@ -55,7 +55,7 @@
     echo $html;
 
     $formOrder = "<div>
-        <h1>User Detail</h1>
+        <h1>Order Detail</h1>
         <form method='POST' action='../controller/order.action.php'>
             <ul>
                 <li>
