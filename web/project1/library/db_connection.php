@@ -26,9 +26,19 @@ function dbConnect() {
     }*/
 
     try {
-        $user = 'wzhaimlcbzqxqx';
-        $password = '3576d697b7cc2f959b57e89969b67c472da84fef00441f01213c1dfd45d41d66';
-        $db = new PDO('pgsql:host=ec2-54-224-175-142.compute-1.amazonaws.com;dbname=d37erhhggeh672;port=5432', $user, $password);
+        //$user = 'wzhaimlcbzqxqx';
+        //$password = '3576d697b7cc2f959b57e89969b67c472da84fef00441f01213c1dfd45d41d66';
+        //$db = new PDO('pgsql:host=ec2-54-224-175-142.compute-1.amazonaws.com;dbname=d37erhhggeh672;port=5432', $user, $password);
+        $pdo = parse_url(getenv("DATABASE_URL"));
+
+        $db = new PDO("pgsql:" . sprintf(
+            "host=%s;port=%s;user=%s;password=%s;dbname=%s",
+            $pdo["host"],
+            $pdo["port"],
+            $pdo["user"],
+            $pdo["pass"],
+            ltrim($pdo["path"], "/")
+        ));
         return $db;
     } catch (PDOException $ex) {
         echo 'Error!: ' . $ex->getMessage();
