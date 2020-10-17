@@ -36,7 +36,7 @@ class Users {
 
     public function searchUser($db, $searchTerm) {
         $stmt = $db->prepare("SELECT * FROM users WHERE username 
-            LIKE :name");
+            ILIKE :name");
         $searchTerm = "%$searchTerm%";
         $stmt->bindParam(':name', $searchTerm);
         $stmt->execute();

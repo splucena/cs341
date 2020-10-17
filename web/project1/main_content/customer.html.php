@@ -4,10 +4,29 @@
 
     $db = dbConnect();
     $customer = new Customer();
-    $customers = $customer->getCustomers($db);
+    
+    if ($display == 'display') {
+        $customers = $customer->getCustomers($db);
+    } elseif ($display == 'populate-form') {
+        $customers = $customer->getCustomers($db);
+        $customersById = $customer->getCustomerById($db, $userId);
+    } else {
+        $customers = $customer->searchCustomer($db, $searchTerm);
+    }
+
+    // Search user
+    $html = "<div><form action='../controller/customer.action.php' method='GET'>
+                <div>
+                    <table>
+                        <tr>
+                            <td><input type='text' name='input-search' /></td>
+                            <td><input type='submit' name='action' value='Search' /></td>
+                        </tr>
+                    </table>
+                </div></form>";
     
     $counter = 1;
-    $html = "<table>
+    $html .= "<table>
                 <thead>
                     <tr>
                         <th>#</th>
@@ -25,7 +44,7 @@
         $html .= "<tr>
                     <td>$counter</td>
                     <td>$c[first_name]</td>
-                    <td>$c[last_name]</td>
+                    <td><a href='../controller/customer.action.php?action=PopulateForm&id=$c[customer_id]'>$c[last_name]</a></td>
                     <td>$c[billing_addr]</td>
                     <td>$c[country]</td>
                     <td>$c[customer_desc]</td>
@@ -34,5 +53,52 @@
                  </tr>";
         $counter += 1;
     }
-    $html .= "</tbody></table>";
+    $html .= "</tbody></table></div>";
     echo $html;
+
+    $formCustomer = "<div>
+        <h1>Customer Detail</h1>
+        <form method='POST' action='../controller/customer.action.php'>
+            <ul>
+                <li>
+                    <label for='fn'>First Name</label>
+                    <input type='text' name='fn' value='". ( isset($customersById) ? $customersById['first_name'] : '') . "' />
+                </li>
+                <li>
+                    <label for='ln'>Last Name</label>
+                    <input type='text' name='ln' value='". ( isset($customersById) ? $customersById['last_name'] : '') . "' />
+                </li>
+                <li>
+                    <label for='desc'>Description</label>
+                    <input type='text' name='desc' value='". ( isset($customersById) ? $customersById['customer_desc'] : '') . "' />
+                </li>
+                <li>
+                    <label for='billing-addr'>Biling Address</label>
+                    <input type='text' name='billing-addr' value='". ( isset($customersById) ? $customersById['billing_addr'] : '') . "' />
+                </li>
+                <li>
+                    <label for='shipping-addr'>Shipping Address</label>
+                    <input type='text' name='shipping-addr' value='". ( isset($customersById) ? $customersById['shipping_addr'] : '') . "'/>
+                </li>
+                <li>
+                    <label for='country'>Country</label>
+                    <input type='text' name='country' value='". ( isset($customersById) ? $customersById['country'] : '') . "' />
+                </li>
+                <li>
+                    <label for='phone'>Phone</label>
+                    <input type='text' name='phone' value='". ( isset($customersById) ? $customersById['phone'] : '') . "'/>
+                </li>
+                <li>
+                    <div class='row'>
+                        <div class='col-50'>
+                            <input type='submit' name='action' value='Create'>
+                        </div>
+                        <div class='col-50'>
+                            <input type='submit' name='action' value='Update'>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </div>";
+    echo $formCustomer;

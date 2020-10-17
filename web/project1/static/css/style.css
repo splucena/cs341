@@ -273,7 +273,6 @@ table th {
 .form-container {
     display: grid;
     grid-template-columns: 1fr;
-    column-gap: 15px;
 }
 
 .form-container ul {
@@ -303,10 +302,13 @@ table th {
     /* For desktop: */
     .main-container {
         grid-template-columns: 1fr;
+        min-width: 90%;    
+        max-width: 90%;
     }
 
     .form-container {
         grid-template-columns: 1fr 1fr;
+        column-gap: 30px;
     }
 
     .shopping-cart-container,

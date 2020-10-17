@@ -34,5 +34,25 @@ class Customer {
         $stmt->closeCursor();
 
         return $customers;
-    }    
+    }
+    
+    public function searchCustomer($db, $searchTerm) {
+        $stmt = $db->prepare("SELECT * FROM customer WHERE last_name 
+            ILIKE :name");
+        $searchTerm = "%$searchTerm%";
+        $stmt->bindParam(':name', $searchTerm);
+        $stmt->execute();
+        $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $customers;
+    }
+    
+    public function getCustomerById($db, $customerId) {
+        $stmt = $db->prepare("SELECT * FROM customer WHERE customer_id = :customer_id");
+        $stmt->bindParam(':customer_id', $customerId);
+        $stmt->execute();
+        $customers = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $customers;
+    }
 }
