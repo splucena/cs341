@@ -4,10 +4,29 @@
 
     $db = dbConnect();
     $order = new Orders();
-    $orders = $order->getOrders($db);
+
+    if ($display == 'display') {
+        $orders = $order->getOrders($db);
+    } elseif ($display == 'populate-form') {
+        $orders = $order->getOrders($db);
+        $ordersById = $order->getOrderById($db, $orderId);
+    } else {
+        $orders = $order->searchOrder($db, $searchTerm);
+    }
+
+    // Search user
+    $html = "<div><form action='../controller/user.action.php' method='GET'>
+                <div>
+                    <table>
+                        <tr>
+                            <td><input type='text' name='input-search' /></td>
+                            <td><input type='submit' name='action' value='Search' /></td>
+                        </tr>
+                    </table>
+                </div></form>";
     
     $counter = 1;
-    $html = "<table>
+    $html .= "<table>
                 <thead>
                     <tr>
                         <th>#</th>
@@ -32,5 +51,5 @@
                  </tr>";
         $counter += 1;
     }
-    $html .= "</tbody></table>";
+    $html .= "</tbody></table></div>";
     echo $html;

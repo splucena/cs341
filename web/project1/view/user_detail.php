@@ -2,8 +2,6 @@
     $title = "SRP Online Store: User";
     $content_title = "User Management";
 
-    //echo $display;
-
     if (isset($display) && $display == "search") {
         $display = "search";
     } elseif (isset($display) && $display == "populate-form") {

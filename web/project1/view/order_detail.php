@@ -1,6 +1,6 @@
 <?php
     $title = "SRP Online Store: Order";
-    $content_title = "Order";
+    $content_title = "Order Management";
 
     if (isset($display) && $display == "search") {
         $display = "search";

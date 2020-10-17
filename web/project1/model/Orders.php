@@ -46,6 +46,26 @@ class Orders {
         $stmt->closeCursor();
         return $orders;
     } 
+
+    public function searchUser($db, $searchTerm) {
+        $stmt = $db->prepare("SELECT * FROM order WHERE order_number 
+            ILIKE :name");
+        $searchTerm = "%$searchTerm%";
+        $stmt->bindParam(':name', $searchTerm);
+        $stmt->execute();
+        $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $orders;
+    }
+    
+    public function getUserById($db, $orderId) {
+        $stmt = $db->prepare("SELECT * FROM orders WHERE order_id = :order_id");
+        $stmt->bindParam(':order_id', $orderId);
+        $stmt->execute();
+        $orders = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $orders;
+    }
     
 }
 
