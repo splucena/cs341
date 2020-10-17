@@ -42,7 +42,7 @@
     foreach ($orders as $o) {
         $html .= "<tr>
                     <td>$counter</td>
-                    <td><a href='../controller/order.action.php?action=PopulateForm&id=$u[order_id]'>$o[order_number]</a></td>
+                    <td><a href='../controller/order.action.php?action=PopulateForm&id=$o[order_id]'>$o[order_number]</a></td>
                     <td>$o[order_status]</td>
                     <td>$o[total_amount]</td>
                     <td>$o[shipping_date]</td>
