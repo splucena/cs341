@@ -31,6 +31,7 @@ class Orders {
     public function getOrders($db) {
         
         $sql = "SELECT
+                    o.order_id as order_id,
                     o.order_number as order_number,
                     o.order_status as order_status,
                     o.total_amount as total_amount,
@@ -59,7 +60,8 @@ class Orders {
     }
     
     public function getUserById($db, $orderId) {
-        $stmt = $db->prepare("SELECT 
+        $stmt = $db->prepare("SELECT
+                o.order_id as order_id, 
                 o.order_number as order_number,
                 o.order_desc as order_desc,
                 o.order_status as order_status,
