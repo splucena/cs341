@@ -15,7 +15,7 @@
 <body>
     <div class="container">
         <header>
-            <nav><?php include $_SERVER['DOCUMENT_ROOT'] . '/cs341/web/project1/common/navigation.php'; ?></nav>
+            <nav><?php include '/../common/navigation.php'; ?></nav>
         </header>
         <main>
             <div class="main-container">
@@ -26,7 +26,7 @@
             </div>
         </main>
         <footer class="small-font">
-            <?php include $_SERVER['DOCUMENT_ROOT'] . '/cs341/web/project1/common/footer.php'; ?>
+            <?php include '/../common/footer.php'; ?>
         </footer>
     </div>
 </body>
