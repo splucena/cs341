@@ -15,6 +15,12 @@ switch($action) {
         include('../view/user_detail.php');
 
         break;
+    case 'PopulateForm':
+        $display = 'populate-form';
+        $userId = filter_input(INPUT_GET, 'id');
+
+        include('../view/user_detail.php');
+        break;
     default:
         include('../view/user_detail.php');
 }

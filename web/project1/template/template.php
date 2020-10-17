@@ -20,7 +20,7 @@
         <main>
             <div class="main-container">    
                 <h1><?=isset($content_title) ? $content_title : 'Content Title'; ?></h1>
-                <div>
+                <div class="form-container">
                     <?=isset($main_content) ? $main_content : 'Main Content'; ?>
                 </div>
             </div>

@@ -73,7 +73,7 @@ footer {
     -ms-flex-wrap: wrap;
     /* IE10 */
     flex-wrap: wrap;
-    margin: 0 -16px;
+    margin: 0 -8px;
 }
 
 .col-25 {
@@ -97,11 +97,13 @@ footer {
 .col-25,
 .col-50,
 .col-75 {
-    padding: 0 16px;
+    padding: 0 8px;
 }
 
 input[type=text],
-input[type=number] {
+input[type=number],
+input[type=password] {
+    background-color: #f2f2f2;
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -268,6 +270,26 @@ table th {
     padding-bottom: 5px;
 }
 
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 15px;
+}
+
+.form-container ul {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.form-container ul li {
+    list-style: none;
+    margin-bottom: 16px;
+}
+
+.form-container li > label {
+    margin-bottom: 20px;
+}
+
 @media only screen and (min-width: 600px) {
 
     /* For tablets: */
@@ -281,6 +303,10 @@ table th {
     /* For desktop: */
     .main-container {
         grid-template-columns: 1fr;
+    }
+
+    .form-container {
+        grid-template-columns: 1fr 1fr;
     }
 
     .shopping-cart-container,

@@ -45,6 +45,14 @@ class Users {
         return $users;
     }
     
+    public function getUserById($db, $userId) {
+        $stmt = $db->prepare("SELECT * FROM users WHERE user_id = :user_id");
+        $stmt->bindParam(':user_id', $userId);
+        $stmt->execute();
+        $users = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $users;
+    }
 }
 
 /*
