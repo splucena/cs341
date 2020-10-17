@@ -23,10 +23,10 @@
                         <i class='fa fa-caret-down'></i>
                     </button>
                     <div class='dropdown-content'>
-                        <a href=''>View Product</a>
-                        <a href=''>View Category</a>
-                        <a href=''>View Supplier</a>
-                        <a href=''>View Inventory</a>
+                        <a href='../view/product_product_detail.php'>Product</a>
+                        <a href='../view/product_category_detail.php'>Category</a>
+                        <a href='../view/product_supplier_detail.php'>Supplier</a>
+                        <a href='../view/product_inventory_detail.php'>Inventory</a>
                     </div>
                 </div> 
                 <a href='#about'>Customer Management</a>

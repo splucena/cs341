@@ -21,7 +21,8 @@
             <div class="main-container">
                 <h1><?=isset($content_title) ? $content_title : 'Content Title'; ?></h1>
                 <div>
-                    <?=isset($main_content) ? $main_content : 'Main Content'; ?></div>
+                    <?=isset($main_content) ? $main_content : 'Main Content'; ?>
+                </div>
             </div>
     </div>
     </main>

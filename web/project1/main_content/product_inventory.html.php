@@ -1,26 +1,26 @@
 <?php
     require_once '../library/db_connection.php';
-    require_once '../model/ProductCategory.php';
+    require_once '../model/ProductInventory.php';
 
     $db = dbConnect();
-    $product_category = new ProductCategory();
-    $product_categories = $product_category->getProductCategories($db);
+    $product_inventory = new ProductInventory();
+    $product_inventories = $product_inventory->getProductInventories($db);
     
     $counter = 1;
     $html = "<table>
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Description</th>
+                        <th>ProductName</th>
+                        <th>Stock Quantity</th>
                     </tr>
                 </thead>
                 <tbody>";
-    foreach ($product_categories as $c) {
+    foreach ($product_inventories as $s) {
         $html .= "<tr>
                     <td>$counter</td>
-                    <td>$c[category_name]</td>
-                    <td>$c[category_desc]</td>
+                    <td>$s[product_name]</td>
+                    <td>$s[total_stock]</td>
                  </tr>";
         $counter += 1;
     }
