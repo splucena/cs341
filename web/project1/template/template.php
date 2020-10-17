@@ -29,6 +29,7 @@
             <?php include __DIR__. '/../common/footer.php'; ?>
         </footer>
     </div>
+    <script src="../../static/js/toggleMenu.js"></script>
 </body>
 
 </html>
