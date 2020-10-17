@@ -51,7 +51,7 @@
     echo $searchUser;
 
     $formUser = "<div>
-        <h1>User Detail</h1>
+        <h1>". ( isset($usersById) ? $usersById['last_name'] : '') . ', ' . ( isset($usersById) ? $usersById['first_name'] : '') . " Detail</h1>
         <form method='POST' action='../controller/user.action.php'>
             <ul>
                 <li>

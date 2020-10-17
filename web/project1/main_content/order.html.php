@@ -42,7 +42,7 @@
     foreach ($orders as $o) {
         $html .= "<tr>
                     <td>$counter</td>
-                    <td>$o[order_number]</td>
+                    <td><a href='../controller/order.action.php?action=PopulateForm&id=$u[order_id]'>$o[order_number]</a></td>
                     <td>$o[order_status]</td>
                     <td>$o[total_amount]</td>
                     <td>$o[shipping_date]</td>
@@ -67,8 +67,8 @@
                     <input type='text' name='order_desc' value='". ( isset($ordersById) ? $ordersById['order_desc'] : '') . "' />
                 </li>
                 <li>
-                    <label for='status'>Status</label>
-                    <input type='text' name='status' value='". ( isset($ordersById) ? $ordersById['status'] : '') . "' />
+                    <label for='order_status'>Status</label>
+                    <input type='text' name='order_status' value='". ( isset($ordersById) ? $ordersById['order_status'] : '') . "' />
                 </li>
                 <li>
                     <label for='total_amount'>Total Amount</label>

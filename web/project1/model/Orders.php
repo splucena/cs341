@@ -59,7 +59,18 @@ class Orders {
     }
     
     public function getUserById($db, $orderId) {
-        $stmt = $db->prepare("SELECT * FROM orders WHERE order_id = :order_id");
+        $stmt = $db->prepare("SELECT 
+                o.order_number as order_number,
+                o.order_desc as order_desc,
+                o.order_status as order_status,
+                o.total_amount as total_amount,
+                o.shipping_date as shipping_date,
+                c.customer_name as customer_name,
+                u.user_name as user_name
+            FROM order o 
+            LEFT JOIN customer c ON o.customer_id=c.customer_id
+            LEFT JOIN users u ON o.user_id=u.user_id
+            WHERE order_id = :order_id");
         $stmt->bindParam(':order_id', $orderId);
         $stmt->execute();
         $orders = $stmt->fetch(PDO::FETCH_ASSOC);
