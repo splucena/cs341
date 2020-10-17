@@ -24,6 +24,25 @@ class ProductCategory {
         return $product_categories;
     } 
     
+    public function searchCategory($db, $searchTerm) {
+        $stmt = $db->prepare("SELECT * FROM product_category WHERE category_name 
+            ILIKE :name");
+        $searchTerm = "%$searchTerm%";
+        $stmt->bindParam(':name', $searchTerm);
+        $stmt->execute();
+        $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $categories;
+    }
+    
+    public function getCategoryById($db, $categoryId) {
+        $stmt = $db->prepare("SELECT * FROM product_category WHERE category_id = :category_id");
+        $stmt->bindParam(':category_id', $categoryId);
+        $stmt->execute();
+        $categories = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $categories;
+    }
 }
 
 /*
