@@ -68,7 +68,7 @@
                 </li>
                 <li>
                     <label for='order_status'>Status</label>
-                    <input type='text' name='order_status' value='". ( isset($ordersById) ? $ordersById['order_status'] : '') . "' />
+                    <input type='text' name='order_status' value='". ( isset($ordersById) ? strtoupper($ordersById['order_status']) : '') . "' />
                 </li>
                 <li>
                     <label for='total_amount'>Total Amount</label>
