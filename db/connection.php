@@ -14,13 +14,17 @@ $pdo = new PDO("pgsql:" . sprintf(
 ));*/
 
 // Local database connection
-try {
-    $user = 'postgres';
-    $password = '';
-    $db = new PDO('pgsql:host=localhost;dbname=db_notes;port=5432', $user, $password);
-} catch (PDOException $ex) {
-    echo 'Error!: ' . $ex->getMessage();
-    die();
+
+function connectDb() {
+    try {
+        $user = 'postgres';
+        $password = 's!_bmubgc4BLKPGp';
+        $db = new PDO('pgsql:host=localhost;dbname=db_notes;port=5433', $user, $password);
+        return $db;
+    } catch (PDOException $ex) {
+        echo 'Error!: ' . $ex->getMessage();
+        die();
+    }
 }
 
 // heroku database connection

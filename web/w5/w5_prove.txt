@@ -1,0 +1,33 @@
+After completing the assignment, please answer the questions in this text file and submit it to I-Learn.
+
+1. Copy and paste the URL for your web application:
+Main: https://safe-fjord-79831.herokuapp.com/ > Projects > SRP Online Store
+Direct Link: https://safe-fjord-79831.herokuapp.com/project1/view/order_detail.php
+
+2. Copy and paste the URL for your source code repository (e.g., GitHub):
+https://github.com/splucena/cs341
+
+3. Briefly list and describe the elements of the application that are functioning. Include any special instructions about how to login and/or use your application.
+Data from the database are displayed in a table, searching is working, detailed view of record is also working.
+To display the detail of a specific record click the link from the list of records. I failed to make a table row a link.
+
+4. Briefly describe any pieces of the assignment that are not yet working correctly.
+All are working As far as the scope of this week's assignment is concern.
+
+5. Briefly describe the "coolest" thing you learned while completing this assignment.
+I implemented MVC and OOP for this assignment. 
+
+6. Why should you create a separate user account for your application to access the database?
+For security purposes to prevent or avoid changes on the database. An elevated or superuser account
+is prone to misuse that may corrupt the database.  
+
+7. Please select the category you feel best describes your assignment: 5
+1 - Some attempt was made
+2 - Developing, but significantly deficient
+3 - Slightly deficient, but still mostly adequate
+4 - Meets requirements
+5 - Shows creativity and excels above and beyond requirements
+
+
+8. Provide a brief justification (1-2 sentences) for selecting that category.
+I implemented MVC and OOP and the design was uniform across the application.
