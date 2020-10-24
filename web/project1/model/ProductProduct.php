@@ -20,10 +20,13 @@ class ProductProduct {
                      pp.product_id as product_id,
                      pp.product_name as product_name,
                      pc.category_name as category_name,
-                     ps.supplier_name as supplier_name
+                     ps.supplier_name as supplier_name,
+                     pc.category_id as category_id,
+                     ps.supplier_id as supplier_id
                 FROM product_product pp
                 LEFT JOIN product_category pc ON pp.category_id=pc.category_id
-                LEFT JOIN product_supplier ps ON pp.supplier_id=ps.supplier_id";
+                LEFT JOIN product_supplier ps ON pp.supplier_id=ps.supplier_id
+                WHERE pp.active = True";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $product_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -55,7 +58,9 @@ class ProductProduct {
                 pp.product_id as product_id,
                 pp.product_name as product_name,
                 pc.category_name as category_name,
-                ps.supplier_name as supplier_name  
+                ps.supplier_name as supplier_name,
+                pc.category_id as category_id,
+                ps.supplier_id as supplier_id  
             FROM product_product pp
             LEFT JOIN product_category pc ON pp.category_id=pc.category_id
             LEFT JOIN product_supplier ps ON pp.supplier_id=ps.supplier_id 
@@ -65,6 +70,48 @@ class ProductProduct {
         $products = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
         return $products;
+    }
+
+    public function insertProduct($db) {
+        $sql = "INSERT INTO product_product
+            (product_name, category_id, supplier_id) 
+            VALUES(:name, :category_id, :supplier_id)";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':name', $this->productName, PDO::PARAM_STR);
+        $stmt->bindValue(':category_id', $this->categoryId, PDO::PARAM_INT);
+        $stmt->bindValue(':supplier_id', $this->supplierId, PDO::PARAM_INT);
+        $stmt->execute();
+        $rowChanged = $stmt->rowCount();        
+        $stmt->closeCursor();
+
+        return $rowChanged;
+    }
+
+    public function updateProduct($db) {
+        $sql = "UPDATE product_product 
+            SET product_name = :name, category_id = :category_id, supplier_id = :supplier_id
+            WHERE product_id = :product_id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':name', $this->productName, PDO::PARAM_STR);
+        $stmt->bindValue(':category_id', $this->categoryId, PDO::PARAM_INT);
+        $stmt->bindValue(':supplier_id', $this->supplierId, PDO::PARAM_INT);
+        $stmt->bindvalue(':product_id', $this->productId, PDO::PARAM_INT);
+        $stmt->execute();
+        $rowChanged = $stmt->rowCount();        
+        $stmt->closeCursor();
+
+        return $rowChanged;
+    }
+
+    public function deactivateProduct($db) {
+        $sql = "UPDATE product_product SET active = False WHERE product_id = :id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $this->productId, PDO::PARAM_INT);
+        $stmt->execute();
+        $rowChanged = $stmt->rowCount();
+        $stmt->closeCursor();
+
+        return $rowChanged;
     }
     
 }

@@ -1,4 +1,8 @@
 <?php
+require_once '../library/db_connection.php';
+require_once '../model/ProductProduct.php';
+
+$db = dbConnect();
 
 // Check for method used is POST
 $action = filter_input(INPUT_POST, 'action');
@@ -21,6 +25,37 @@ switch($action) {
 
         include('../view/product_product_detail.php');
         break;
+
+    case 'Create':
+        $productName = htmlspecialchars($_POST['product_name']);
+        $categoryId = htmlspecialchars($_POST['category_id']);
+        $supplierId = htmlspecialchars($_POST['supplier_id']);
+
+        $product = new ProductProduct(null, $productName, $categoryId, $supplierId);
+        $product->insertProduct($db);
+
+        include('../view/product_product_detail.php');
+        break;
+
+    case 'Update':
+        $productId = htmlspecialchars($_POST['product_id']);
+        $productName = htmlspecialchars($_POST['product_name']);
+        $categoryId = htmlspecialchars($_POST['category_id']);
+        $supplierId = htmlspecialchars($_POST['supplier_id']);
+
+        $product = new ProductProduct($productId, $productName, $categoryId, $supplierId);
+        $product->updateProduct($db);
+
+        include('../view/product_product_detail.php');
+        break;
+
+    case 'Deactivate':
+        $productId = (int)htmlspecialchars($_POST['product_id']);
+
+        $product = new ProductProduct($productId);
+        $product->deactivateProduct($db);
+        include('../view/product_product_detail.php');
+        break;    
     default:
         include('../view/product_product_detail.php');
 }
