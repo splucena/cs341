@@ -75,7 +75,7 @@
     $statusList .= "</select>";
 
     // Search user
-    $html = "<div><form action='../controller/order.action.php' method='GET'>
+    $html = "<div><form action='../controller/order_process.action.php' method='GET'>
                 <div>
                     <table>
                         <tr>
@@ -102,7 +102,7 @@
     foreach ($orders as $o) {
         $html .= "<tr>
                     <td>$counter</td>
-                    <td><a href='../controller/order.action.php?action=PopulateForm&id=$o[order_id]'>$o[order_number]</a></td>
+                    <td><a href='../controller/order_process.action.php?action=PopulateForm&id=$o[order_id]'>$o[order_number]</a></td>
                     <td>" . strtoupper($o['order_status']) . "</td>
                     <td>$o[total_amount]</td>
                     <td>$o[shipping_date]</td>
@@ -120,15 +120,15 @@
     //'draft', 'processing', 'in_transit', 'delivered'
     $formOrder = "<div>
         <h1>Order Detail</h1>
-        <form method='POST' action='../controller/order.action.php'>
+        <form method='POST' action='../controller/order_process.action.php'>
             <ul>
                 <li>
                     <label for='order_number'>Number</label>
-                    <input type='text' name='order_number' value='". ( isset($ordersById) ? $ordersById['order_number'] : '') . "' />
+                    <input readonly type='text' name='order_number' value='". ( isset($ordersById) ? $ordersById['order_number'] : '') . "' />
                 </li>
                 <li>
                     <label for='order_desc'>Description</label>
-                    <input type='text' name='order_desc' value='". ( isset($ordersById) ? $ordersById['order_desc'] : '') . "' />
+                    <input readonly type='text' name='order_desc' value='". ( isset($ordersById) ? $ordersById['order_desc'] : '') . "' />
                 </li>
                 <li>
                     <label for='order_status'>Status</label>
@@ -136,49 +136,20 @@
                 </li>
                 <li>
                     <label for='total_amount'>Total Amount</label>
-                    <input type='text' name='total_amount' value='". ( isset($ordersById) ? $ordersById['total_amount'] : '') . "' />
+                    <input readonly type='text' name='total_amount' value='". ( isset($ordersById) ? $ordersById['total_amount'] : '') . "' />
                 </li>
                 <li>
                     <label for='shipping_date'>Shipping Date</label>
-                    <input type='text' name='shipping_date' value='". ( isset($ordersById) ? $ordersById['shipping_date'] : '') . "' />
-                </li>
-                <li>
-                    <label for='customer_name'>Customer Name</label>
-                    $customerList
-                </li>
-                <li>
-                    <label for='user_name'>Processed By</label>
-                    $userList
+                    <input type='date' name='shipping_date' value='". ( isset($ordersById) ? $ordersById['shipping_date'] : '') . "' />
                 </li>
                 <li>
                     <h1>Order Line</h1>
-                    <div id='new-item-container'>
-                        <script>
-                            $(document).ready(function(e) {
-                                let x = 1;
-                                $('#add-new-item').click(function(e) {
-                                    e.preventDefault();
-                                    let select = '<table><tr><td width=65%><select name=product_id_'+ x +'>" . $productList . "</select></td><td width=20%><input type=text name=product_quantity_'+ x +'></td><td id=remove width=15%>Remove</td></tr></table>';
-                                    $('#new-item-container').append(select);
-                                    $('#order_line_count').attr('value', x); 
-                                    x++;
-                                });
-
-                                $('#new-item-container').on('click', '#remove', function(e) {
-                                    $(this).parent('tr').remove();
-                                    x--;
-                                }); 
-                            });
-                        </script>
-                        <a href='' id='add-new-item'>Add new item</a> 
-                        <table><tr><th width='65%'>Product - Price</th><th  width='20%'>Quantity</th><th width='15%'>Remove</th></tr></table>
-                    </div>
-                    <input type='hidden' name='order_line_count' id='order_line_count' />
+                    
                 </li>
                 <li>
                     <div class='row'>
                         <div class='col-50'>
-                            <input type='submit' name='action' value='Create'>
+                            <input type='submit' name='action' value='Update'>
                         </div>
                         <div class='col-50'>
                             <input type='submit' name='action' value='Clear'>

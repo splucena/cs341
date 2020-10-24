@@ -11,7 +11,7 @@
     }
 
     ob_start();
-    include __DIR__. '/../main_content/order.html.php';
+    include __DIR__. '/../main_content/order_process.html.php';
     $main_content = ob_get_clean();
 
     include __DIR__ . '/../template/template.php';

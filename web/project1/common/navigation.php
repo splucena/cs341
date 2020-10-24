@@ -22,7 +22,8 @@
                         <i class='fa fa-caret-down'></i>
                     </button>
                     <div class='dropdown-content'>
-                        <a href='../view/order_detail.php'>Order</a>
+                        <a href='../view/order_detail.php'>Create Order</a>
+                        <a href='../view/order_process_detail.php'>Process Order</a>
                     </div>
                 </div>
                 <div class='dropdown'>
