@@ -63,7 +63,7 @@
     // Generate status selection
     $statuses = array('draft', 'processing', 'in_transit', 'delivered');
     $statusList = "<select name='order_status' id='order_status_list'>
-        <option>Choose User</option>";
+        <option>Choose Status</option>";
     foreach($statuses as $p) {
         
         if (isset($orderStatus) && $orderStatus === $p) {
