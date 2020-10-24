@@ -83,6 +83,37 @@ class Orders {
         $stmt->closeCursor();
         return $orders;
     }
+
+    public function insertOrder($db) {
+
+        // Insert into orders
+        $sqlOrders = "INSERT INTO 
+                    orders (order_name, order_number, order_desc, order_status, 
+                        total_amount, create_date, shipping_date,
+                        invoice_id, customer_id, user_id)
+                    VALUES(:order_name, :order_number, :order_desc, :order_status,
+                        :total_amount, :create_date, :shipping_date,
+                        :invoice_id, :customer_id, :user_id)";
+
+        $stmtOrders = $db->prepare($sqlOrders);
+        $stmtOrders->bindValue(':order_name', $this->orderName, PDO::PARAM_STR);
+        $stmtOrders->bindValue(':order_number', $this->orderName, PDO::PARAM_STR);
+        $stmtOrders->bindValue(':order_desc', $this->orderDesc, PDO::PARAM_STR);
+        $stmtOrders->bindValue(':order_status', $this->orderStatus, PDO::PARAM_STR);
+        $stmtOrders->bindValue(':total_amount', $this->totalAmount, PDO::PARAM_STR);
+        $stmtOrders->bindValue(':create_date', $this->createDate, PDO::PARAM_STR);
+        $stmtOrders->bindValue(':shipping_date', $this->shippingDate, PDO::PARAM_STR);
+        $stmtOrders->bindValue(':invoice_id', $this->invoiceId, PDO::PARAM_INT);
+        $stmtOrders->bindValue(':customer_id', $this->customerId, PDO::PARAM_INT);
+        $stmtOrders->bindValue(':user_id', $this->userId, PDO::PARAM_INT);
+        $stmtOrders->execute();
+        $orderId = $db->lastInsertId('orders_order_id_seq');
+        
+        $rowChanged = $stmtOrders->rowCount();
+
+        return $rowChanged;
+
+    }
     
 }
 

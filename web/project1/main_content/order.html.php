@@ -62,7 +62,7 @@
 
     // Generate status selection
     $statuses = array('draft', 'processing', 'in_transit', 'delivered');
-    $statusList = "<select name='user_id' id='user_list'>
+    $statusList = "<select name='order_status' id='order_status_list'>
         <option>Choose User</option>";
     foreach($statuses as $p) {
         
@@ -160,13 +160,14 @@
                                     e.preventDefault();
                                     let select = '<table><tr><td><select name=product_id_'+ x +'>" . $productList . "</select></td><td><input type=text name=product_quantity_'+ x +'></td></tr></table>';
                                     $('#new-item-container').append(select);
+                                    $('#order_line_count').attr('value', x); 
                                     x++;
-                                    console.log(x);
                                 });
                             });
                         </script>
                         <a href='' id='add-new-item'>Add new item</a> 
                     </div>
+                    <input type='hidden' name='order_line_count' id='order_line_count' />
                 </li>
                 <li>
                     <div class='row'>
