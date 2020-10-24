@@ -55,11 +55,11 @@
         <form method='POST' action='../controller/supplier.action.php'>
             <ul>
                 <li>
-                    <label for='fn'>Name</label>
+                    <label for='supplier_name'>Name</label>
                     <input type='text' name='supplier_name' value='". ( isset($suppliersById) ? $suppliersById['supplier_name'] : '') . "' />
                 </li>
                 <li>
-                    <label for='ln'>Address</label>
+                    <label for='supplier_addr'>Address</label>
                     <input type='text' name='supplier_addr' value='". ( isset($suppliersById) ? $suppliersById['supplier_addr'] : '') . "' />
                 </li>
                 <li>
@@ -72,11 +72,18 @@
                 </li>
                 <li>
                     <div class='row'>
-                        <div class='col-50'>
+                    <input type='hidden' name='supplier_id' value='". ( isset($suppliersById) ? $suppliersById['supplier_id'] : '') . "'/>
+                        <div class='col-25'>
                             <input type='submit' name='action' value='Create'>
                         </div>
-                        <div class='col-50'>
+                        <div class='col-25'>
                             <input type='submit' name='action' value='Update'>
+                        </div>
+                        <div class='col-25'>
+                            <input type='submit' name='action' value='Deactivate'>
+                        </div>
+                        <div class='col-25'>
+                            <input type='submit' name='action' value='Clear'>
                         </div>
                     </div>
                 </li>

@@ -8,18 +8,18 @@ class ProductSupplier {
     private $phone;
     private $active;
 
-    public function __construct($sId = null, $sName = null, $sAddr = null, $country, $phone, $sActive = True) {
+    public function __construct($sId = null, $sName = null, $sAddr = null, $country = null, $phone = null, $sActive = True) {
         $this->supplierId = $sId;
         $this->supplierName = $sName;
         $this->supplierAddr = $sAddr;
         $this->country = $country;
         $this->phone = $phone;
-        $this->active = $cActive;
+        $this->active = $sActive;
     }
 
     public function getProductSuppliers($db) {
         
-        $sql = "SELECT * FROM product_supplier";
+        $sql = "SELECT * FROM product_supplier WHERE active=True";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $product_suppliers = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -46,6 +46,52 @@ class ProductSupplier {
         $suppliers = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
         return $suppliers;
+    }
+
+    public function insertSupplier($db) {
+        $sql = "INSERT INTO product_supplier (supplier_name, supplier_addr, country, phone)
+            VALUES(:name, :addr, :country, :phone)";
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':name', $this->supplierName, PDO::PARAM_STR);
+        $stmt->bindValue(':addr', $this->supplierAddr, PDO::PARAM_STR);
+        $stmt->bindValue(':country', $this->country, PDO::PARAM_STR);
+        $stmt->bindValue(':phone', $this->phone, PDO::PARAM_STR);
+        $stmt->execute();
+        $rowChanged = $stmt->rowCount();
+
+        return $rowChanged;
+    }
+
+    public function updateSupplier($db) {
+        $sql = "UPDATE product_supplier 
+            SET supplier_name = :name, supplier_addr = :addr,
+                country = :country, phone = :phone
+            WHERE supplier_id = :id";
+
+        var_dump($this->supplierId, $this->supplierAddr);
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':name', $this->supplierName, PDO::PARAM_STR);
+        $stmt->bindValue(':addr', $this->supplierAddr, PDO::PARAM_STR);
+        $stmt->bindValue(':country', $this->country, PDO::PARAM_STR);
+        $stmt->bindValue(':phone', $this->phone, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $this->supplierId, PDO::PARAM_INT);
+        $stmt->execute();
+        $rowChanged = $stmt->rowCount();
+
+        return $rowChanged;
+    }
+    
+    public function deactivateSupplier($db) {
+        $sql = "UPDATE product_supplier SET active = False WHERE supplier_id = :id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $this->supplierId, PDO::PARAM_INT);
+        $stmt->execute();
+        $rowChanged = $stmt->rowCount();
+        $stmt->closeCursor();
+
+        return $rowChanged;
     }
 }
 
