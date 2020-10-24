@@ -10,17 +10,17 @@ class Users {
     private $phone;
     private $active;
 
-    public function __constructor($uId = null, $fn = null, $ln = null, 
+    public function __construct($uId = null, $fn = null, $ln = null, 
                                   $un = null, $passwd = null,  $pos = null, 
                                   $phone = null, $uActive = True) {
-        $this->$userId = $uId;
-        $this->$firstName = $fn;
-        $this->$lastName = $ln;
-        $this->$username = $un;
-        $this->$passwd = $passwd;
-        $this->$position = $pos;
-        $this->$phone = $phone;
-        $this->$uActive = $active;
+        $this->userId = $uId;
+        $this->firstName = $fn;
+        $this->lastName = $ln;
+        $this->username = $un;
+        $this->passwd = $passwd;
+        $this->position = $pos;
+        $this->phone = $phone;
+        $this->active = $uActive;
     }
 
     public function getUsers($db) {
@@ -54,18 +54,17 @@ class Users {
         return $users;
     }
 
-    public function insertUser($db, $firstName, $lastName, $username, 
-        $passwd, $position, $phone) {
+    public function insertUser($db) {
 
         $sql = "INSERT INTO users (first_name, last_name, username, passwd, position, phone)
             VALUES(:first_name, :last_name, :username, :passwd, :position, :phone)";
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':first_name', $firstName, PDO::PARAM_STR);
-        $stmt->bindValue(':last_name', $lastName, PDO::PARAM_STR);
-        $stmt->bindValue(':username', $username, PDO::PARAM_STR);
-        $stmt->bindValue(':passwd', $passwd, PDO::PARAM_STR);
-        $stmt->bindValue(':position', $position, PDO::PARAM_STR);
-        $stmt->bindValue(':phone', $phone, PDO::PARAM_STR);
+        $stmt->bindValue(':first_name', $this->firstName, PDO::PARAM_STR);
+        $stmt->bindValue(':last_name', $this->lastName, PDO::PARAM_STR);
+        $stmt->bindValue(':username', $this->username, PDO::PARAM_STR);
+        $stmt->bindValue(':passwd', $this->passwd, PDO::PARAM_STR);
+        $stmt->bindValue(':position', $this->position, PDO::PARAM_STR);
+        $stmt->bindValue(':phone', $this->phone, PDO::PARAM_STR);
         $stmt->execute();
         $rowChanged = $stmt->rowCount();
         $stmt->closeCursor();
@@ -73,8 +72,7 @@ class Users {
         return $rowChanged;
     }
 
-    public function updateUser($db, $firstName, $lastName, $username, 
-            $passwd, $position, $phone, $userId) {
+    public function updateUser($db) {
         
         $sql = "UPDATE users 
             SET first_name = :first_name, 
@@ -85,13 +83,13 @@ class Users {
             phone = :phone 
             WHERE user_id = :user_id";
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':first_name', $firstName, PDO::PARAM_STR);
-        $stmt->bindValue(':last_name', $lastName, PDO::PARAM_STR);
-        $stmt->bindValue(':username', $username, PDO::PARAM_STR);
-        $stmt->bindValue(':passwd', $passwd, PDO::PARAM_STR);
-        $stmt->bindValue(':position', $position, PDO::PARAM_STR);
-        $stmt->bindValue(':phone', $phone, PDO::PARAM_STR);
-        $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+        $stmt->bindValue(':first_name', $this->firstName, PDO::PARAM_STR);
+        $stmt->bindValue(':last_name', $this->lastName, PDO::PARAM_STR);
+        $stmt->bindValue(':username', $this->username, PDO::PARAM_STR);
+        $stmt->bindValue(':passwd', $this->passwd, PDO::PARAM_STR);
+        $stmt->bindValue(':position', $this->position, PDO::PARAM_STR);
+        $stmt->bindValue(':phone', $this->phone, PDO::PARAM_STR);
+        $stmt->bindValue(':user_id', $this->userId, PDO::PARAM_INT);
         $stmt->execute();
         $rowChanged = $stmt->rowCount();
         $stmt->closeCursor();
@@ -99,13 +97,15 @@ class Users {
         return $rowChanged;
     }
 
-    public function deactivateUser($db, $userId) {
+    public function deactivateUser($db) {
         $sql = "UPDATE users SET active = False WHERE user_id = :user_id";
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+        $stmt->bindValue(':user_id', $this->userId, PDO::PARAM_INT);
         $stmt->execute();
         $rowChanged = $stmt->rowCount();
         $stmt->closeCursor();
+
+        var_dump($this->userId);
 
         return $rowChanged;
     }

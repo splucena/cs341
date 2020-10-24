@@ -6,11 +6,11 @@ class ProductCategory {
     private $categoryDesc;
     private $active;
 
-    public function __constructor($cId = null, $cName = null, $cDesc = null, $cActive = True) {
-        $this->$categoryId = $cId;
-        $this->$categoryName = $cName;
-        $this->$categoryDesc = $cDesc;
-        $this->$active = $cActive;
+    public function __construct($cId = null, $cName = null, $cDesc = null, $cActive = True) {
+        $this->categoryId = $cId;
+        $this->categoryName = $cName;
+        $this->categoryDesc = $cDesc;
+        $this->active = $cActive;
     }
 
     public function getProductCategories($db) {

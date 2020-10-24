@@ -7,12 +7,12 @@ class ProductProduct {
     private $supplierId;
     private $active;
 
-    public function __constructor($pId = null, $pName = null, $cId = null, $sId = null, $cActive = True) {
-        $this->$productId = $pId;
-        $this->$productName = $pName;
-        $this->$categoryId = $cId;
-        $this->$supplierId = $sId;
-        $this->$active = $cActive;
+    public function __construct($pId = null, $pName = null, $cId = null, $sId = null, $cActive = True) {
+        $this->productId = $pId;
+        $this->productName = $pName;
+        $this->categoryId = $cId;
+        $this->supplierId = $sId;
+        $this->active = $cActive;
     }
 
     public function getProductProducts($db) {        

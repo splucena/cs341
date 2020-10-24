@@ -12,20 +12,20 @@ class Orders {
     private $customerId;
     private $userId;
 
-    public function __constructor($oId = null, $oName = null, $oDesc = null,
+    public function __construct($oId = null, $oName = null, $oDesc = null,
                                   $oStatus = null, $tAmount = null, $cDate = null,
                                   $sDate = null, $iId = null, $cId = null,
                                   $uId = null) {
-        $this->$orderId = $oId;
-        $this->$orderName = $oName;
-        $this->$orderDesc = $oDesc;
-        $this->$orderStatus = $oStatus;
-        $this->$totalAmount = $tAmount;
-        $this->$createDate = $cDate;
-        $this->$shippingDate = $sDate;
-        $this->$invoiceId = $iId;
-        $this->$customerId = $cId;
-        $this->$userId = $uId;
+        $this->orderId = $oId;
+        $this->orderName = $oName;
+        $this->orderDesc = $oDesc;
+        $this->orderStatus = $oStatus;
+        $this->totalAmount = $tAmount;
+        $this->createDate = $cDate;
+        $this->shippingDate = $sDate;
+        $this->invoiceId = $iId;
+        $this->customerId = $cId;
+        $this-$userId = $uId;
     }
 
     public function getOrders($db) {

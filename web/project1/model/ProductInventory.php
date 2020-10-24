@@ -5,10 +5,10 @@ class ProductInventory {
     private $productId;
     private $totalStock;
 
-    public function __constructor($iId = null, $pId = null, $totalStocck = null) {
-        $this->$inventoryId = $iId;
-        $this->$productId = $pId;
-        $this->$totalStock = $totalStock;
+    public function __construct($iId = null, $pId = null, $totalStocck = null) {
+        $this->inventoryId = $iId;
+        $this->productId = $pId;
+        $this->totalStock = $totalStock;
     }
 
     public function getProductInventories($db) {

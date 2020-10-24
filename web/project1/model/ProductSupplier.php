@@ -8,13 +8,13 @@ class ProductSupplier {
     private $phone;
     private $active;
 
-    public function __constructor($sId = null, $sName = null, $sAddr = null, $country, $phone, $sActive = True) {
-        $this->$supplierId = $sId;
-        $this->$supplierName = $sName;
-        $this->$supplierAddr = $sAddr;
-        $this->$country = $country;
+    public function __construct($sId = null, $sName = null, $sAddr = null, $country, $phone, $sActive = True) {
+        $this->supplierId = $sId;
+        $this->supplierName = $sName;
+        $this->supplierAddr = $sAddr;
+        $this->country = $country;
         $this->phone = $phone;
-        $this->$active = $cActive;
+        $this->active = $cActive;
     }
 
     public function getProductSuppliers($db) {

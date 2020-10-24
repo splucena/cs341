@@ -82,11 +82,18 @@
                 </li>
                 <li>
                     <div class='row'>
-                        <div class='col-50'>
+                        <input type='hidden' name='customer_id' value='" . ( isset($customersById) ? $customersById['customer_id'] : '') . "' >
+                        <div class='col-25'>
                             <input type='submit' name='action' value='Create'>
                         </div>
-                        <div class='col-50'>
+                        <div class='col-25'>
                             <input type='submit' name='action' value='Update'>
+                        </div>
+                        <div class='col-25'>
+                            <input type='submit' name='action' value='Deactivate'>
+                        </div>
+                        <div class='col-25'>
+                            <input type='submit' name='action' value='Clear'>
                         </div>
                     </div>
                 </li>

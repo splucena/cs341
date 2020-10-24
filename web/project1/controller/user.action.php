@@ -13,16 +13,20 @@ if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
 }
 
+//echo $action;
+//exit;
+
 switch($action) {
     case 'Search':
         $display = 'search';
-        $searchTerm = filter_input(INPUT_GET, 'input-search', FILTER_SANITIZE_STRING);
+        //$searchTerm = filter_input(INPUT_GET, 'input-search', FILTER_SANITIZE_STRING);
+        $searchTerm = htmlspecialchars($_GET['input-search']);
         include('../view/user_detail.php');
 
         break;
     case 'PopulateForm':
         $display = 'populate-form';
-        $userId = filter_input(INPUT_GET, 'id');
+        $userId = htmlspecialchars($_GET['id']);
 
         include('../view/user_detail.php');
         break;
@@ -34,15 +38,15 @@ switch($action) {
         $position = htmlspecialchars($_POST['position']);
         $phone = htmlspecialchars($_POST['phone']);
 
-        $user = new Users();
-        $user->insertUser($db, $firstName, $lastName, $username, 
-            $passwd, $position, $phone);
+        $user = new Users(null, $firstName, $lastName, $username, 
+        $passwd, $position, $phone);
+        $user->insertUser($db);
 
         include('../view/user_detail.php');
         break;
     case 'Update':
 
-        $userId = htmlspecialchars($_POST['user_id']);
+        $userId = (int)htmlspecialchars($_POST['user_id']);
         $firstName = htmlspecialchars($_POST['fn']);
         $lastName = htmlspecialchars($_POST['ln']);
         $username = htmlspecialchars($_POST['username']);
@@ -50,21 +54,26 @@ switch($action) {
         $position = htmlspecialchars($_POST['position']);
         $phone = htmlspecialchars($_POST['phone']);
 
-        $user = new Users();
-        $user->updateUser($db, $firstName, $lastName, $username, 
-            $passwd, $position, $phone, $userId);
+        $user = new Users($userId, $firstName, $lastName, $username, 
+        $passwd, $position, $phone);
+        $user->updateUser($db);
         include('../view/user_detail.php');
         break;
 
     case 'Deactivate':
-        $userId = htmlspecialchars($_POST['user_id']);
+        $userId = (int)htmlspecialchars($_POST['user_id']);
 
-        $user = new Users();
-        $user->deactivateUser($db, $userId);
+        $user = new Users($userId);
+        $user->deactivateUser($db);
+        include('../view/user_detail.php');
+        break;
+    
+    case 'Clear':
         include('../view/user_detail.php');
         break;
 
     default:
         include('../view/user_detail.php');
+        break;
 }
 

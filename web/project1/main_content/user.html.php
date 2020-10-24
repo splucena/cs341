@@ -91,7 +91,7 @@
                             <input type='submit' name='action' value='Deactivate'>
                         </div>
                         <div class='col-25'>
-                            <input type='submit' name='action' value='Clear'>
+                            <input type='submit' id='clearUserFields' name='action' value='Clear'>
                         </div>
                     </div>
                 </li>
