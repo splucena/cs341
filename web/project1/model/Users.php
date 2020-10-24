@@ -105,8 +105,6 @@ class Users {
         $rowChanged = $stmt->rowCount();
         $stmt->closeCursor();
 
-        var_dump($this->userId);
-
         return $rowChanged;
     }
 }

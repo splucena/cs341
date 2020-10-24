@@ -15,7 +15,7 @@ class ProductCategory {
 
     public function getProductCategories($db) {
         
-        $sql = "SELECT * FROM product_category";
+        $sql = "SELECT * FROM product_category WHERE active=True";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $product_categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -42,6 +42,45 @@ class ProductCategory {
         $categories = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
         return $categories;
+    }
+
+    public function insertCategory($db) {
+        $sql = "INSERT INTO product_category (category_name, category_desc)
+            VALUES(:name, :desc)";
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':name', $this->categoryName, PDO::PARAM_STR);
+        $stmt->bindValue(':desc', $this->categoryDesc, PDO::PARAM_STR);
+        $stmt->execute();
+        $rowChanged = $stmt->rowCount();
+
+        return $rowChanged;
+    }
+
+    public function updateCategory($db) {
+        $sql = "UPDATE product_category 
+            SET category_name = :name, category_desc = :desc
+            WHERE category_id = :id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':name', $this->categoryName, PDO::PARAM_STR);
+        $stmt->bindValue(':desc', $this->categoryDesc, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $this->categoryId, PDO::PARAM_INT);
+
+        $stmt->execute();
+        $rowChanged = $stmt->rowCount();
+
+        return $rowChanged;
+    }
+
+    public function deactivateCategory($db) {
+        $sql = "UPDATE product_category SET active = False WHERE category_id = :id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $this->categoryId, PDO::PARAM_INT);
+        $stmt->execute();
+        $rowChanged = $stmt->rowCount();
+        $stmt->closeCursor();
+
+        return $rowChanged;
     }
 }
 
