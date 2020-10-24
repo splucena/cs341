@@ -21,7 +21,7 @@
 
     // Generate product selection
     $products = $product->getProductProducts($db);
-    $productList = "<select name='product_list' id='product_list'>
+    $productList = "<select name='product_id' id='product_list'>
         <option>Choose Product</option>";
     foreach($products as $p) {
         
@@ -32,8 +32,6 @@
         }
     }
     $productList .= "</select>";
-
-
     
     $html = "<div><form action='../controller/inventory.action.php' method='GET'>
                 <div>
@@ -70,7 +68,7 @@
 
     $formInventory = "<div>
         <h1>". ( isset($inventoriesById) ? $inventoriesById['product_name'] : 'Inventory') ." Detail</h1>
-        <form method='POST' action='../controller/inventories.action.php'>
+        <form method='POST' action='../controller/inventory.action.php'>
             <ul>
                 <li>
                     <label for='product_name'>Name</label>
@@ -82,11 +80,15 @@
                 </li>
                 <li>
                     <div class='row'>
+                        <input type='hidden' name='inventory_id' value='" . ( isset($inventoriesById) ? $inventoriesById['inventory_id'] : '') . "'>
                         <div class='col-50'>
                             <input type='submit' name='action' value='Create'>
                         </div>
-                        <div class='col-50'>
+                        <div class='col-25'>
                             <input type='submit' name='action' value='Update'>
+                        </div>
+                        <div class='col-25'>
+                            <input type='submit' name='action' value='Clear'>
                         </div>
                     </div>
                 </li>

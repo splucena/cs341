@@ -80,7 +80,7 @@
                 </li>
                 <li>
                     <div class='row'>
-                    <input type='hidden' name='user_id' value='". ( isset($usersById) ? $usersById['user_id'] : '') ."' >
+                        <input type='hidden' name='user_id' value='". ( isset($usersById) ? $usersById['user_id'] : '') ."' >
                         <div class='col-25'>
                             <input type='submit' name='action' value='Create'>
                         </div>

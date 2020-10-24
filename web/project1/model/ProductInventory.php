@@ -46,6 +46,7 @@ class ProductInventory {
     
     public function getInventoryById($db, $inventoryId) {
         $stmt = $db->prepare("SELECT
+                    pi.inventory_id as inventory_id,
                     pp.product_id as product_id, 
                     pp.product_name as product_name, 
                     pi.total_stock as total_stock
@@ -57,5 +58,30 @@ class ProductInventory {
         $inventories = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
         return $inventories;
-    }    
+    }
+    
+    public function insertInventory($db) {
+        $sql = "INSERT INTO product_inventory 
+            (product_id, total_stock)
+            VALUES(:product_id, :total_stock)";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':product_id', $this->productId, PDO::PARAM_INT);
+        $stmt->bindValue(':total_stock', $this->totalStock, PDO::PARAM_STR);
+        $stmt->execute();
+        $rowChanged = $stmt->rowCount();
+
+        return $rowChanged;
+    }
+
+    public function updateInventory($db) {
+        $sql = "UPDATE product_inventory SET total_stock = :total_stock
+            WHERE inventory_id = :id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':total_stock', $this->totalStock, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $this->inventoryId, PDO::PARAM_INT);
+        $stmt->execute();
+        $rowChanged = $stmt->rowCount();
+
+        return $rowChanged;
+    }
 }
