@@ -84,7 +84,7 @@ class Orders {
         return $orders;
     }
 
-    public function insertOrder($db) {
+    public function insertOrder($db, $orderLines) {
 
         // Insert into orders
         $sqlOrders = "INSERT INTO 
@@ -107,8 +107,22 @@ class Orders {
         $stmtOrders->bindValue(':customer_id', $this->customerId, PDO::PARAM_INT);
         $stmtOrders->bindValue(':user_id', $this->userId, PDO::PARAM_INT);
         $stmtOrders->execute();
-        $orderId = $db->lastInsertId('orders_order_id_seq');
-        
+        $lastOrderId = $db->lastInsertId('orders_order_id_seq');
+
+        // Insert order lines
+        foreach($orderLines as $o) {
+            //var_dump($o);
+            $sqlOrderLine = "INSERT INTO order_item_line
+                (order_id, product_id, unit_price, quantity, discount) 
+                VALUES(:order_id, :product_id, :unit_price, :quantity, 0)";
+
+            $stmtOrderLine = $db->prepare($sqlOrderLine);
+            $stmtOrderLine->bindValue(':order_id', $lastOrderId, PDO::PARAM_INT);
+            $stmtOrderLine->bindValue(':product_id', $o['product_id'], PDO::PARAM_INT);
+            $stmtOrderLine->bindValue(':unit_price', $o['unit_price'], PDO::PARAM_STR);
+            $stmtOrderLine->bindValue('quantity', $o['quantity'], PDO::PARAM_INT);
+            $stmtOrderLine->execute();
+        }        
         $rowChanged = $stmtOrders->rowCount();
 
         return $rowChanged;

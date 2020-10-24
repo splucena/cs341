@@ -33,21 +33,29 @@ switch($action) {
         //exit;
         $orderLines = array();
         if ((int)$orderLineCount > 0) {
+            $totalPrice = 0;
             for ($i = 1; $i <= $orderLineCount; $i++) {
                 //echo $i;
-                $productId = htmlspecialchars($_POST['product_id_' . $i]);
+                $productIdPrice = htmlspecialchars($_POST['product_id_' . $i]);
+                $productId = substr($productIdPrice, 0, stripos($productIdPrice, '_'));
+                $productPrice = substr($productIdPrice, stripos($productIdPrice, '_') + 1);
                 $productQuantity = htmlspecialchars($_POST['product_quantity_' . $i]);
-                array_push($orderLines, array($productId, $productQuantity));
+                $totalPrice += ((float)$productPrice * (int)$productQuantity);
+                array_push($orderLines, array('product_id' => $productId, 'quantity' => $productQuantity, 'unit_price' => $productPrice));
+
             }
         } else {
             echo 'Empty!';
         }
 
+        //var_dump($totalPrice);
+        //exit;
+
         $orderId = null;
         $orderName  = htmlspecialchars($_POST['order_number']);;
         $orderDesc  = htmlspecialchars($_POST['order_desc']);;
         $orderStatus  = htmlspecialchars($_POST['order_status']);;
-        $totalAmount  = htmlspecialchars($_POST['total_amount']);;
+        $totalAmount  = $totalPrice;
         $createDate = date('Y-m-d');
         $shippingDate  = null;//htmlspecialchars($_POST['shipping_date']);;
         $invoiceId = null;
@@ -57,7 +65,7 @@ switch($action) {
         $order = new Orders(null, $orderName, $orderDesc,
                             $orderStatus, $totalAmount, $createDate,
                             $shippingDate, $invoiceId, $customerId, $userId);
-        $order->insertOrder($db);
+        $order->insertOrder($db, $orderLines);
         
         //var_dump($order);
 

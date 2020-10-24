@@ -55,7 +55,7 @@
         if (isset($productId) && $productId === $p['product_id']) {
             $productList .= "<option value=$p[product_id] selected>$p[product_name] - \$$p[unit_price]</option>";
         } else {
-            $productList .= "<option value=$p[product_id]>$p[product_name] - \$$p[unit_price]</option>";
+            $productList .= "<option value=$p[product_id]_$p[unit_price]>$p[product_name] - \$$p[unit_price]</option>";
         }
     }
     //$productList .= "</select></td><td><input type='text' name='product_quantity'></td></tr></table>";
