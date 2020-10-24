@@ -229,6 +229,7 @@ table {
 
 table td,
 table th {
+    text-align: left;
     padding: 10px;
 }
 

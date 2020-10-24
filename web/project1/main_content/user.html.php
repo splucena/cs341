@@ -51,7 +51,7 @@
     echo $searchUser;
 
     $formUser = "<div>
-        <h1>". ( isset($usersById) ? $usersById['last_name'] : '') . ', ' . ( isset($usersById) ? $usersById['first_name'] : '') . " Detail</h1>
+        <h1>". ( isset($usersById) ? $usersById['first_name'] : '' ) . ' ' . ( isset($usersById) ? $usersById['last_name'] : '') . " Detail</h1>
         <form method='POST' action='../controller/user.action.php'>
             <ul>
                 <li>
@@ -80,11 +80,18 @@
                 </li>
                 <li>
                     <div class='row'>
-                        <div class='col-50'>
+                    <input type='hidden' name='user_id' value='". ( isset($usersById) ? $usersById['user_id'] : '') ."' >
+                        <div class='col-25'>
                             <input type='submit' name='action' value='Create'>
                         </div>
-                        <div class='col-50'>
+                        <div class='col-25'>
                             <input type='submit' name='action' value='Update'>
+                        </div>
+                        <div class='col-25'>
+                            <input type='submit' name='action' value='Deactivate'>
+                        </div>
+                        <div class='col-25'>
+                            <input type='submit' name='action' value='Clear'>
                         </div>
                     </div>
                 </li>

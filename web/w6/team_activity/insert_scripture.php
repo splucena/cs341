@@ -63,9 +63,8 @@
             <?php
 
         require_once "../../../db/connection.php";
-
         $db = connectDb();
-        //var_dump($db);
+  
 
         $queryScriptureTopic = "SELECT 
                 CONCAT(s.book, ' ', s.chapter, ':', s.verse) as book, 
@@ -80,11 +79,7 @@
         $stmtScriptureTopic->execute();
         $resultScriptureTopic = $stmtScriptureTopic->fetchAll(PDO::FETCH_ASSOC);
 
-        //var_dump($resultScriptureTopic);
-
         $count = $stmtScriptureTopic->rowCount();
-        //var_dump($count);
-        //exit;
 
         $htmlScriptureTopic = "<table>
             <thead>
@@ -110,13 +105,7 @@
             echo "Table is empty!";
         }
 
-        $queryTopic = "SELECT id, name FROM topic"; 
-        $stmt = $db->prepare($queryTopic);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        //var_dump($result);
-
+       
     ?>
         </div>
         <div class="scripture-form-entry">
@@ -141,6 +130,11 @@
                     </li>
                     <li><label>Topics</label></li>
                         <?php
+                         $queryTopic = "SELECT id, name FROM topic"; 
+                         $stmt = $db->prepare($queryTopic);
+                         $stmt->execute();
+                         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                 
                             if (isset($result)) {
                                 $checkbox = null;
                                 foreach($result as $r) {

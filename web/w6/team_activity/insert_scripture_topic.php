@@ -1,5 +1,17 @@
 <?php
 
+    /*
+        CREATE topic (
+            id SERIAL PRIMARY KEY,
+            name VARCHAR(255)
+        );
+
+        CREATE scriptures_topic (
+            id SERIAL PRIMARY KEY,
+            scripture_id INT REFERENCES sriptures (id),
+            topic_id INT REFERENCES topic (id)
+        )
+     */
     require_once "../../../db/connection.php";
     $db = connectDb();
 
@@ -7,10 +19,6 @@
     $chapter = htmlspecialchars($_POST['chapter']);
     $verse = htmlspecialchars($_POST['verse']);
     $content = htmlspecialchars($_POST['content']);
-
-    
-    //$sacrifice_2 = $_POST['sacrifice_2'];
-    //$charity_3 = $_POST['charity_3'];
 
     $topics = array();
 
@@ -30,20 +38,6 @@
         echo "Topic is empty!";
         die();
     }
-    /*if (isset($_POST['faith_1'])) {
-        $faith_1 = htmlspecialchars($_POST['faith_1']);
-        array_push($topics, $faith_1);    
-    }
-
-    if (isset($_POST['sacrifice_2'])) {
-        $sacrifice_1 = htmlspecialchars($_POST['sacrifice_2']);
-        array_push($topics, $sacrifice_1);    
-    }
-
-    if (isset($_POST['charity_3'])) {
-        $charity_1 = htmlspecialchars($_POST['charity_3']);
-        array_push($topics, $charity_1);    
-    }*/
 
     function createScriptureTopic($db, $scriptureId, $topicId) {
         $insertScriptureTopic = "INSERT INTO scriptures_topic (scripture_id, topic_id)
