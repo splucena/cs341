@@ -1,6 +1,9 @@
 <?php
     require_once '../library/db_connection.php';
     require_once '../model/Orders.php';
+    require_once '../model/Customer.php';
+    require_once '../model/Users.php';
+    require_once '../model/ProductProduct.php';
 
     $db = dbConnect();
     $order = new Orders();
@@ -10,9 +13,66 @@
     } elseif ($display == 'populate-form') {
         $orders = $order->getOrders($db);
         $ordersById = $order->getOrderById($db, $orderId);
+        $customerId = $ordersById['customer_id'];
+        $userId = $ordersById['user_id'];
+        $orderStatus = $ordersById['order_status'];
     } else {
         $orders = $order->searchOrder($db, $searchTerm);
     }
+
+    // Generate customer selection
+    $customer = new Customer();
+    $customers = $customer->getCustomers($db);
+    $customerList = "<select name='customer_id' id='customer_list'><option>Choose Customer</option>";
+    foreach($customers as $p) {
+        
+        if (isset($customerId) && $customerId === $p['customer_id']) {
+            $customerList .= "<option value='$p[customer_id]' selected>$p[first_name] $p[last_name]</option>";
+        } else {
+            $customerList .= "<option value='$p[customer_id]'>$p[first_name] $p[last_name]</option>";
+        }
+    }
+    $customerList .= "</select>";
+
+    // Generate user selection
+    $user = new Users();
+    $users = $user->getUsers($db);
+    $userList = "<select name='user_id' id='user_list'><option>Choose User</option>";
+    foreach($users as $p) {        
+        if (isset($userId) && $userId === $p['user_id']) {
+            $userList .= "<option value='$p[user_id]' selected>$p[first_name] $p[last_name]</option>";
+        } else {
+            $userList .= "<option value='$p[user_id]'>$p[first_name] $p[last_name]</option>";
+        }
+    }
+    $userList .= "</select>";
+
+    // Generate product selection
+    $product = new ProductProduct();
+    $products = $product->getProductProducts($db);
+    $productList = "<option>Choose Product</option>";
+    foreach($products as $p) {        
+        if (isset($productId) && $productId === $p['product_id']) {
+            $productList .= "<option value=$p[product_id] selected>$p[product_name] - \$$p[unit_price]</option>";
+        } else {
+            $productList .= "<option value=$p[product_id]>$p[product_name] - \$$p[unit_price]</option>";
+        }
+    }
+    //$productList .= "</select></td><td><input type='text' name='product_quantity'></td></tr></table>";
+
+    // Generate status selection
+    $statuses = array('draft', 'processing', 'in_transit', 'delivered');
+    $statusList = "<select name='user_id' id='user_list'>
+        <option>Choose User</option>";
+    foreach($statuses as $p) {
+        
+        if (isset($orderStatus) && $orderStatus === $p) {
+            $statusList .= "<option value='$p' selected>$p</option>";
+        } else {
+            $statusList .= "<option value='$p'>$p</option>";
+        }
+    }
+    $statusList .= "</select>";
 
     // Search user
     $html = "<div><form action='../controller/order.action.php' method='GET'>
@@ -54,6 +114,10 @@
     $html .= "</tbody></table></div>";
     echo $html;
 
+    //<input type='text' name='customer_name' value='". ( isset($ordersById) ? $ordersById['customer_name'] : '') . "'/>
+    //<input type='text' name='user_name' value='". ( isset($ordersById) ? $ordersById['user_name'] : '') . "'/>
+    //<input type='text' name='order_status' value='". ( isset($ordersById) ? strtoupper($ordersById['order_status']) : '') . "' />
+    //'draft', 'processing', 'in_transit', 'delivered'
     $formOrder = "<div>
         <h1>Order Detail</h1>
         <form method='POST' action='../controller/order.action.php'>
@@ -68,7 +132,7 @@
                 </li>
                 <li>
                     <label for='order_status'>Status</label>
-                    <input type='text' name='order_status' value='". ( isset($ordersById) ? strtoupper($ordersById['order_status']) : '') . "' />
+                    $statusList;
                 </li>
                 <li>
                     <label for='total_amount'>Total Amount</label>
@@ -80,11 +144,29 @@
                 </li>
                 <li>
                     <label for='customer_name'>Customer Name</label>
-                    <input type='text' name='customer_name' value='". ( isset($ordersById) ? $ordersById['customer_name'] : '') . "'/>
+                    $customerList
                 </li>
                 <li>
                     <label for='user_name'>Processed By</label>
-                    <input type='text' name='user_name' value='". ( isset($ordersById) ? $ordersById['user_name'] : '') . "'/>
+                    $userList
+                </li>
+                <li>
+                    <h1>Order Line</h1>
+                    <div id='new-item-container'>
+                        <script>
+                            $(document).ready(function(e) {
+                                let x = 1;
+                                $('#add-new-item').click(function(e) {
+                                    e.preventDefault();
+                                    let select = '<table><tr><td><select name=product_id_'+ x +'>" . $productList . "</select></td><td><input type=text name=product_quantity_'+ x +'></td></tr></table>';
+                                    $('#new-item-container').append(select);
+                                    x++;
+                                    console.log(x);
+                                });
+                            });
+                        </script>
+                        <a href='' id='add-new-item'>Add new item</a> 
+                    </div>
                 </li>
                 <li>
                     <div class='row'>

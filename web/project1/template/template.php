@@ -7,7 +7,8 @@
     <title><?=isset($title) ? $title : 'SRP Online Store'; ?></title>
     <link rel="stylesheet" href="../../static/css/all.css">
     <link rel="stylesheet" href="../../static/css/style.css?version=1">
-    <link rel="stylesheet" href="../static/css/style.css?version=3">
+    <link rel="stylesheet" href="../static/css/style.css?version=4">
+    <script src="../../static/js/jquery-3.5.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 </head>

@@ -25,12 +25,14 @@ class Orders {
         $this->shippingDate = $sDate;
         $this->invoiceId = $iId;
         $this->customerId = $cId;
-        $this-$userId = $uId;
+        $this->userId = $uId;
     }
 
     public function getOrders($db) {
         
         $sql = "SELECT
+                    c.customer_id as customer_id,
+                    u.user_id as user_id,
                     o.order_id as order_id,
                     o.order_number as order_number,
                     o.order_status as order_status,
@@ -61,6 +63,8 @@ class Orders {
     
     public function getOrderById($db, $orderId) {
         $stmt = $db->prepare("SELECT
+                c.customer_id as customer_id,
+                u.user_id as user_id,
                 o.order_id as order_id, 
                 o.order_number as order_number,
                 o.order_desc as order_desc,

@@ -233,6 +233,7 @@ table td,
 table th {
     text-align: left;
     padding: 10px;
+    border: solid 1px #000;
 }
 
 .no-top-bottom-margin-padding {
