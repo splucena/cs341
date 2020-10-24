@@ -5,7 +5,7 @@ class ProductInventory {
     private $productId;
     private $totalStock;
 
-    public function __construct($iId = null, $pId = null, $totalStocck = null) {
+    public function __construct($iId = null, $pId = null, $totalStock = null) {
         $this->inventoryId = $iId;
         $this->productId = $pId;
         $this->totalStock = $totalStock;
@@ -45,7 +45,8 @@ class ProductInventory {
     }
     
     public function getInventoryById($db, $inventoryId) {
-        $stmt = $db->prepare("SELECT 
+        $stmt = $db->prepare("SELECT
+                    pp.product_id as product_id, 
                     pp.product_name as product_name, 
                     pi.total_stock as total_stock
                 FROM product_inventory pi

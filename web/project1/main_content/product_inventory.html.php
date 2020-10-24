@@ -1,18 +1,39 @@
 <?php
     require_once '../library/db_connection.php';
     require_once '../model/ProductInventory.php';
+    require_once '../model/ProductProduct.php';
 
     $db = dbConnect();
     $inventory = new ProductInventory();
+    $product = new ProductProduct();
 
     if ($display == 'display') {
         $inventories = $inventory->getProductInventories($db);
     } elseif ($display == 'populate-form') {
         $inventories = $inventory->getProductInventories($db);
         $inventoriesById = $inventory->getInventoryById($db, $inventoryId);
+        $productId = $inventoriesById['product_id'];
+
+        //var_dump($inventoriesById, $productId);
     } else {
         $inventories = $inventory->searchInventory($db, $searchTerm);
     }
+
+    // Generate product selection
+    $products = $product->getProductProducts($db);
+    $productList = "<select name='product_list' id='product_list'>
+        <option>Choose Product</option>";
+    foreach($products as $p) {
+        
+        if (isset($productId) && $productId === $p['product_id']) {
+            $productList .= "<option value='$p[product_id]' selected>$p[product_name]</option>";
+        } else {
+            $productList .= "<option value='$p[product_id]'>$p[product_name]</option>";
+        }
+    }
+    $productList .= "</select>";
+
+
     
     $html = "<div><form action='../controller/inventory.action.php' method='GET'>
                 <div>
@@ -45,13 +66,15 @@
     $html .= "</tbody></table></div>";
     echo $html;
 
+    //<input type='text' name='product_name' value='". ( isset($inventoriesById) ? $inventoriesById['product_name'] : '') . "' />
+
     $formInventory = "<div>
         <h1>". ( isset($inventoriesById) ? $inventoriesById['product_name'] : 'Inventory') ." Detail</h1>
         <form method='POST' action='../controller/inventories.action.php'>
             <ul>
                 <li>
                     <label for='product_name'>Name</label>
-                    <input type='text' name='product_name' value='". ( isset($inventoriesById) ? $inventoriesById['product_name'] : '') . "' />
+                    $productList
                 </li>
                 <li>
                     <label for='total_Stock'>Stock Quantity</label>
