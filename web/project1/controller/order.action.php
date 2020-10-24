@@ -48,7 +48,7 @@ switch($action) {
         $orderDesc  = htmlspecialchars($_POST['order_desc']);;
         $orderStatus  = htmlspecialchars($_POST['order_status']);;
         $totalAmount  = htmlspecialchars($_POST['total_amount']);;
-        $createDate = null;
+        $createDate = date('Y-m-d');
         $shippingDate  = null;//htmlspecialchars($_POST['shipping_date']);;
         $invoiceId = null;
         $customerId  = (int)htmlspecialchars($_POST['customer_id']);;

@@ -158,14 +158,20 @@
                                 let x = 1;
                                 $('#add-new-item').click(function(e) {
                                     e.preventDefault();
-                                    let select = '<table><tr><td><select name=product_id_'+ x +'>" . $productList . "</select></td><td><input type=text name=product_quantity_'+ x +'></td></tr></table>';
+                                    let select = '<table><tr><td width=65%><select name=product_id_'+ x +'>" . $productList . "</select></td><td width=20%><input type=text name=product_quantity_'+ x +'></td><td id=remove width=15%>Remove</td></tr></table>';
                                     $('#new-item-container').append(select);
                                     $('#order_line_count').attr('value', x); 
                                     x++;
                                 });
+
+                                $('#new-item-container').on('click', '#remove', function(e) {
+                                    $(this).parent('tr').remove();
+                                    x--;
+                                }); 
                             });
                         </script>
                         <a href='' id='add-new-item'>Add new item</a> 
+                        <table><tr><th width='65%'>Product - Price</th><th  width='20%'>Quantity</th><th width='15%'>Remove</th></tr></table>
                     </div>
                     <input type='hidden' name='order_line_count' id='order_line_count' />
                 </li>
