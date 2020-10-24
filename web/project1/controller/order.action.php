@@ -58,13 +58,13 @@ switch($action) {
         $totalAmount  = $totalPrice;
         $createDate = date('Y-m-d');
         $shippingDate  = null;//htmlspecialchars($_POST['shipping_date']);;
-        $invoiceId = null;
+        //$invoiceId = null;
         $customerId  = (int)htmlspecialchars($_POST['customer_id']);;
         $userId  = (int)htmlspecialchars($_POST['user_id']);;
 
         $order = new Orders(null, $orderName, $orderDesc,
                             $orderStatus, $totalAmount, $createDate,
-                            $shippingDate, $invoiceId, $customerId, $userId);
+                            $shippingDate, $customerId, $userId);
         $order->insertOrder($db, $orderLines);
         
         //var_dump($order);

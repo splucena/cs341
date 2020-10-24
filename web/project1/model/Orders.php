@@ -8,13 +8,12 @@ class Orders {
     private $totalAmount;
     private $createDate;
     private $shippingDate;
-    private $invoiceId;
     private $customerId;
     private $userId;
 
     public function __construct($oId = null, $oName = null, $oDesc = null,
                                   $oStatus = null, $tAmount = null, $cDate = null,
-                                  $sDate = null, $iId = null, $cId = null,
+                                  $sDate = null, $cId = null,
                                   $uId = null) {
         $this->orderId = $oId;
         $this->orderName = $oName;
@@ -23,7 +22,6 @@ class Orders {
         $this->totalAmount = $tAmount;
         $this->createDate = $cDate;
         $this->shippingDate = $sDate;
-        $this->invoiceId = $iId;
         $this->customerId = $cId;
         $this->userId = $uId;
     }
@@ -90,10 +88,10 @@ class Orders {
         $sqlOrders = "INSERT INTO 
                     orders (order_name, order_number, order_desc, order_status, 
                         total_amount, create_date, shipping_date,
-                        invoice_id, customer_id, user_id)
+                        customer_id, user_id)
                     VALUES(:order_name, :order_number, :order_desc, :order_status,
                         :total_amount, :create_date, :shipping_date,
-                        :invoice_id, :customer_id, :user_id)";
+                        :customer_id, :user_id)";
 
         $stmtOrders = $db->prepare($sqlOrders);
         $stmtOrders->bindValue(':order_name', $this->orderName, PDO::PARAM_STR);
@@ -103,7 +101,7 @@ class Orders {
         $stmtOrders->bindValue(':total_amount', $this->totalAmount, PDO::PARAM_STR);
         $stmtOrders->bindValue(':create_date', $this->createDate, PDO::PARAM_STR);
         $stmtOrders->bindValue(':shipping_date', $this->shippingDate, PDO::PARAM_STR);
-        $stmtOrders->bindValue(':invoice_id', $this->invoiceId, PDO::PARAM_INT);
+        //$stmtOrders->bindValue(':invoice_id', $this->invoiceId, PDO::PARAM_INT);
         $stmtOrders->bindValue(':customer_id', $this->customerId, PDO::PARAM_INT);
         $stmtOrders->bindValue(':user_id', $this->userId, PDO::PARAM_INT);
         $stmtOrders->execute();
