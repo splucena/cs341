@@ -30,8 +30,10 @@ switch($action) {
         $productName = htmlspecialchars($_POST['product_name']);
         $categoryId = htmlspecialchars($_POST['category_id']);
         $supplierId = htmlspecialchars($_POST['supplier_id']);
+        $unitPrice = htmlspecialchars($_POST['unit_price']);
 
-        $product = new ProductProduct(null, $productName, $categoryId, $supplierId);
+        $product = new ProductProduct(null, $productName, $categoryId, 
+                                      $supplierId, $unitPrice);
         $product->insertProduct($db);
 
         include('../view/product_product_detail.php');
@@ -42,8 +44,10 @@ switch($action) {
         $productName = htmlspecialchars($_POST['product_name']);
         $categoryId = htmlspecialchars($_POST['category_id']);
         $supplierId = htmlspecialchars($_POST['supplier_id']);
+        $unitPrice = htmlspecialchars($_POST['unit_price']);
 
-        $product = new ProductProduct($productId, $productName, $categoryId, $supplierId);
+        $product = new ProductProduct($productId, $productName, $categoryId, 
+                                      $supplierId, $unitPrice);
         $product->updateProduct($db);
 
         include('../view/product_product_detail.php');

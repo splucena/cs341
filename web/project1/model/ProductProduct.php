@@ -6,13 +6,17 @@ class ProductProduct {
     private $categoryId;
     private $supplierId;
     private $active;
+    private $unitPrice;
 
-    public function __construct($pId = null, $pName = null, $cId = null, $sId = null, $cActive = True) {
+    public function __construct($pId = null, $pName = null, $cId = null, 
+        $sId = null, $unitPrice = null, $cActive = True) {
+        
         $this->productId = $pId;
         $this->productName = $pName;
         $this->categoryId = $cId;
         $this->supplierId = $sId;
         $this->active = $cActive;
+        $this->unitPrice = $unitPrice;
     }
 
     public function getProductProducts($db) {        
@@ -22,7 +26,8 @@ class ProductProduct {
                      pc.category_name as category_name,
                      ps.supplier_name as supplier_name,
                      pc.category_id as category_id,
-                     ps.supplier_id as supplier_id
+                     ps.supplier_id as supplier_id,
+                     pp.unit_price as unit_price
                 FROM product_product pp
                 LEFT JOIN product_category pc ON pp.category_id=pc.category_id
                 LEFT JOIN product_supplier ps ON pp.supplier_id=ps.supplier_id
@@ -40,7 +45,8 @@ class ProductProduct {
                     pp.product_id as product_id, 
                     pp.product_name as product_name,
                     pc.category_name as category_name,
-                    ps.supplier_name as supplier_name  
+                    ps.supplier_name as supplier_name,
+                    pp.unit_price as unit_price  
                 FROM product_product pp
                 LEFT JOIN product_category pc ON pp.category_id=pc.category_id
                 LEFT JOIN product_supplier ps ON pp.supplier_id=ps.supplier_id 
@@ -60,7 +66,8 @@ class ProductProduct {
                 pc.category_name as category_name,
                 ps.supplier_name as supplier_name,
                 pc.category_id as category_id,
-                ps.supplier_id as supplier_id  
+                ps.supplier_id as supplier_id,
+                pp.unit_price as unit_price  
             FROM product_product pp
             LEFT JOIN product_category pc ON pp.category_id=pc.category_id
             LEFT JOIN product_supplier ps ON pp.supplier_id=ps.supplier_id 
@@ -74,12 +81,13 @@ class ProductProduct {
 
     public function insertProduct($db) {
         $sql = "INSERT INTO product_product
-            (product_name, category_id, supplier_id) 
-            VALUES(:name, :category_id, :supplier_id)";
+            (product_name, category_id, supplier_id, unit_price) 
+            VALUES(:name, :category_id, :supplier_id, :unit_price)";
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':name', $this->productName, PDO::PARAM_STR);
         $stmt->bindValue(':category_id', $this->categoryId, PDO::PARAM_INT);
         $stmt->bindValue(':supplier_id', $this->supplierId, PDO::PARAM_INT);
+        $stmt->bindValue(':unit_price', $this->unitPrice, PDO::PARAM_STR);
         $stmt->execute();
         $rowChanged = $stmt->rowCount();        
         $stmt->closeCursor();
@@ -89,13 +97,15 @@ class ProductProduct {
 
     public function updateProduct($db) {
         $sql = "UPDATE product_product 
-            SET product_name = :name, category_id = :category_id, supplier_id = :supplier_id
+            SET product_name = :name, category_id = :category_id, 
+            supplier_id = :supplier_id, unit_price = :unit_price
             WHERE product_id = :product_id";
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':name', $this->productName, PDO::PARAM_STR);
         $stmt->bindValue(':category_id', $this->categoryId, PDO::PARAM_INT);
         $stmt->bindValue(':supplier_id', $this->supplierId, PDO::PARAM_INT);
         $stmt->bindvalue(':product_id', $this->productId, PDO::PARAM_INT);
+        $stmt->bindValue(':unit_price', $this->unitPrice, PDO::PARAM_STR);
         $stmt->execute();
         $rowChanged = $stmt->rowCount();        
         $stmt->closeCursor();

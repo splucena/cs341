@@ -64,6 +64,7 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
+                        <th>Unit Price</th>
                         <th>Category</th>
                         <th>Supplier</th>
                     </tr>
@@ -74,6 +75,7 @@
         $html .= "<tr>
                     <td>$counter</td>
                     <td><a href='../controller/product.action.php?action=PopulateForm&id=$p[product_id]'>$p[product_name]</a></td>
+                    <td>$p[unit_price]</td>
                     <td>$p[category_name]</td>
                     <td>$p[supplier_name]</td>
                  </tr>";
@@ -91,6 +93,10 @@
                 <li>
                     <label for='product_name'>Name</label>
                     <input type='text' name='product_name' value='". ( isset($productsById) ? $productsById['product_name'] : '') . "' />
+                </li>
+                <li>
+                    <label for='unit_price'>Unit Price</label>
+                    <input type='text' name='unit_price' value='". ( isset($productsById) ? $productsById['unit_price'] : '') ."'>
                 </li>
                 <li>
                     <label for='cateogry_name'>Category</label>
