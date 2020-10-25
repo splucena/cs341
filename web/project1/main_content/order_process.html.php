@@ -13,52 +13,11 @@
     } elseif ($display == 'populate-form') {
         $orders = $order->getOrders($db);
         $ordersById = $order->getOrderById($db, $orderId);
-        $customerId = $ordersById['customer_id'];
-        $userId = $ordersById['user_id'];
+        $orderLines = $order->getOrderLines($db, $orderId);
         $orderStatus = $ordersById['order_status'];
     } else {
         $orders = $order->searchOrder($db, $searchTerm);
     }
-
-    // Generate customer selection
-    $customer = new Customer();
-    $customers = $customer->getCustomers($db);
-    $customerList = "<select name='customer_id' id='customer_list'><option>Choose Customer</option>";
-    foreach($customers as $p) {
-        
-        if (isset($customerId) && $customerId === $p['customer_id']) {
-            $customerList .= "<option value='$p[customer_id]' selected>$p[first_name] $p[last_name]</option>";
-        } else {
-            $customerList .= "<option value='$p[customer_id]'>$p[first_name] $p[last_name]</option>";
-        }
-    }
-    $customerList .= "</select>";
-
-    // Generate user selection
-    $user = new Users();
-    $users = $user->getUsers($db);
-    $userList = "<select name='user_id' id='user_list'><option>Choose User</option>";
-    foreach($users as $p) {        
-        if (isset($userId) && $userId === $p['user_id']) {
-            $userList .= "<option value='$p[user_id]' selected>$p[first_name] $p[last_name]</option>";
-        } else {
-            $userList .= "<option value='$p[user_id]'>$p[first_name] $p[last_name]</option>";
-        }
-    }
-    $userList .= "</select>";
-
-    // Generate product selection
-    $product = new ProductProduct();
-    $products = $product->getProductProducts($db);
-    $productList = "<option>Choose Product</option>";
-    foreach($products as $p) {        
-        if (isset($productId) && $productId === $p['product_id']) {
-            $productList .= "<option value=$p[product_id] selected>$p[product_name] - \$$p[unit_price]</option>";
-        } else {
-            $productList .= "<option value=$p[product_id]_$p[unit_price]>$p[product_name] - \$$p[unit_price]</option>";
-        }
-    }
-    //$productList .= "</select></td><td><input type='text' name='product_quantity'></td></tr></table>";
 
     // Generate status selection
     $statuses = array('draft', 'processing', 'in_transit', 'delivered');
@@ -73,6 +32,28 @@
         }
     }
     $statusList .= "</select>";
+
+    if (isset($orderLines) && count($orderLines) > 0) {
+        $totalOrderAmount = 0;
+        $orderLineList = "<table><tr>
+                <th>Product</th>
+                <th class='right'>Unit Price</th>
+                <th class='right'>Quantity</th>
+                <th class='right'>Subtotal</th>
+            </tr>";
+        foreach($orderLines as $o) {
+            $orderLineList .= "<tr>
+                    <td>$o[product_name]</td>
+                    <td class='right'>" . number_format((float)$o['unit_price'], 2, '.', '') . "</td>
+                    <td class='right'>$o[quantity]</td>
+                    <td class='right'>" . number_format((float)$o['subtotal'], 2, '.', '') . "</td>
+                </tr>";
+                $totalOrderAmount += (float)$o['subtotal'];
+        }
+        $orderLineList .= "<tr><td>Total</td><td colspan='3' class='right'>" . number_format((float)$totalOrderAmount, 2, '.', '') ."</td></tr></table>";
+    } else {
+        $orderLineList = "<p>Empty!</p>";
+    }
 
     // Search user
     $html = "<div><form action='../controller/order_process.action.php' method='GET'>
@@ -140,14 +121,15 @@
                 </li>
                 <li>
                     <label for='shipping_date'>Shipping Date</label>
-                    <input type='date' name='shipping_date' value='". ( isset($ordersById) ? $ordersById['shipping_date'] : '') . "' />
+                    <input type='datetime-local' name='shipping_date' value='". ( isset($ordersById) ? $ordersById['shipping_date'] : '') . "' />
                 </li>
                 <li>
                     <h1>Order Line</h1>
-                    
+                    $orderLineList
                 </li>
                 <li>
                     <div class='row'>
+                        <input type='hidden' name='order_id' value='" . ( isset($ordersById) ? $ordersById['order_id'] : '') . "'>
                         <div class='col-50'>
                             <input type='submit' name='action' value='Update'>
                         </div>

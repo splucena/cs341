@@ -70,7 +70,17 @@ switch($action) {
         //var_dump($order);
 
         include('../view/order_process_detail.php');
-        break;    
+        break;
+    case 'Update':
+        $shippingDate = htmlspecialchars($_POST['shipping_date']);
+        $orderStatus = htmlspecialchars($_POST['order_status']);
+        $orderId = htmlspecialchars($_POST['order_id']);
+
+        $order = new Orders();
+        $order->updateOrder($db, $shippingDate, $orderStatus, $orderId);
+
+        include('../view/order_process_detail.php');
+        break;     
     default:
         include('../view/order_process_detail.php');
 }

@@ -82,8 +82,28 @@ class Orders {
         return $orders;
     }
 
-    public function insertOrder($db, $orderLines) {
+    public function getOrderLines($db, $orderId) {
+        $stmt = $db->prepare("SELECT
+                pp.product_name as product_name, 
+                ol.unit_price as unit_price,
+                ol.quantity as quantity,
+                (ol.quantity * ol.unit_price) as subtotal
+            FROM order_item_line ol
+            LEFT JOIN product_product pp ON ol.product_id = pp.product_id
+            WHERE ol.order_id = :order_id ");
 
+        $stmt->bindParam(':order_id', $orderId, PDO::PARAM_INT);
+        $stmt->execute();
+        $orderLines = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+
+        //var_dump($orderLines);
+        //exit;
+        return $orderLines;
+
+    }
+
+    public function insertOrder($db, $orderLines) {
         // Insert into orders
         $sqlOrders = "INSERT INTO 
                     orders (order_name, order_number, order_desc, order_status, 
@@ -125,6 +145,24 @@ class Orders {
 
         return $rowChanged;
 
+    }
+
+    public function updateOrder($db, $shippingDate, $orderStatus, $orderId) {
+
+        //var_dump($shippingDate, $orderStatus, $orderId);
+        //exit;
+
+        $sql = "UPDATE orders 
+            SET shipping_date = :shipping_date, order_status = :order_status
+            WHERE order_id = :order_id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':shipping_date', $shippingDate, PDO::PARAM_STR);
+        $stmt->bindParam(':order_status', $orderStatus, PDO::PARAM_STR);
+        $stmt->bindParam(':order_id', $orderId, PDO::PARAM_STR);
+        $stmt->execute();
+        $rowChanged = $stmt->rowCount();
+        $stmt->closeCursor();
+        return $rowChanged;
     }
     
 }
