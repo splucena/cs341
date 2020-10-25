@@ -104,6 +104,7 @@ input[type=text],
 input[type=number],
 input[type=password],
 input[type=date],
+input[type=datetime-local],
 select,
 option {
     background-color: #f2f2f2;
