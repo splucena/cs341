@@ -31,6 +31,7 @@ TABLE: product_product
 CREATE TABLE product_product(
     product_id SERIAL PRIMARY KEY,
     product_name VARCHAR(255),
+    unit_price FLOAT,
     category_id INT REFERENCES product_category(category_id),
     supplier_id INT REFERENCES product_supplier(supplier_id),
     active BOOLEAN DEFAULT TRUE

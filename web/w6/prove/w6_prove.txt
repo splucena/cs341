@@ -1,0 +1,72 @@
+After completing the assignment, please answer the questions in this text file and submit it to I-Learn.
+
+1. Copy and paste the URL for your web application:
+Main: https://safe-fjord-79831.herokuapp.com
+Project: https://safe-fjord-79831.herokuapp.com/project1/view/order_detail.php
+
+2. Copy and paste the URL for your source code repository (e.g., GitHub):
+Link: https://github.com/splucena/cs341
+Project 1 Link: https://github.com/splucena/cs341/tree/master/web/project1
+
+
+3. Briefly list and describe the elements of the application that are functioning. Include any special instructions about how to login and/or use your application.
+Project Title: SRP Online Store
+
+1. Create new order: A page for customers to create new orders
+https://safe-fjord-79831.herokuapp.com/project1/view/order_detail.php
+
+2. Process orders: A page for administrators to update orders
+https://safe-fjord-79831.herokuapp.com/project1/view/order_process_detail.php
+
+3. Product Management: On this page an administrator can create, update, deactive, search product, supplier, product category, inventory
+> Product
+https://safe-fjord-79831.herokuapp.com/project1/view/product_product_detail.php
+
+> Product Category
+https://safe-fjord-79831.herokuapp.com/project1/view/product_category_detail.php
+
+> Product Supplier
+https://safe-fjord-79831.herokuapp.com/project1/view/product_supplier_detail.php
+
+> inventory
+https://safe-fjord-79831.herokuapp.com/project1/view/product_inventory_detail.php
+
+4. Customer Management: On this page an administrator can create, update, deactivate, search customer
+https://safe-fjord-79831.herokuapp.com/project1/view/customer_detail.php
+
+5. User Management: On this page an administrator can create, update, deactivate, search user
+https://safe-fjord-79831.herokuapp.com/project1/view/user_detail.php
+
+
+
+4. Briefly describe any pieces of the assignment that are not yet working correctly.
+> No login yet for app users
+> No access right configuration
+> No prompt when records are successfully/failed created, updated, or deactivated
+> No default values. Example status order and processed by should be automatic based on logged in user
+> No registration page for customer
+
+
+5. Briefly describe the "coolest" thing you learned while completing this assignment.
+The coolest thing I learned was injecting JavaScript inside PHP. I know there is a better way to dynamically add
+form elements dynamically but I was able to solve the one-to-many challenge for the order and order line relationship
+of the project. 
+
+6. What is a benefit of having a foreign key constraint?
+First, foreign key constraint helps maintain database referential integrity for example you cannot insert data into the 
+parent table without a corresponding record in the child table. Second, it is easier to maintain a well designed database
+foreign keys help establish relationships among tables. Third, foreign key constraints help improve performance by including
+on how tables are joined.
+
+7. Please select the category you feel best describes your assignment: 4
+1 - Some attempt was made
+2 - Developing, but significantly deficient
+3 - Slightly deficient, but still mostly adequate
+4 - Meets requirements
+5 - Shows creativity and excels above and beyond requirements
+
+
+8. Provide a brief justification (1-2 sentences) for selecting that category.
+CRUD functionality was implemented across the app. Except for the order manaagement page the CRUD functionality is 
+uniform across the app.
+
