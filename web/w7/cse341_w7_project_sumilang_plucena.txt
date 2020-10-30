@@ -1,0 +1,67 @@
+1. Project Title / One sentence description:
+SRP Online Store
+
+** You may contact me through slack if you have questions.
+
+2. The Heroku URL for your web application:
+https://safe-fjord-79831.herokuapp.com/project1/view/index.php
+
+3. The GitHub URL for your source code repository:
+https://github.com/splucena/cs341
+https://github.com/splucena/cs341/tree/master/web/project1
+
+4. A link to the SQL file that contains the commands used to create your tables (e.g. a link to the myDb.sql file at GitHub, or something similar).
+https://github.com/splucena/cs341/blob/master/db/d37erhhggeh672.sql
+
+5. Please provide a brief description of what your project does and how to use the application. Make sure to include any required information like a username and password.
+
+Username: admin
+Password: Q!2qwert
+
+** No login needed
+1. Home: A page for users to sign in or sign up or for customers to create new orders
+2. Sign up: A page for user registration
+3. Sign in: A page for user login 
+
+** Needs login to access admin pages
+1. Create new order: A page for customers to create new orders
+https://safe-fjord-79831.herokuapp.com/project1/view/order_detail.php
+
+2. Process orders: A page for administrators to update orders
+https://safe-fjord-79831.herokuapp.com/project1/view/order_process_detail.php
+
+3. Product Management: On this page an administrator can create, update, deactive, search product, supplier, product category, inventory
+> Product
+https://safe-fjord-79831.herokuapp.com/project1/view/product_product_detail.php
+
+> Product Category
+https://safe-fjord-79831.herokuapp.com/project1/view/product_category_detail.php
+
+> Product Supplier
+https://safe-fjord-79831.herokuapp.com/project1/view/product_supplier_detail.php
+
+> inventory
+https://safe-fjord-79831.herokuapp.com/project1/view/product_inventory_detail.php
+
+4. Customer Management: On this page an administrator can create, update, deactivate, search customer
+https://safe-fjord-79831.herokuapp.com/project1/view/customer_detail.php
+
+5. User Management: On this page an administrator can create, update, deactivate, search user
+https://safe-fjord-79831.herokuapp.com/project1/view/user_detail.php
+
+6. Logout: Exits admin pages
+
+** Features
+1. CRUD
+2. Search
+3. Pagination when table records exceed 10
+4. Sign in and Sign up for users
+5. Uniform design across pages
+
+
+6. Briefly describe any pieces of the assignment that are not yet working correctly.
+
+1. There are no validations
+2. There are no default values set for many2one inputs
+3. There is no registration for customer.
+4. System user will have to create a customer before they can place an order
