@@ -6,6 +6,19 @@
     #14A76C green
 */
 
+table th {
+    background-color: #272727;
+    color: #FFF;
+}
+
+table td {
+    border-bottom: solid 1px #747474;
+}
+
+a {
+    text-decoration: none;
+}
+
 body {
     background: none !important;
     /*background-color: antiquewhite !important;*/
@@ -328,7 +341,7 @@ table th {
 }
 
 .pagination span {
-    padding: 5px;
+    margin: 5px;
 }
 
 @media only screen and (min-width: 600px) {
