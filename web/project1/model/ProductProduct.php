@@ -28,7 +28,7 @@ class ProductProduct {
         return $rowCount;
     }
 
-    public function getProductProducts1($db) {        
+    public function getProductProducts($db) {        
         $sql = "SELECT 
                      pp.product_id as product_id,
                      pp.product_name as product_name,
@@ -49,7 +49,7 @@ class ProductProduct {
         return $product_products;
     }
 
-    public function getProductProducts($db, $startFrom, $limit) {        
+    public function getProductProducts1($db, $startFrom, $limit) {        
         $sql = "SELECT 
                      pp.product_id as product_id,
                      pp.product_name as product_name,

@@ -23,9 +23,9 @@ if (isset($_SESSION['loggedin'])) {
     $startFrom = ($page - 1) * $limit;
     
     if ($display == 'display') {
-        $products = $product->getProductProducts($db, $startFrom, $limit);
+        $products = $product->getProductProducts1($db, $startFrom, $limit);
     } elseif ($display == 'populate-form') {
-        $products = $product->getProductProducts($db, $startFrom, $limit);
+        $products = $product->getProductProducts1($db, $startFrom, $limit);
         $productsById = $product->getProductById($db, $productId);
         $supplierId = $productsById['supplier_id'];
         $categoryId = $productsById['category_id'];

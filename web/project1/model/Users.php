@@ -32,7 +32,18 @@ class Users {
         return $rowCount;
     }
 
-    public function getUsers($db, $startFrom, $limit) {
+    public function getUsers($db) {
+        
+        $sql = "SELECT * FROM users WHERE active=True";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+
+        return $users;
+    } 
+
+    public function getUsers1($db, $startFrom, $limit) {
         
         $sql = "SELECT * FROM users WHERE active=True 
         ORDER BY user_id ASC LIMIT $limit OFFSET $startFrom";

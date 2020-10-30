@@ -121,7 +121,7 @@
         $counter += 1;
     }
     $html .= "</tbody></table>";
-    echo $html;
+    //echo $html;
 
     $totalRecords = $order->getOrdersCount($db)[0];
 

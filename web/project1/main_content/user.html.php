@@ -22,9 +22,9 @@ if (isset($_SESSION['loggedin'])) {
     $startFrom = ($page - 1) * $limit;
     
     if ($display == 'display') {
-        $users = $user->getUsers($db, $startFrom, $limit);
+        $users = $user->getUsers1($db, $startFrom, $limit);
     } elseif ($display == 'populate-form') {
-        $users = $user->getUsers($db, $startFrom, $limit);
+        $users = $user->getUsers1($db, $startFrom, $limit);
         $usersById = $user->getUserById($db, $userId);
     } else {
         $users = $user->searchUser($db, $searchTerm);

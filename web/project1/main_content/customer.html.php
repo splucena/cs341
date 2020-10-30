@@ -21,9 +21,9 @@ if (isset($_SESSION['loggedin'])) {
     $startFrom = ($page - 1) * $limit;
     
     if ($display == 'display') {
-        $customers = $customer->getCustomers($db, $startFrom, $limit);
+        $customers = $customer->getCustomers1($db, $startFrom, $limit);
     } elseif ($display == 'populate-form') {
-        $customers = $customer->getCustomers($db, $startFrom, $limit);
+        $customers = $customer->getCustomers1($db, $startFrom, $limit);
         $customersById = $customer->getCustomerById($db, $userId);
     } else {
         $customers = $customer->searchCustomer($db, $searchTerm);

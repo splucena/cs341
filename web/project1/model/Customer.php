@@ -34,7 +34,18 @@ class Customer {
         return $rowCount;
     }
 
-    public function getCustomers($db, $startFrom, $limit) {
+    public function getCustomers($db) {
+        
+        $sql = "SELECT * FROM customer WHERE active=True";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+
+        return $customers;
+    }
+
+    public function getCustomers1($db, $startFrom, $limit) {
         
         $sql = "SELECT * FROM customer WHERE active=True
             ORDER BY customer_id ASC LIMIT $limit OFFSET $startFrom";
