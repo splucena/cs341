@@ -59,11 +59,11 @@ switch($action) {
         $createDate = date('Y-m-d');
         $shippingDate  = null;
         $customerId  = (int)filter_input(INPUT_POST, 'customer_id', FILTER_SANITIZE_NUMBER_INT);
-        $userId  = (int)filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_NUMBER_INT);
+        //$userId  = (int)filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_NUMBER_INT);
 
         $order = new Orders(null, $orderName, $orderDesc,
                             $orderStatus, $totalAmount, $createDate,
-                            $shippingDate, $customerId, $userId);
+                            $shippingDate, $customerId, null);
         $order->insertOrder($db, $orderLines);
         
         include('../view/order_detail.php');
