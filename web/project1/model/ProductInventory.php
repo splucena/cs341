@@ -11,7 +11,16 @@ class ProductInventory {
         $this->totalStock = $totalStock;
     }
 
-    public function getProductInventories($db) {
+    public function getInventoryCount($db) {
+        $sql = "SELECT COUNT(inventory_id) FROM product_inventory";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $rowCount = $stmt->fetch();
+
+        return $rowCount;
+    }
+
+    public function getProductInventories($db, $startFrom, $limit) {
         
         $sql = "SELECT 
                     pi.inventory_id as inventory_id, 
@@ -19,7 +28,8 @@ class ProductInventory {
                     pp.product_name as product_name, 
                     pi.total_stock as total_stock 
                 FROM product_inventory pi
-                LEFT JOIN product_product pp ON pi.product_id=pp.product_id";
+                LEFT JOIN product_product pp ON pi.product_id=pp.product_id                
+                ORDER BY pi.inventory_id ASC LIMIT $limit OFFSET $startFrom";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $inventories = $stmt->fetchAll(PDO::FETCH_ASSOC);

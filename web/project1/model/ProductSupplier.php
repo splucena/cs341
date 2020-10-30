@@ -17,6 +17,27 @@ class ProductSupplier {
         $this->active = $sActive;
     }
 
+    public function getSupplierCount($db) {
+        $sql = "SELECT COUNT(supplier_id) FROM product_supplier";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $rowCount = $stmt->fetch();
+
+        return $rowCount;
+    }
+
+    public function getProductSuppliers1($db, $startFrom, $limit) {
+        
+        $sql = "SELECT * FROM product_supplier WHERE active=True
+            ORDER BY supplier_id ASC LIMIT $limit OFFSET $startFrom";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $product_suppliers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+
+        return $product_suppliers;
+    } 
+
     public function getProductSuppliers($db) {
         
         $sql = "SELECT * FROM product_supplier WHERE active=True";

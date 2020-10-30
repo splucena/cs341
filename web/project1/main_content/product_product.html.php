@@ -12,11 +12,20 @@ if (isset($_SESSION['loggedin'])) {
 
     $db = dbConnect();
     $product = new ProductProduct();
+
+    $limit = 10;
+    if (isset($_GET["page"])) {
+        $page = $_GET["page"];
+    } else {
+        $page = 1;
+    }
+
+    $startFrom = ($page - 1) * $limit;
     
     if ($display == 'display') {
-        $products = $product->getProductProducts($db);
+        $products = $product->getProductProducts($db, $startFrom, $limit);
     } elseif ($display == 'populate-form') {
-        $products = $product->getProductProducts($db);
+        $products = $product->getProductProducts($db, $startFrom, $limit);
         $productsById = $product->getProductById($db, $productId);
         $supplierId = $productsById['supplier_id'];
         $categoryId = $productsById['category_id'];
@@ -41,7 +50,7 @@ if (isset($_SESSION['loggedin'])) {
 
     // Generate category selection
     $category = new ProductCategory();
-    $categories = $category->getProductCategories($db);
+    $categories = $category->getProductCategories1($db);
     $categoryList = "<select name='category_id' id='category_list'>
         <option>Choose Category</option>";
     foreach($categories as $p) {
@@ -87,8 +96,24 @@ if (isset($_SESSION['loggedin'])) {
                  </tr>";
         $counter += 1;
     }
-    $html .= "</tbody></table></div>";
-    echo $html;
+    $html .= "</tbody></table>";
+    //echo $html;
+
+    $totalRecords = $product->getProductCount($db)[0];
+
+    $totalPages = ceil($totalRecords / $limit);
+
+    if ($totalPages > 1) {
+        echo $html;
+        $pagLink = "<div class='pagination'>";
+        for ($i = 1; $i <= $totalPages; $i++) {
+            $pagLink .= "<span><a class='a-button' href='../view/product_product_detail.php?page=".$i."'>".$i."</a></span>";
+        }
+        echo $pagLink . "</div></div>";
+    } else {
+        $html .= "</div>";
+        echo $html;
+    }
 
     //<input type='text' name='supplier_name' value='". ( isset($productsById) ? $productsById['supplier_name'] : '') . "' />
     //<input type='text' name='category_name' value='". ( isset($productsById) ? $productsById['category_name'] : '') . "' />

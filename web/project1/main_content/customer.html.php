@@ -61,16 +61,22 @@ if (isset($_SESSION['loggedin'])) {
         $counter += 1;
     }
     $html .= "</tbody></table>";
-    echo $html;
+    //echo $html;
 
     $totalRecords = $customer->getCustomerCount($db)[0];
 
     $totalPages = ceil($totalRecords / $limit);
-    $pagLink = "<div class='pagination'>";
-    for ($i = 1; $i <= $totalPages; $i++) {
-        $pagLink .= "<span><a class='a-button' href='../view/customer_detail.php?page=".$i."'>".$i."</a></span>";
+    if ($totalPages > 1) {
+        echo $html;
+        $pagLink = "<div class='pagination'>";
+        for ($i = 1; $i <= $totalPages; $i++) {
+            $pagLink .= "<span><a class='a-button' href='../view/customer_detail.php?page=".$i."'>".$i."</a></span>";
+        }
+        echo $pagLink . "</div></div>";
+    } else {
+        $html .= "</div>";
+        echo $html;  
     }
-    echo $pagLink . "</div></div>";
 
     $formCustomer = "<div>
         <h1>Customer Detail</h1>

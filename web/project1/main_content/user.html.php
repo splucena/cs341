@@ -64,16 +64,23 @@ if (isset($_SESSION['loggedin'])) {
         $counter += 1;
     }
     $searchUser .= "</tbody></table>";
-    echo $searchUser;
+    //echo $searchUser;
 
     $totalRecords = $user->getUsersCount($db)[0];
 
     $totalPages = ceil($totalRecords / $limit);
-    $pagLink = "<div class='pagination'>";
-    for ($i = 1; $i <= $totalPages; $i++) {
-        $pagLink .= "<span><a class='a-button' href='../view/user_detail.php?page=".$i."'>".$i."</a></span>";
+
+    if ($totalPages > 1) { 
+        echo $searchUser;   
+        $pagLink = "<div class='pagination'>";
+        for ($i = 1; $i <= $totalPages; $i++) {
+            $pagLink .= "<span><a class='a-button' href='../view/user_detail.php?page=".$i."'>".$i."</a></span>";
+        }
+        echo $pagLink . "</div></div>";
+    } else {
+        $searchUser .= "</div>";
+        echo $searchUser;
     }
-    echo $pagLink . "</div></div>";
 
 
     $formUser = "<div>

@@ -13,10 +13,19 @@ if (isset($_SESSION['loggedin'])) {
     $inventory = new ProductInventory();
     $product = new ProductProduct();
 
+    $limit = 10;
+    if (isset($_GET["page"])) {
+        $page = $_GET["page"];
+    } else {
+        $page = 1;
+    }
+
+    $startFrom = ($page - 1) * $limit;
+
     if ($display == 'display') {
-        $inventories = $inventory->getProductInventories($db);
+        $inventories = $inventory->getProductInventories($db, $startFrom, $limit);
     } elseif ($display == 'populate-form') {
-        $inventories = $inventory->getProductInventories($db);
+        $inventories = $inventory->getProductInventories($db, $startFrom, $limit);
         $inventoriesById = $inventory->getInventoryById($db, $inventoryId);
         $productId = $inventoriesById['product_id'];
 
@@ -26,7 +35,7 @@ if (isset($_SESSION['loggedin'])) {
     }
 
     // Generate product selection
-    $products = $product->getProductProducts($db);
+    $products = $product->getProductProducts1($db);
     $productList = "<select name='product_id' id='product_list'>
         <option>Choose Product</option>";
     foreach($products as $p) {
@@ -67,8 +76,24 @@ if (isset($_SESSION['loggedin'])) {
                  </tr>";
         $counter += 1;
     }
-    $html .= "</tbody></table></div>";
-    echo $html;
+    $html .= "</tbody></table>";
+    //echo $html;
+
+    $totalRecords = $inventory->getInventoryCount($db)[0];
+
+    $totalPages = ceil($totalRecords / $limit);
+
+    if ($totalPages > 1) {
+        echo $html;
+        $pagLink = "<div class='pagination'>";
+        for ($i = 1; $i <= $totalPages; $i++) {
+            $pagLink .= "<span><a class='a-button' href='../view/product_inventory_detail.php?page=".$i."'>".$i."</a></span>";
+        }
+        echo $pagLink . "</div></div>";
+    } else {
+        $html .= "</div>";
+        echo $html;
+    }
 
     //<input type='text' name='product_name' value='". ( isset($inventoriesById) ? $inventoriesById['product_name'] : '') . "' />
 

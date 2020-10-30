@@ -10,11 +10,20 @@ if (isset($_SESSION['loggedin'])) {
 
     $db = dbConnect();
     $category = new ProductCategory();
+
+    $limit = 10;
+    if (isset($_GET["page"])) {
+        $page = $_GET["page"];
+    } else {
+        $page = 1;
+    }
+
+    $startFrom = ($page - 1) * $limit;
     
     if ($display == 'display') {
-        $categories = $category->getProductCategories($db);
+        $categories = $category->getProductCategories($db, $startFrom, $limit);
     } elseif ($display == 'populate-form') {
-        $categories = $category->getProductCategories($db);
+        $categories = $category->getProductCategories($db, $startFrom, $limit);
         $categoriesById = $category->getCategoryById($db, $categoryId);
     } else {
         $categories = $category->searchCategory($db, $searchTerm);
@@ -48,8 +57,26 @@ if (isset($_SESSION['loggedin'])) {
                  </tr>";
         $counter += 1;
     }
-    $html .= "</tbody></table></div>";
-    echo $html;
+    $html .= "</tbody></table>";
+    //echo $html;
+
+    $totalRecords = $category->getCategoryCount($db)[0];
+
+    $totalPages = ceil($totalRecords / $limit);
+
+    //echo $totalPages;
+
+    if ($totalPages > 1) {
+        echo $html;
+        $pagLink = "<div class='pagination'>";
+        for ($i = 1; $i <= $totalPages; $i++) {
+            $pagLink .= "<span><a class='a-button' href='../view/product_category_detail.php?page=".$i."'>".$i."</a></span>";
+        }
+        echo $pagLink . "</div></div>";
+    } else {
+        $html .= "</div>";
+        echo $html;
+    }
 
     $formCategory = "<div>
         <h1>". ( isset($categoriesById) ? $categoriesById['category_name'] : 'Category') . " Detail</h1>

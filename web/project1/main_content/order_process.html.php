@@ -113,11 +113,18 @@ if (isset($_SESSION['loggedin'])) {
     $totalRecords = $order->getOrdersCount($db)[0];
 
     $totalPages = ceil($totalRecords / $limit);
-    $pagLink = "<div class='pagination'>";
-    for ($i = 1; $i <= $totalPages; $i++) {
-        $pagLink .= "<span><a class='a-button' href='../view/order_process_detail.php?page=".$i."'>".$i."</a></span>";
+
+    if ($totalPages > 1) {
+        echo $html;       
+        $pagLink = "<div class='pagination'>";
+        for ($i = 1; $i <= $totalPages; $i++) {
+            $pagLink .= "<span><a class='a-button' href='../view/order_process_detail.php?page=".$i."'>".$i."</a></span>";
+        }
+        echo $pagLink . "</div></div>"; 
+    } else {
+        $html .= "</div>";
+        echo $html; 
     }
-    echo $pagLink . "</div></div>"; 
     
     $formOrder = "<div>
         <h1>Order Detail</h1>

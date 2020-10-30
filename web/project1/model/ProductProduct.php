@@ -19,7 +19,16 @@ class ProductProduct {
         $this->unitPrice = $unitPrice;
     }
 
-    public function getProductProducts($db) {        
+    public function getProductCount($db) {
+        $sql = "SELECT COUNT(product_id) FROM product_product";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $rowCount = $stmt->fetch();
+
+        return $rowCount;
+    }
+
+    public function getProductProducts1($db) {        
         $sql = "SELECT 
                      pp.product_id as product_id,
                      pp.product_name as product_name,
@@ -32,6 +41,28 @@ class ProductProduct {
                 LEFT JOIN product_category pc ON pp.category_id=pc.category_id
                 LEFT JOIN product_supplier ps ON pp.supplier_id=ps.supplier_id
                 WHERE pp.active = True";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $product_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+
+        return $product_products;
+    }
+
+    public function getProductProducts($db, $startFrom, $limit) {        
+        $sql = "SELECT 
+                     pp.product_id as product_id,
+                     pp.product_name as product_name,
+                     pc.category_name as category_name,
+                     ps.supplier_name as supplier_name,
+                     pc.category_id as category_id,
+                     ps.supplier_id as supplier_id,
+                     pp.unit_price as unit_price
+                FROM product_product pp
+                LEFT JOIN product_category pc ON pp.category_id=pc.category_id
+                LEFT JOIN product_supplier ps ON pp.supplier_id=ps.supplier_id
+                WHERE pp.active = True
+                ORDER BY pp.product_id ASC LIMIT $limit OFFSET $startFrom";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $product_products = $stmt->fetchAll(PDO::FETCH_ASSOC);

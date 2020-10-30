@@ -13,9 +13,30 @@ class ProductCategory {
         $this->active = $cActive;
     }
 
-    public function getProductCategories($db) {
+    public function getCategoryCount($db) {
+        $sql = "SELECT COUNT(category_id) FROM product_category";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $rowCount = $stmt->fetch();
+
+        return $rowCount;
+    }
+
+    public function getProductCategories1($db) {
         
         $sql = "SELECT * FROM product_category WHERE active=True";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $product_categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+
+        return $product_categories;
+    } 
+
+    public function getProductCategories($db, $startFrom, $limit) {
+        
+        $sql = "SELECT * FROM product_category WHERE active=True
+            ORDER BY category_id ASC LIMIT $limit OFFSET $startFrom";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $product_categories = $stmt->fetchAll(PDO::FETCH_ASSOC);

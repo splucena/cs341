@@ -11,11 +11,20 @@ if (isset($_SESSION['loggedin'])) {
     $db = dbConnect();
     $supplier = new ProductSupplier();
     //$suppliers = $supplier->getProductSuppliers($db);
+
+    $limit = 10;
+    if (isset($_GET["page"])) {
+        $page = $_GET["page"];
+    } else {
+        $page = 1;
+    }
+
+    $startFrom = ($page - 1) * $limit;    
     
     if ($display == 'display') {
-        $suppliers = $supplier->getProductSuppliers($db);
+        $suppliers = $supplier->getProductSuppliers1($db, $startFrom, $limit);
     } elseif ($display == 'populate-form') {
-        $suppliers = $supplier->getProductSuppliers($db);
+        $suppliers = $supplier->getProductSuppliers1($db, $startFrom, $limit);
         $suppliersById = $supplier->getSupplierById($db, $supplierId);
     } else {
         $suppliers = $supplier->searchSupplier($db, $searchTerm);
@@ -53,8 +62,24 @@ if (isset($_SESSION['loggedin'])) {
                  </tr>";
         $counter += 1;
     }
-    $html .= "</tbody></table></div>";
-    echo $html;
+    $html .= "</tbody></table>";
+    //echo $html;
+    
+    $totalRecords = $supplier->getSupplierCount($db)[0];
+
+    $totalPages = ceil($totalRecords / $limit);
+
+    if ($totalPages > 1) {
+        echo $html;
+        $pagLink = "<div class='pagination'>";
+        for ($i = 1; $i <= $totalPages; $i++) {
+            $pagLink .= "<span><a class='a-button' href='../view/product_supplier_detail.php?page=".$i."'>".$i."</a></span>";
+        }
+        echo $pagLink . "</div></div>";
+    } else {
+        $html .= "</div>";
+        echo $html;
+    }
 
     $formSupplier = "<div>
         <h1>". ( isset($suppliersById) ? $suppliersById['supplier_name'] : 'Supplier') ." Detail</h1>
