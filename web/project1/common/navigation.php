@@ -1,5 +1,8 @@
 <?php
-
+    
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
     //$homePath = "/CS341/web/index.php";
     //$homePath = "../../index.php";
     //$homeURL = $homePath;
@@ -17,6 +20,9 @@
     
     $html = "<div class='topnav' id='myTopnav'>
                 <a href='../view/index.php' class='active'>Home</a>";
+
+    //var_dump($_SESSION['loggedin']);
+    //exit;
 
     if (isset($_SESSION['loggedin'])) {
         $html .= "<div class='dropdown'>

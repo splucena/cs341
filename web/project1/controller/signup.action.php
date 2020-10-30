@@ -1,6 +1,7 @@
 <?php
 
-//
+session_start();
+//$_SESSION['loggedin'] = TRUE; 
 require_once '../model/Users.php';
 require_once '../library/db_connection.php';
 require_once '../library/helper_functions.php';

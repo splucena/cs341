@@ -303,6 +303,10 @@ table th {
     margin-top: 8px;
 }
 
+.home {        
+    text-align: center;
+}
+
 .home-container {   
     display: grid;
     grid-template-columns: 1fr;
@@ -312,7 +316,8 @@ table th {
     background: url("../img/groceries.svg") no-repeat center center;
     background-size: 100% 100%;
     margin: 0 auto;
-    width: 50%;
+    width: 180px;
+    height: 180px;
     text-align: center;
 }
 
@@ -348,11 +353,6 @@ table th {
     .home-image {
         width: 180px;
         height: 180px;
-    }
-
-    .home {
-        
-        text-align: center;
     }
 
     .home-container {

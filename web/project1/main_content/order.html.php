@@ -146,7 +146,7 @@
                                 }); 
                             });
                         </script>
-                        <a href='' id='add-new-item'>Add new item</a> 
+                        <a href='' id='add-new-item' class='a-button'>Add new item</a><br><br> 
                         <table><tr><th width='65%'>Product - Price</th><th  width='20%'>Quantity</th><th width='15%'>Remove</th></tr></table>
                     </div>
                     <input type='hidden' name='order_line_count' id='order_line_count' />

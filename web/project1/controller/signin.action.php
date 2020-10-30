@@ -4,7 +4,7 @@
  */
 
 session_start();
-
+//$_SESSION['loggedin'] = TRUE;
 
 // Include all requirements
 require_once '../model/Users.php';
@@ -50,7 +50,9 @@ switch($action) {
 
     case "Logout":
         $_SESSION['loggedin'] = FALSE;
-        header('location: /cs341/web/project1/view/index.php');
+        session_unset();
+        session_destroy();
+        header('location: ../view/index.php');
         die();
         break;
     

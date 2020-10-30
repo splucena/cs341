@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+//$_SESSION['loggedin'] = TRUE;
+
 require_once '../library/db_connection.php';
 require_once '../model/Orders.php';
 

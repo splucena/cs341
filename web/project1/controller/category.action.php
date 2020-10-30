@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+//$_SESSION['loggedin'] = TRUE;
+
 require_once '../model/ProductCategory.php';
 require_once '../library/db_connection.php';
 
