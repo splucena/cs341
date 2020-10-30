@@ -23,9 +23,19 @@ class Users {
         $this->active = $uActive;
     }
 
-    public function getUsers($db) {
+    public function getUsersCount($db) {
+        $sql = "SELECT COUNT(user_id) FROM users";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $rowCount = $stmt->fetch();
+
+        return $rowCount;
+    }
+
+    public function getUsers($db, $startFrom, $limit) {
         
-        $sql = "SELECT * FROM users WHERE active=True";
+        $sql = "SELECT * FROM users WHERE active=True 
+        ORDER BY user_id ASC LIMIT $limit OFFSET $startFrom";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);

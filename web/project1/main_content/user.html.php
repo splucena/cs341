@@ -11,11 +11,20 @@ if (isset($_SESSION['loggedin'])) {
 
     $db = dbConnect();
     $user = new Users();
+
+    $limit = 10;
+    if (isset($_GET["page"])) {
+        $page = $_GET["page"];
+    } else {
+        $page = 1;
+    }
+
+    $startFrom = ($page - 1) * $limit;
     
     if ($display == 'display') {
-        $users = $user->getUsers($db);
+        $users = $user->getUsers($db, $startFrom, $limit);
     } elseif ($display == 'populate-form') {
-        $users = $user->getUsers($db);
+        $users = $user->getUsers($db, $startFrom, $limit);
         $usersById = $user->getUserById($db, $userId);
     } else {
         $users = $user->searchUser($db, $searchTerm);
@@ -54,8 +63,18 @@ if (isset($_SESSION['loggedin'])) {
                     </tr>";
         $counter += 1;
     }
-    $searchUser .= "</tbody></table></div>";
+    $searchUser .= "</tbody></table>";
     echo $searchUser;
+
+    $totalRecords = $user->getUsersCount($db)[0];
+
+    $totalPages = ceil($totalRecords / $limit);
+    $pagLink = "<div class='pagination'>";
+    for ($i = 1; $i <= $totalPages; $i++) {
+        $pagLink .= "<span><a class='a-button' href='../view/user_detail.php?page=".$i."'>".$i."</a></span>";
+    }
+    echo $pagLink . "</div></div>";
+
 
     $formUser = "<div>
         <h1>". ( isset($usersById) ? $usersById['first_name'] : '' ) . ' ' . ( isset($usersById) ? $usersById['last_name'] : '') . " Detail</h1>
