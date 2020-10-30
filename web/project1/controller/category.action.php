@@ -25,22 +25,22 @@ switch($action) {
         break;
     case 'PopulateForm':
         $display = 'populate-form';
-        $categoryId = filter_input(INPUT_GET, 'id');
+        $categoryId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
         include('../view/product_category_detail.php');
         break;
     case 'Create':
-            $categoryName = htmlspecialchars($_POST['category_name']);
-            $categoryDesc = htmlspecialchars($_POST['category_desc']);
+            $categoryName = filter_input(INPUT_POST, 'category_name', FILTER_SANITIZE_STRING);
+            $categoryDesc = filter_input(INPUT_POST, 'category_desc', FILTER_SANITIZE_STRING);
 
             $category = new ProductCategory(null, $categoryName, $categoryDesc);
             $category->insertCategory($db);
             include('../view/product_category_detail.php');
             break;        
     case 'Update':
-        $categoryId = (int)htmlspecialchars($_POST['category_id']);
-        $categoryName = htmlspecialchars($_POST['category_name']);
-        $categoryDesc = htmlspecialchars($_POST['category_desc']);
+        $categoryId = (int)filter_input(INPUT_POST, 'category_id', FILTER_SANITIZE_NUMBER_INT);
+        $categoryName = filter_input(INPUT_POST, 'category_name', FILTER_SANITIZE_STRING);
+        $categoryDesc = filter_input(INPUT_POST, 'category_desc', FILTER_SANITIZE_STRING);
 
         $category = new ProductCategory($categoryId, $categoryName, $categoryDesc);
         $category->updateCategory($db);
@@ -48,7 +48,7 @@ switch($action) {
         break;
 
     case 'Deactivate':
-            $categoryId = (int)htmlspecialchars($_POST['category_id']);
+            $categoryId = (int)filter_input(INPUT_POST, 'category_id', FILTER_SANITIZE_NUMBER_INT);
     
             $category = new ProductCategory($categoryId);
             $category->deactivateCategory($db);
