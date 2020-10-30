@@ -123,32 +123,8 @@
         <form method='POST' action='../controller/order.action.php'>
             <ul>
                 <li>
-                    <label for='order_number'>Number</label>
-                    <input type='text' name='order_number' value='". ( isset($ordersById) ? $ordersById['order_number'] : '') . "' />
-                </li>
-                <li>
-                    <label for='order_desc'>Description</label>
-                    <input type='text' name='order_desc' value='". ( isset($ordersById) ? $ordersById['order_desc'] : '') . "' />
-                </li>
-                <li>
-                    <label for='order_status'>Status</label>
-                    $statusList
-                </li>
-                <li>
-                    <label for='total_amount'>Total Amount</label>
-                    <input type='text' name='total_amount' value='". ( isset($ordersById) ? $ordersById['total_amount'] : '') . "' />
-                </li>
-                <li>
-                    <label for='shipping_date'>Shipping Date</label>
-                    <input type='text' name='shipping_date' value='". ( isset($ordersById) ? $ordersById['shipping_date'] : '') . "' />
-                </li>
-                <li>
                     <label for='customer_name'>Customer Name</label>
                     $customerList
-                </li>
-                <li>
-                    <label for='user_name'>Processed By</label>
-                    $userList
                 </li>
                 <li>
                     <h1>Order Line</h1>
