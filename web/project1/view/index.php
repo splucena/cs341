@@ -1,9 +1,10 @@
 <?php
     $title = "SRP Online Store: Home";
-    $content_title = "";
+    $home_title = "";
 
     $indexPage = True;
-    $home_container = "home-container";
+    $home_container = "home-container home";
+    $home_image = True;
 
     ob_start();
     include __DIR__. '/../main_content/index.html.php';

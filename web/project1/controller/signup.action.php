@@ -42,8 +42,8 @@ switch($action) {
         include('../view/signup_detail.php');
         break;
     
-    case 'Clear':
-        include('../view/signup_detail.php');
+    case 'Cancel':
+        include('../view/index.php');
         break;
 
     default:

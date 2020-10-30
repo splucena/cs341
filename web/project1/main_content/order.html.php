@@ -132,7 +132,7 @@
                 </li>
                 <li>
                     <label for='order_status'>Status</label>
-                    $statusList;
+                    $statusList
                 </li>
                 <li>
                     <label for='total_amount'>Total Amount</label>

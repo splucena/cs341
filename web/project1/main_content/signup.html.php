@@ -20,12 +20,12 @@
                 </li>
                 <li>
                     <label for='passwd'>Password</label><br>
-                    <span>Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
+                    <span><small>Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</small></span>
                     <input type='password' name='passwd' required pattern='(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$'/>
                 </li>
                 <li>
                     <label for='confirm_passwd'>Confirm Password</label><br>
-                    <span>Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
+                    <span><small>Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</small></span>
                     <input type='password' name='confirm_passwd' required pattern='(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$'/>
                 </li>
                 <li>

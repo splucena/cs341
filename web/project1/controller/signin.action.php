@@ -54,8 +54,8 @@ switch($action) {
         die();
         break;
     
-    case 'Clear':
-        include('../view/signin_detail.php');
+    case 'Cancel':
+        include('../view/index.php');
         break;
 
     default:

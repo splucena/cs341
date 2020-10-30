@@ -7,7 +7,7 @@
     <title><?=isset($title) ? $title : 'SRP Online Store'; ?></title>
     <link rel="stylesheet" href="../../static/css/all.css">
     <link rel="stylesheet" href="../../static/css/style.css?version=1">
-    <link rel="stylesheet" href="../static/css/style.css?version=16">
+    <link rel="stylesheet" href="../static/css/style.css?version=1">
     <script src="../../static/js/jquery-3.5.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
@@ -21,8 +21,12 @@
         <main>
             <div class="main-container">
                 <h1><?=isset($content_title) ? $content_title : ''; ?></h1>
-                <div class=<?=isset($home_container) ? "home-container" : "form-container";?>>                    
+                <div class="<?=isset($home_container) ? $home_container : 'form-container';?>">                    
                     <?php
+                        if (isset($home_image)) {
+                            echo "<div class='home-image'></div>";
+                        }
+
                         if (isset($home_title)) {
                             echo "<h1>$home_title</h1>";
                         }

@@ -114,6 +114,7 @@ option {
     border-radius: 3px;
   }
 
+.a-button,
 input[type=submit],
 button {
     width: 100%;
@@ -125,8 +126,10 @@ button {
     /*border-radius: 4px;*/
     cursor: pointer;
     font-size: 17px;
+    text-decoration: none;
 }
 
+.a-button,
 input[type=submit]:active,
 button:active,
 input[type=submit]:focus,
@@ -134,6 +137,7 @@ button:focus {
     outline: none;
 }
 
+.a-button:hover,
 button:hover,
 input[type=submit]:hover {
     background-color: #45a049;
@@ -289,25 +293,35 @@ table th {
 .form-container ul li,
 .home-container ul li {
     list-style: none;
-    margin-bottom: 16px;
-}
-
-.form-container li > label {
     margin-bottom: 20px;
 }
 
-.welcome {
-    color: red;
-    background-size: 400px 400px !important;
-    background: url("../img/groceries.svg") no-repeat center center !important;
-    margin: 0;
-    padding: 0;
+.form-container ul li > input,
+.form-container ul li > select,
+.home-container ul li > input,
+.home-container ul li > select {
+    margin-top: 8px;
 }
 
-.home-container {
+.home-container {   
     display: grid;
     grid-template-columns: 1fr;
 }
+
+.home-image {
+    background: url("../img/groceries.svg") no-repeat center center;
+    background-size: 100% 100%;
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+}
+
+/*.home-only {
+    background: url("../img/groceries.svg") no-repeat center center;
+    background-size: 100% 100%;
+    display: grid;
+    grid-template-columns: 1fr; 
+}*/
 
 @media only screen and (min-width: 600px) {
 
@@ -331,10 +345,20 @@ table th {
         column-gap: 30px;
     }
 
+    .home-image {
+        width: 180px;
+        height: 180px;
+    }
+
+    .home {
+        
+        text-align: center;
+    }
+
     .home-container {
         margin: 0 auto;
         width: 50%;
-        height: 90%;
+
     }
 
     .shopping-cart-container,
