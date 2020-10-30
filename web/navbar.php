@@ -14,7 +14,7 @@
 
     //<a href='#'>Assignment 2</a>
     //<a href='#'>Link 3</a>
-    $onlineStorePath = "/project1/view/order_detail.php";
+    $onlineStorePath = "/project1/view/index.php";
     $onlineStoreURL = $onlineStorePath;
     
     $html = "<div class='topnav' id='myTopnav'>
