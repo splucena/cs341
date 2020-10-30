@@ -32,12 +32,12 @@ switch($action) {
         break;
     case 'Create':
 
-        $firstName = filter_input(INPUT_POST , 'fn', FILTER_SANITIZE_STRING);
-        $lastName = filter_input(INPUT_POST , 'ln', FILTER_SANITIZE_STRING);
-        $username = filter_input(INPUT_POST , 'username', FILTER_SANITIZE_STRING);
-        $passwd = filter_input(INPUT_POST , 'passwd', FILTER_SANITIZE_STRING);
-        $position = filter_input(INPUT_POST , 'position', FILTER_SANITIZE_STRING);
-        $phone = filter_input(INPUT_POST , 'phone', FILTER_SANITIZE_STRING);
+        $firstName = filter_input(INPUT_POST, 'fn', FILTER_SANITIZE_STRING);
+        $lastName = filter_input(INPUT_POST, 'ln', FILTER_SANITIZE_STRING);
+        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+        $passwd = filter_input(INPUT_POST, 'passwd', FILTER_SANITIZE_STRING);
+        $position = filter_input(INPUT_POST, 'position', FILTER_SANITIZE_STRING);
+        $phone = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_STRING);
 
         $user = new Users(null, $firstName, $lastName, $username, 
         $passwd, $position, $phone);
@@ -47,13 +47,13 @@ switch($action) {
         break;
     case 'Update':
 
-        $userId = (int)filter_input(INPUT_POST , 'user_id', FILTER_SANITIZE_NUMBER_INT);
-        $firstName = filter_input(INPUT_POST , 'fn', FILTER_SANITIZE_STRING);
-        $lastName = filter_input(INPUT_POST , 'ln', FILTER_SANITIZE_STRING);
-        $username = filter_input(INPUT_POST , 'username', FILTER_SANITIZE_STRING);
-        $passwd = filter_input(INPUT_POST , 'passwd', FILTER_SANITIZE_STRING);
-        $position = filter_input(INPUT_POST , 'position', FILTER_SANITIZE_STRING);
-        $phone = filter_input(INPUT_POST , 'phone', FILTER_SANITIZE_STRING);
+        $userId = (int)filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_NUMBER_INT);
+        $firstName = filter_input(INPUT_POST, 'fn', FILTER_SANITIZE_STRING);
+        $lastName = filter_input(INPUT_POST, 'ln', FILTER_SANITIZE_STRING);
+        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+        $passwd = filter_input(INPUT_POST, 'passwd', FILTER_SANITIZE_STRING);
+        $position = filter_input(INPUT_POST, 'position', FILTER_SANITIZE_STRING);
+        $phone = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_STRING);
 
         $user = new Users($userId, $firstName, $lastName, $username, 
         $passwd, $position, $phone);

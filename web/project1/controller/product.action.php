@@ -31,10 +31,10 @@ switch($action) {
         break;
 
     case 'Create':
-        $productName = htmlspecialchars($_POST['product_name']);
-        $categoryId = htmlspecialchars($_POST['category_id']);
-        $supplierId = htmlspecialchars($_POST['supplier_id']);
-        $unitPrice = htmlspecialchars($_POST['unit_price']);
+        $productName = filter_input(INPUT_POST, 'product_name', FILTER_SANITIZE_STRING);
+        $categoryId = filter_input(INPUT_POST, 'category_id', FILTER_SANITIZE_STRING);
+        $supplierId = filter_input(INPUT_POST, 'supplier_id', FILTER_SANITIZE_STRING);
+        $unitPrice = filter_input(INPUT_POST, 'unit_price', FILTER_SANITIZE_STRING);
 
         $product = new ProductProduct(null, $productName, $categoryId, 
                                       $supplierId, $unitPrice);
@@ -44,11 +44,11 @@ switch($action) {
         break;
 
     case 'Update':
-        $productId = htmlspecialchars($_POST['product_id']);
-        $productName = htmlspecialchars($_POST['product_name']);
-        $categoryId = htmlspecialchars($_POST['category_id']);
-        $supplierId = htmlspecialchars($_POST['supplier_id']);
-        $unitPrice = htmlspecialchars($_POST['unit_price']);
+        $productId = filter_input(INPUT_POST, 'product_id', FILTER_SANITIZE_NUMBER_INT);
+        $productName = filter_input(INPUT_POST, 'product_name', FILTER_SANITIZE_STRING);
+        $categoryId = filter_input(INPUT_POST, 'category_id', FILTER_SANITIZE_STRING);
+        $supplierId = filter_input(INPUT_POST, 'supplier_id', FILTER_SANITIZE_STRING);
+        $unitPrice = filter_input(INPUT_POST, 'unit_price', FILTER_SANITIZE_STRING);
 
         $product = new ProductProduct($productId, $productName, $categoryId, 
                                       $supplierId, $unitPrice);
@@ -58,7 +58,7 @@ switch($action) {
         break;
 
     case 'Deactivate':
-        $productId = (int)htmlspecialchars($_POST['product_id']);
+        $productId = (int)filter_input(INPUT_POST, 'product_id', FILTER_SANITIZE_NUMBER_INT);
 
         $product = new ProductProduct($productId);
         $product->deactivateProduct($db);
