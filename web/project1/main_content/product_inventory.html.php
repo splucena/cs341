@@ -1,4 +1,10 @@
 <?php
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (isset($_SESSION['loggedin'])) {
     require_once '../library/db_connection.php';
     require_once '../model/ProductInventory.php';
     require_once '../model/ProductProduct.php';
@@ -96,4 +102,7 @@
         </form>
     </div>";
     echo $formInventory;
+} else {
+    include __DIR__ . '/../view/index.php';
+}
 

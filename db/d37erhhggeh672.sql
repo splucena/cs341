@@ -58,7 +58,7 @@ CREATE TABLE users(
     first_name VARCHAR(255),
     last_name VARCHAR(255),
     username VARCHAR(20),
-    passwd VARCHAR(20),
+    passwd VARCHAR(255),
     position VARCHAR(25),
     phone VARCHAR(12),
     active BOOLEAN DEFAULT TRUE

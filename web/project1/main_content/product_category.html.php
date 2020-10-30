@@ -1,4 +1,10 @@
 <?php
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (isset($_SESSION['loggedin'])) {
     require_once '../library/db_connection.php';
     require_once '../model/ProductCategory.php';
 
@@ -78,3 +84,6 @@
         </form>
     </div>";
     echo $formCategory;
+} else {
+    include __DIR__ . '/../view/index.php';
+}

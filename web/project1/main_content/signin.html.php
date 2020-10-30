@@ -10,6 +10,7 @@
     }*/
 
     $formLogin = "<div>
+        
         <h2>" . ( isset($message) ? $message : '' ) . "</h2>
         <form method='POST' action='../controller/signin.action.php'>
             <ul>

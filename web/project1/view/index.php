@@ -1,13 +1,14 @@
 <?php
-    $title = "SRP Online Store: Home";
-    $home_title = "";
 
-    $indexPage = True;
-    $home_container = "home-container home";
-    $home_image = True;
+$title = "SRP Online Store: Home";
+$home_title = "";
 
-    ob_start();
-    include __DIR__. '/../main_content/index.html.php';
-    $main_content = ob_get_clean();
+$indexPage = True;
+$home_container = "home-container home";
+$home_image = True;
 
-    include __DIR__ . '/../template/template.php';
+ob_start();
+include __DIR__. '/../main_content/index.html.php';
+$main_content = ob_get_clean();
+
+include __DIR__ . '/../template/template.php';

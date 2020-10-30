@@ -18,7 +18,7 @@ $pdo = new PDO("pgsql:" . sprintf(
 function connectDb() {
     try {
         $user = 'postgres';
-        $password = 's!_bmubgc4BLKPGp';
+        $password = '';
         $db = new PDO('pgsql:host=localhost;dbname=db_notes;port=5433', $user, $password);
         return $db;
     } catch (PDOException $ex) {
