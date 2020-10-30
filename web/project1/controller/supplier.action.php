@@ -31,10 +31,10 @@ switch($action) {
         break;
     
     case 'Create':
-        $supplierName = htmlspecialchars($_POST['supplier_name']);
-        $supplierAddr = htmlspecialchars($_POST['supplier_addr']);
-        $country = htmlspecialchars($_POST['country']);
-        $phone = htmlspecialchars($_POST['phone']);
+        $supplierName = filter_input(INPUT_POST, 'supplier_name', FILTER_SANITIZE_STRING);
+        $supplierAddr = filter_input(INPUT_POST, 'supplier_addr', FILTER_SANITIZE_STRING);
+        $country = filter_input(INPUT_POST, 'country', FILTER_SANITIZE_STRING);
+        $phone = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_STRING);
 
         $supplier = new ProductSupplier(null, $supplierName, $supplierAddr, $country, $phone);
         $supplier->insertSupplier($db);
@@ -42,11 +42,11 @@ switch($action) {
         break;
 
     case 'Update':
-        $supplierId = (int)htmlspecialchars($_POST['supplier_id']);
-        $supplierName = htmlspecialchars($_POST['supplier_name']);
-        $supplierAddr = htmlspecialchars($_POST['supplier_addr']);
-        $country = htmlspecialchars($_POST['country']);
-        $phone = htmlspecialchars($_POST['phone']);
+        $supplierId = (int)filter_input(INPUT_POST, 'supplier_id', FILTER_SANITIZE_NUMBER_INT);
+        $supplierName = filter_input(INPUT_POST, 'supplier_name', FILTER_SANITIZE_STRING);
+        $supplierAddr = filter_input(INPUT_POST, 'supplier_addr', FILTER_SANITIZE_STRING);
+        $country = filter_input(INPUT_POST, 'country', FILTER_SANITIZE_STRING);
+        $phone = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_STRING);
 
         $supplier = new ProductSupplier($supplierId, $supplierName, $supplierAddr, $country, $phone);
         $supplier->updateSupplier($db);
@@ -54,7 +54,7 @@ switch($action) {
         break;
 
     case 'Deactivate':
-        $supplierId = (int)htmlspecialchars($_POST['supplier_id']);
+        $supplierId = (int)filter_input(INPUT_POST, 'supplier_id', FILTER_SANITIZE_NUMBER_INT);
 
         $supplier = new ProductSupplier($supplierId);
         $supplier->deactivateSupplier($db);
