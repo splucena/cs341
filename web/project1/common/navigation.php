@@ -16,14 +16,16 @@
     //<a href='#'>Link 3</a>
     
     $html = "<div class='topnav' id='myTopnav'>
-                <a href='' class='active'>Home</a>
-                <div class='dropdown'>
-                    <button class='dropbtn'>Order Management 
-                        <i class='fa fa-caret-down'></i>
-                    </button>
-                    <div class='dropdown-content'>
-                        <a href='../view/order_detail.php'>Create Order</a>
-                        <a href='../view/order_process_detail.php'>Process Order</a>
+                <a href='../view/index.php' class='active'>Home</a>";
+
+    if (isset($_SESSION['loggedin'])) {
+        $html .= "<div class='dropdown'>
+                <button class='dropbtn'>Order Management 
+                    <i class='fa fa-caret-down'></i>
+                </button>
+                <div class='dropdown-content'>  
+                <a href='../view/order_detail.php'>Create Order</a>
+                <a href='../view/order_process_detail.php'>Process Order</a>
                     </div>
                 </div>
                 <div class='dropdown'>
@@ -39,8 +41,13 @@
                 </div> 
                 <a href='../view/customer_detail.php'>Customer Management</a>
                 <a href='../view/user_detail.php'>User Management</a>
-                <a href='javascript:void(0);' style='font-size:15px;' class='icon' onclick='toggleMenu()'>&#9776;</a>
-            </div>";
+                <a href='../controller/signin.action.php?action=Logout'>Logout</a>";
+    } else {
+        $html .= "<a href='../view/order_detail.php'>Create Order</a>";
+    }
+            
+    $html .= "<a href='javascript:void(0);' style='font-size:15px;' class='icon' onclick='toggleMenu()'>&#9776;</a>";
+    $html .= "</div>";
 
     echo $html;
 ?>

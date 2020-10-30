@@ -107,4 +107,43 @@ class Users {
 
         return $rowChanged;
     }
+
+    public function registerUser($db) {
+        $sql = "INSERT INTO users (first_name, last_name, username, passwd, position, phone)
+            VALUES(:first_name, :last_name, :username, :passwd, :position, :phone)";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':first_name', $this->firstName, PDO::PARAM_STR);
+        $stmt->bindValue(':last_name', $this->lastName, PDO::PARAM_STR);
+        $stmt->bindValue(':username', $this->username, PDO::PARAM_STR);
+        $stmt->bindValue(':passwd', $this->passwd, PDO::PARAM_STR);
+        $stmt->bindValue(':position', $this->position, PDO::PARAM_STR);
+        $stmt->bindValue(':phone', $this->phone, PDO::PARAM_STR);
+        $stmt->execute();
+        $rowChanged = $stmt->rowCount();
+        $stmt->closeCursor();
+
+        return $rowChanged;
+    }
+
+    public function signInUser($db) {
+
+        // Get password based on username
+        $sqlPassword = "SELECT passwd FROM users WHERE username = :username";
+        $stmtPassword = $db->prepare($sqlPassword);
+        $stmtPassword->bindValue(':username', $this->username, PDO::PARAM_STR);
+        $stmtPassword->execute();
+        $userData = $stmtPassword->fetch(PDO::FETCH_ASSOC);
+        $resCount = count($userData);
+
+        if ($resCount != 1) {
+            return False;
+        }
+                        
+        $hashedPassword = password_verify($this->passwd, $userData['passwd']);
+        if (!$hashedPassword) {
+            return False;
+        } 
+
+        return True;
+    }
 }

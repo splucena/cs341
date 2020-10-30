@@ -280,18 +280,33 @@ table th {
     grid-template-columns: 1fr;
 }
 
-.form-container ul {
+.form-container ul,
+.home-container ul {
     margin-left: 0;
     padding-left: 0;
 }
 
-.form-container ul li {
+.form-container ul li,
+.home-container ul li {
     list-style: none;
     margin-bottom: 16px;
 }
 
 .form-container li > label {
     margin-bottom: 20px;
+}
+
+.welcome {
+    color: red;
+    background-size: 400px 400px !important;
+    background: url("../img/groceries.svg") no-repeat center center !important;
+    margin: 0;
+    padding: 0;
+}
+
+.home-container {
+    display: grid;
+    grid-template-columns: 1fr;
 }
 
 @media only screen and (min-width: 600px) {
@@ -314,6 +329,12 @@ table th {
     .form-container {
         grid-template-columns: 1fr 1fr;
         column-gap: 30px;
+    }
+
+    .home-container {
+        margin: 0 auto;
+        width: 50%;
+        height: 90%;
     }
 
     .shopping-cart-container,
