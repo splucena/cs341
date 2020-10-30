@@ -2,6 +2,7 @@
 
 $title = "SRP Online Store: Home";
 $home_title = "";
+$currentDate = date("d.m.Y");
 
 $indexPage = True;
 $home_container = "home-container home";
