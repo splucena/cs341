@@ -52,7 +52,8 @@ switch($action) {
         }
 
         $orderId = null;
-        $orderName  = null;//filter_input(INPUT_POST, 'order_number', FILTER_SANITIZE_STRING);
+        $randomNumber = rand(10, 100);
+        $orderName  = "ORDER" . $randomNumber;//filter_input(INPUT_POST, 'order_number', FILTER_SANITIZE_STRING);
         $orderDesc  = null;//filter_input(INPUT_POST, 'order_desc', FILTER_SANITIZE_STRING);
         $orderStatus  = 'draft';//filter_input(INPUT_POST, 'order_status', FILTER_SANITIZE_STRING);
         $totalAmount  = $totalPrice;
