@@ -25,14 +25,14 @@ switch($action) {
         break;
     case 'PopulateForm':
         $display = 'populate-form';
-        $inventoryId = filter_input(INPUT_GET, 'id');
+        $inventoryId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
         include('../view/product_inventory_detail.php');
         break;
 
     case 'Create':
-        $productId = htmlspecialchars($_POST['product_id']);
-        $totalStock = htmlspecialchars($_POST['total_stock']);
+        $productId = filter_input(INPUT_POST, 'product_id', FILTER_SANITIZE_NUMBER_INT);
+        $totalStock = filter_input(INPUT_POST, 'total_stock', FILTER_SANITIZE_STRING);
 
         $inventory = new ProductInventory(null, $productId, $totalStock);
         $inventory->insertInventory($db);
@@ -41,8 +41,8 @@ switch($action) {
         break;
 
     case 'Update':
-        $inventoryId = htmlspecialchars($_POST['inventory_id']);
-        $totalStock = htmlspecialchars($_POST['total_stock']);
+        $inventoryId = filter_input(INPUT_POST, 'inventory_id', FILTER_SANITIZE_NUMBER_INT);
+        $totalStock = filter_input(INPUT_POST, 'total_stock', FILTER_SANITIZE_STRING);
 
         $inventory = new ProductInventory($inventoryId, null, $totalStock);
         $inventory->updateInventory($db);
