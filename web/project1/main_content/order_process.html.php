@@ -26,7 +26,7 @@ if (isset($_SESSION['loggedin'])) {
     if ($display == 'display') {
         $orders = $order->getOrders($db, $startFrom, $limit);
     } elseif ($display == 'populate-form') {
-        $orders = $order->getOrders($db);
+        $orders = $order->getOrders($db, $startFrom, $limit);
         $ordersById = $order->getOrderById($db, $orderId);
         $orderLines = $order->getOrderLines($db, $orderId);
         $orderStatus = $ordersById['order_status'];
@@ -113,11 +113,11 @@ if (isset($_SESSION['loggedin'])) {
     $totalRecords = $order->getOrdersCount($db)[0];
 
     $totalPages = ceil($totalRecords / $limit);
-    $pagLink = "<ul class='pagination'>";
+    $pagLink = "<div class='pagination'>";
     for ($i = 1; $i <= $totalPages; $i++) {
-        $pagLink .= "<li class='page-item'><a class='page-link' href='order_process_detail.php?page=".$i."'>".$i."</a></li>";
+        $pagLink .= "<span><a class='a-button' href='../view/order_process_detail.php?page=".$i."'>".$i."</a></span>";
     }
-    echo $pagLink . "</ul></div>"; 
+    echo $pagLink . "</div></div>"; 
     //<input type='text' name='customer_name' value='". ( isset($ordersById) ? $ordersById['customer_name'] : '') . "'/>
     //<input type='text' name='user_name' value='". ( isset($ordersById) ? $ordersById['user_name'] : '') . "'/>
     //<input type='text' name='order_status' value='". ( isset($ordersById) ? strtoupper($ordersById['order_status']) : '') . "' />

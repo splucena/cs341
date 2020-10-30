@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?=isset($title) ? $title : 'SRP Online Store'; ?></title>
     <link rel="stylesheet" href="../../static/css/all.css">
-    <link rel="stylesheet" href="../../static/css/bootstrap.css">
     <link rel="stylesheet" href="../../static/css/style.css?version=1">
-    <link rel="stylesheet" href="../static/css/style.css?version=1">
+    <link rel="stylesheet" href="../static/css/style.css?version=7">
     <script src="../../static/js/jquery-3.5.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">

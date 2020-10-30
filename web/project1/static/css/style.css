@@ -321,12 +321,15 @@ table th {
     text-align: center;
 }
 
-/*.home-only {
-    background: url("../img/groceries.svg") no-repeat center center;
-    background-size: 100% 100%;
-    display: grid;
-    grid-template-columns: 1fr; 
-}*/
+.pagination {
+    margin: 0 auto;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.pagination span {
+    padding: 5px;
+}
 
 @media only screen and (min-width: 600px) {
 
