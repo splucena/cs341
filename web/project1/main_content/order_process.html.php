@@ -118,10 +118,7 @@ if (isset($_SESSION['loggedin'])) {
         $pagLink .= "<span><a class='a-button' href='../view/order_process_detail.php?page=".$i."'>".$i."</a></span>";
     }
     echo $pagLink . "</div></div>"; 
-    //<input type='text' name='customer_name' value='". ( isset($ordersById) ? $ordersById['customer_name'] : '') . "'/>
-    //<input type='text' name='user_name' value='". ( isset($ordersById) ? $ordersById['user_name'] : '') . "'/>
-    //<input type='text' name='order_status' value='". ( isset($ordersById) ? strtoupper($ordersById['order_status']) : '') . "' />
-    //'draft', 'processing', 'in_transit', 'delivered'
+    
     $formOrder = "<div>
         <h1>Order Detail</h1>
         <form method='POST' action='../controller/order_process.action.php'>
