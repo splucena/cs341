@@ -10,11 +10,20 @@ if (isset($_SESSION['loggedin'])) {
 
     $db = dbConnect();
     $customer = new Customer();
+
+    $limit = 10;
+    if (isset($_GET["page"])) {
+        $page = $_GET["page"];
+    } else {
+        $page = 1;
+    }
+
+    $startFrom = ($page - 1) * $limit;
     
     if ($display == 'display') {
-        $customers = $customer->getCustomers($db);
+        $customers = $customer->getCustomers($db, $startFrom, $limit);
     } elseif ($display == 'populate-form') {
-        $customers = $customer->getCustomers($db);
+        $customers = $customer->getCustomers($db, $startFrom, $limit);
         $customersById = $customer->getCustomerById($db, $userId);
     } else {
         $customers = $customer->searchCustomer($db, $searchTerm);
@@ -51,8 +60,17 @@ if (isset($_SESSION['loggedin'])) {
                  </tr>";
         $counter += 1;
     }
-    $html .= "</tbody></table></div>";
+    $html .= "</tbody></table>";
     echo $html;
+
+    $totalRecords = $customer->getCustomerCount($db)[0];
+
+    $totalPages = ceil($totalRecords / $limit);
+    $pagLink = "<div class='pagination'>";
+    for ($i = 1; $i <= $totalPages; $i++) {
+        $pagLink .= "<span><a class='a-button' href='../view/customer_detail.php?page=".$i."'>".$i."</a></span>";
+    }
+    echo $pagLink . "</div></div>";
 
     $formCustomer = "<div>
         <h1>Customer Detail</h1>
