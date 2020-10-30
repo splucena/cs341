@@ -35,7 +35,7 @@ if (isset($_SESSION['loggedin'])) {
     }
 
     // Generate product selection
-    $products = $product->getProductProducts1($db);
+    $products = $product->getProductProducts($db);
     $productList = "<select name='product_id' id='product_list'>
         <option>Choose Product</option>";
     foreach($products as $p) {
