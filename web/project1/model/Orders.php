@@ -26,7 +26,16 @@ class Orders {
         $this->userId = $uId;
     }
 
-    public function getOrders($db) {
+    public function getOrdersCount($db) {
+        $sql = "SELECT COUNT(order_id) FROM orders";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $rowCount = $stmt->fetch();
+
+        return $rowCount;
+    }
+
+    public function getOrders($db, $startFrom, $limit) {
         
         $sql = "SELECT
                     c.customer_id as customer_id,
@@ -40,7 +49,8 @@ class Orders {
                     u.first_name as u_first_name
                 FROM orders o
                 LEFT JOIN customer c ON o.customer_id=c.customer_id
-                LEFT JOIN users u ON o.user_id=u.user_id";
+                LEFT JOIN users u ON o.user_id=u.user_id
+                ORDER BY o.order_id ASC LIMIT $limit OFFSET $startFrom";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);

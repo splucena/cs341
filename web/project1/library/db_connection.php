@@ -1,17 +1,17 @@
 <?php
 function dbConnect() {
     // Local database connection
-    /*try {
+    try {
         $user = 'postgres';
-        $password = '';
+        $password = 's!_bmubgc4BLKPGp';
         $db = new PDO('pgsql:host=localhost;dbname=d37erhhggeh672;port=5433', $user, $password);
         return $db;
     } catch (PDOException $ex) {
         echo 'Error!: ' . $ex->getMessage();
         die();
-    }*/
+    }
 
-    try {
+    /*try {
         $pdo = parse_url(getenv("DATABASE_URL"));
 
         $db = new PDO("pgsql:" . sprintf(
@@ -26,7 +26,7 @@ function dbConnect() {
     } catch (PDOException $ex) {
         echo 'Error!: ' . $ex->getMessage();
         die();
-    }
+    }*/
 }
 
 //dbConnect();

@@ -14,8 +14,17 @@ if (isset($_SESSION['loggedin'])) {
     $db = dbConnect();
     $order = new Orders();
 
+    $limit = 10;
+    if (isset($_GET["page"])) {
+        $page = $_GET["page"];
+    } else {
+        $page = 1;
+    }
+
+    $startFrom = ($page - 1) * $limit;
+
     if ($display == 'display') {
-        $orders = $order->getOrders($db);
+        $orders = $order->getOrders($db, $startFrom, $limit);
     } elseif ($display == 'populate-form') {
         $orders = $order->getOrders($db);
         $ordersById = $order->getOrderById($db, $orderId);
@@ -98,9 +107,17 @@ if (isset($_SESSION['loggedin'])) {
                  </tr>";
         $counter += 1;
     }
-    $html .= "</tbody></table></div>";
+    $html .= "</tbody></table>";
     echo $html;
 
+    $totalRecords = $order->getOrdersCount($db)[0];
+
+    $totalPages = ceil($totalRecords / $limit);
+    $pagLink = "<ul class='pagination'>";
+    for ($i = 1; $i <= $totalPages; $i++) {
+        $pagLink .= "<li class='page-item'><a class='page-link' href='order_process_detail.php?page=".$i."'>".$i."</a></li>";
+    }
+    echo $pagLink . "</ul></div>"; 
     //<input type='text' name='customer_name' value='". ( isset($ordersById) ? $ordersById['customer_name'] : '') . "'/>
     //<input type='text' name='user_name' value='". ( isset($ordersById) ? $ordersById['user_name'] : '') . "'/>
     //<input type='text' name='order_status' value='". ( isset($ordersById) ? strtoupper($ordersById['order_status']) : '') . "' />
