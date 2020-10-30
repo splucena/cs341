@@ -140,6 +140,9 @@ class Orders {
         $stmtOrders->execute();
         $lastOrderId = $db->lastInsertId('orders_order_id_seq');
 
+        var_dump($lastOrderId);
+        exit;
+
         // Insert order lines
         foreach($orderLines as $o) {
             //var_dump($o);
