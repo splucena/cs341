@@ -34,10 +34,6 @@ switch($action) {
 
         $outcome = $register->registerUser($db);
 
-
-        var_dump($outcome, $firstName, $lastName, $username, $hashedPassword);
-        exit;
-
         if ($outcome === 1) {
             $message = "Thank you for registering $firstName $lastName!";
         } else {

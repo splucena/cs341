@@ -122,6 +122,10 @@ class Users {
         $rowChanged = $stmt->rowCount();
         $stmt->closeCursor();
 
+        var_dump($his->firstName, $this->username, $this->passwd);
+        exit;
+
+
         return $rowChanged;
     }
 
