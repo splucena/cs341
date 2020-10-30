@@ -25,19 +25,19 @@ switch($action) {
         break;
     case 'PopulateForm':
         $display = 'populate-form';
-        $userId = filter_input(INPUT_GET, 'id');
+        $userId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
         include('../view/customer_detail.php');
         break;
 
     case 'Create':
-        $firstName = htmlspecialchars($_POST['fn']);
-        $lastName = htmlspecialchars($_POST['ln']);
-        $desc = htmlspecialchars($_POST['desc']);
-        $billingAddr = htmlspecialchars($_POST['billing-addr']);
-        $shippingAddr = htmlspecialchars($_POST['shipping-addr']);
-        $country = htmlspecialchars($_POST['country']);
-        $phone = htmlspecialchars($_POST['phone']);
+        $firstName = filter_input(INPUT_POST, 'fn', FILTER_SANITIZE_STRING);
+        $lastName = filter_input(INPUT_POST, 'ln', FILTER_SANITIZE_STRING);
+        $desc = filter_input(INPUT_POST, 'desc', FILTER_SANITIZE_STRING);
+        $billingAddr = filter_input(INPUT_POST, 'billing-addr', FILTER_SANITIZE_STRING);
+        $shippingAddr = filter_input(INPUT_POST, 'shipping-addr', FILTER_SANITIZE_STRING);
+        $country = filter_input(INPUT_POST, 'country', FILTER_SANITIZE_STRING);
+        $phone = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_STRING);
 
         $customer = new Customer(null, $firstName, $lastName, 
                                  $billingAddr, $country, 
@@ -52,14 +52,14 @@ switch($action) {
         break;
 
     case 'Update':
-        $customerId = (int)htmlspecialchars($_POST['customer_id']);
-        $firstName = htmlspecialchars($_POST['fn']);
-        $lastName = htmlspecialchars($_POST['ln']);
-        $desc = htmlspecialchars($_POST['desc']);
-        $billingAddr = htmlspecialchars($_POST['billing-addr']);
-        $shippingAddr = htmlspecialchars($_POST['shipping-addr']);
-        $country = htmlspecialchars($_POST['country']);
-        $phone = htmlspecialchars($_POST['phone']);
+        $customerId = (int)filter_input(INPUT_POST, 'customer_id', FILTER_SANITIZE_NUMBER_INT);
+        $firstName = filter_input(INPUT_POST, 'fn', FILTER_SANITIZE_STRING);
+        $lastName = filter_input(INPUT_POST, 'ln', FILTER_SANITIZE_STRING);
+        $desc = filter_input(INPUT_POST, 'desc', FILTER_SANITIZE_STRING);
+        $billingAddr = filter_input(INPUT_POST, 'billing-addr', FILTER_SANITIZE_STRING);
+        $shippingAddr = filter_input(INPUT_POST, 'shipping-addr', FILTER_SANITIZE_STRING);
+        $country = filter_input(INPUT_POST, 'country', FILTER_SANITIZE_STRING);
+        $phone = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_STRING);
 
         $customer = new Customer($customerId, $firstName, $lastName, 
                                     $billingAddr, $country, 
@@ -74,7 +74,7 @@ switch($action) {
         break;
 
     case 'Deactivate':
-        $customerId = (int)htmlspecialchars($_POST['customer_id']);
+        $customerId = (int)filter_input(INPUT_POST, 'customer_id', FILTER_SANITIZE_NUMBER_INT);
 
         $customer = new Customer($customerId);
         $customer->deactivateCustomer($db);
