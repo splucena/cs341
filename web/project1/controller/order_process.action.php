@@ -25,24 +25,23 @@ switch($action) {
         break;
     case 'PopulateForm':
         $display = 'populate-form';
-        $orderId = filter_input(INPUT_GET, 'id');
+        $orderId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
         include('../view/order_process_detail.php');
         break;
 
     case 'Create':
         $orderLineCount = htmlspecialchars($_POST['order_line_count']);
-        //var_dump($orderLineCount);
-        //exit;
+        
         $orderLines = array();
         if ((int)$orderLineCount > 0) {
             $totalPrice = 0;
             for ($i = 1; $i <= $orderLineCount; $i++) {
                 //echo $i;
-                $productIdPrice = htmlspecialchars($_POST['product_id_' . $i]);
+                $productIdPrice = filter_input(INPUT_POST, 'product_id_' . $i, FILTER_SANITIZE_STRING);
                 $productId = substr($productIdPrice, 0, stripos($productIdPrice, '_'));
                 $productPrice = substr($productIdPrice, stripos($productIdPrice, '_') + 1);
-                $productQuantity = htmlspecialchars($_POST['product_quantity_' . $i]);
+                $productQuantity = filter_input(INPUT_POST, 'product_quantity_' . $i, FILTER_SANITIZE_STRING);
                 $totalPrice += ((float)$productPrice * (int)$productQuantity);
                 array_push($orderLines, array('product_id' => $productId, 'quantity' => $productQuantity, 'unit_price' => $productPrice));
 
@@ -55,15 +54,15 @@ switch($action) {
         //exit;
 
         $orderId = null;
-        $orderName  = htmlspecialchars($_POST['order_number']);;
-        $orderDesc  = htmlspecialchars($_POST['order_desc']);;
-        $orderStatus  = htmlspecialchars($_POST['order_status']);;
+        $orderName  = filter_input(INPUT_POST, 'order_number', FILTER_SANITIZE_STRING);
+        $orderDesc  = filter_input(INPUT_POST, 'order_desc', FILTER_SANITIZE_STRING);
+        $orderStatus  = filter_input(INPUT_POST, 'order_status', FILTER_SANITIZE_STRING);
         $totalAmount  = $totalPrice;
         $createDate = date('Y-m-d');
         $shippingDate  = null;//htmlspecialchars($_POST['shipping_date']);;
         //$invoiceId = null;
-        $customerId  = (int)htmlspecialchars($_POST['customer_id']);;
-        $userId  = (int)htmlspecialchars($_POST['user_id']);;
+        $customerId  = (int)filter_input(INPUT_POST, 'customer_id', FILTER_SANITIZE_NUMBER_INT);
+        $userId  = (int)filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_NUMBER_INT);
 
         $order = new Orders(null, $orderName, $orderDesc,
                             $orderStatus, $totalAmount, $createDate,
@@ -75,9 +74,9 @@ switch($action) {
         include('../view/order_process_detail.php');
         break;
     case 'Update':
-        $shippingDate = htmlspecialchars($_POST['shipping_date']);
-        $orderStatus = htmlspecialchars($_POST['order_status']);
-        $orderId = htmlspecialchars($_POST['order_id']);
+        $shippingDate = filter_input(INPUT_POST, 'shipping_date', FILTER_SANITIZE_STRING);
+        $orderStatus = filter_input(INPUT_POST, 'order_status', FILTER_SANITIZE_STRING);
+        $orderId = filter_input(INPUT_POST, 'order_id', FILTER_SANITIZE_STRING);
 
         $order = new Orders();
         $order->updateOrder($db, $shippingDate, $orderStatus, $orderId);

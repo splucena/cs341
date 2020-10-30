@@ -49,8 +49,21 @@ class Orders {
     } 
 
     public function searchOrder($db, $searchTerm) {
-        $stmt = $db->prepare("SELECT * FROM orders WHERE order_number 
-            ILIKE :name");
+        $stmt = $db->prepare("SELECT 
+            c.customer_id as customer_id,
+                u.user_id as user_id,
+                o.order_id as order_id, 
+                o.order_number as order_number,
+                o.order_desc as order_desc,
+                o.order_status as order_status,
+                o.total_amount as total_amount,
+                o.shipping_date as shipping_date,
+                c.first_name as c_first_name,
+                u.first_name as u_first_name
+            FROM orders o 
+            LEFT JOIN customer c ON o.customer_id=c.customer_id
+            LEFT JOIN users u ON o.user_id=u.user_id
+            WHERE o.order_number ILIKE :name");
         $searchTerm = "%$searchTerm%";
         $stmt->bindParam(':name', $searchTerm);
         $stmt->execute();

@@ -51,17 +51,13 @@ switch($action) {
             echo 'Empty!';
         }
 
-        //var_dump($totalPrice);
-        //exit;
-
         $orderId = null;
         $orderName  = filter_input(INPUT_POST, 'order_number', FILTER_SANITIZE_STRING);
         $orderDesc  = filter_input(INPUT_POST, 'order_desc', FILTER_SANITIZE_STRING);
         $orderStatus  = filter_input(INPUT_POST, 'order_status', FILTER_SANITIZE_STRING);
         $totalAmount  = $totalPrice;
         $createDate = date('Y-m-d');
-        $shippingDate  = null;//htmlspecialchars($_POST['shipping_date']);;
-        //$invoiceId = null;
+        $shippingDate  = null;
         $customerId  = (int)filter_input(INPUT_POST, 'customer_id', FILTER_SANITIZE_NUMBER_INT);
         $userId  = (int)filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_NUMBER_INT);
 
@@ -70,8 +66,6 @@ switch($action) {
                             $shippingDate, $customerId, $userId);
         $order->insertOrder($db, $orderLines);
         
-        //var_dump($order);
-
         include('../view/order_detail.php');
         break;    
     default:
