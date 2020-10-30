@@ -55,15 +55,15 @@ switch($action) {
         //exit;
 
         $orderId = null;
-        $orderName  = htmlspecialchars($_POST['order_number']);;
-        $orderDesc  = htmlspecialchars($_POST['order_desc']);;
-        $orderStatus  = htmlspecialchars($_POST['order_status']);;
+        $orderName  = filter_input(INPUT_POST, 'order_number', FILTER_SANITIZE_STRING);
+        $orderDesc  = filter_input(INPUT_POST, 'order_desc', FILTER_SANITIZE_STRING);
+        $orderStatus  = filter_input(INPUT_POST, 'order_status', FILTER_SANITIZE_STRING);
         $totalAmount  = $totalPrice;
         $createDate = date('Y-m-d');
         $shippingDate  = null;//htmlspecialchars($_POST['shipping_date']);;
         //$invoiceId = null;
-        $customerId  = (int)htmlspecialchars($_POST['customer_id']);;
-        $userId  = (int)htmlspecialchars($_POST['user_id']);;
+        $customerId  = (int)filter_input(INPUT_POST, 'customer_id', FILTER_SANITIZE_NUMBER_INT);
+        $userId  = (int)filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_NUMBER_INT);
 
         $order = new Orders(null, $orderName, $orderDesc,
                             $orderStatus, $totalAmount, $createDate,
